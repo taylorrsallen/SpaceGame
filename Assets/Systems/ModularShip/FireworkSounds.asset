@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95b3d828e8280be4b89f06d7829ada49, type: 3}
+  m_Name: FireworkSounds
+  m_EditorClassIdentifier: 
+  sounds:
+  - {fileID: 8300000, guid: b1fe3a2c23ae33240837078f9cac104e, type: 3}
+  - {fileID: 8300000, guid: ccd41cc64d9f8b2479958a27d92a0912, type: 3}
+  - {fileID: 8300000, guid: 4affa22b09264ae4795b5d9624153443, type: 3}
+  - {fileID: 8300000, guid: 20e34c6eaf0069b4db08c982dcc38604, type: 3}
+  - {fileID: 8300000, guid: bca8ce5a5f5edf941baeaee827cbabea, type: 3}
+  - {fileID: 8300000, guid: b8ac1ffb2460685418642d2d80b29601, type: 3}
+  - {fileID: 8300000, guid: 914ee566fd2d6894c9d43e0d36bb0de3, type: 3}
