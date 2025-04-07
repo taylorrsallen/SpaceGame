@@ -5,10 +5,10 @@ public class CameraRig : MonoBehaviour {
     private Transform pitch;
     private Camera camera_3d;
 
-    [SerializeField] Transform anchor_transform = null;
-    [SerializeField] Vector3 anchor_point = Vector3.zero;
-    [SerializeField] Vector3 anchor_offset = Vector3.zero;
-    [SerializeField] float anchor_lerp_speed = 15f;
+    [SerializeField] public Transform anchor_transform = null;
+    [SerializeField] public Vector3 anchor_point = Vector3.zero;
+    [SerializeField] public Vector3 anchor_offset = Vector3.zero;
+    [SerializeField] public float anchor_lerp_speed = 15f;
 
     [SerializeField] public Vector2 zoom_bounds = new Vector2(5f, 15f);
     [SerializeField] public float current_zoom = 5f;
@@ -28,6 +28,7 @@ public class CameraRig : MonoBehaviour {
     public bool avoid_clipping = true;
 
     public bool follow_z_rotation = false;
+    public bool focus_center_of_mass = true;
 
     Vector3 CameraHalfExtents {
         get {
@@ -63,7 +64,15 @@ public class CameraRig : MonoBehaviour {
 
 
     private void _update_anchor_point() {
-        if (anchor_transform != null) { anchor_point = anchor_transform.position; }
+        if (anchor_transform != null) {
+            anchor_point = anchor_transform.position;
+
+            if (focus_center_of_mass) {
+                Rigidbody rb = anchor_transform.GetComponent<Rigidbody>();
+                if (rb) anchor_point = anchor_transform.position + anchor_transform.transform.TransformDirection(rb.centerOfMass);
+            }
+        }
+
         transform.position = Vector3.Lerp(transform.position, anchor_point + anchor_offset, Time.deltaTime * anchor_lerp_speed);
     }
 

@@ -10,9 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6195c88f64962224f8bc56a75e8c0a4a, type: 3}
-  m_Name: 1x2PassengerHullComponentData
+  m_Name: 2x2ThrusterComponentData
   m_EditorClassIdentifier: 
-  mass: 5
-  max_health: 10
+  types: 
+  mass: 2
+  max_health: 4
   percent_armor: 0
   flat_armor: 0
+  grid_dimensions: {x: 2, y: 2}
+  mesh_prefab: {fileID: 8713969531136534805, guid: bd79552e97f49d14583c653baa11bdbd, type: 3}
+  component_prefab: {fileID: 500394674562888929, guid: 942ece7fc04e75c488fd8c64ad95a1b2, type: 3}
+  audio_data: {fileID: 11400000, guid: b4a5a338f5619774984c34ea35a27c4c, type: 2}
+  collision_velocity_damper: 0.02

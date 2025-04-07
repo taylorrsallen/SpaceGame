@@ -132,5 +132,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid_coord: {x: 0, y: 0}
-  dimensions: {x: 2, y: 2}
-  rotated: 0
+  dimensions: {x: 2, y: 3}
+  rotation: 0
+  data: {fileID: 11400000, guid: b40466af7601668499794d719455b12d, type: 2}

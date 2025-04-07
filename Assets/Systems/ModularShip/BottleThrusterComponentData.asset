@@ -16,3 +16,7 @@ MonoBehaviour:
   max_health: 4
   percent_armor: 0
   flat_armor: 0
+  grid_dimensions: {x: 2, y: 2}
+  mesh_prefab: {fileID: 0}
+  component_prefab: {fileID: 0}
+  audio_data: {fileID: 11400000, guid: b4a5a338f5619774984c34ea35a27c4c, type: 2}

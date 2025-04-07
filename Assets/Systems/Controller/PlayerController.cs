@@ -67,4 +67,9 @@ public class PlayerController : MonoBehaviour, IController {
     private void OnZoom(InputValue input_value) {
         if (camera_rig != null) { camera_rig.apply_zoom(input_value.Get<float>()); }
     }
+
+    private void OnToggleBuildMode(InputValue input_value) {
+        Debug.Log("Toggle");
+        GameManager.instance.toggle_ship_builder();
+    }
 }

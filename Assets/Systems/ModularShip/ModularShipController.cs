@@ -4,15 +4,18 @@ public class ModularShipController : MonoBehaviour {
     private Character character;
     public Rigidbody rb;
 
+    public ModularShipBlueprintData blueprint;
+    public Grid3D grid;
+    public Transform components;
+
     private ModularShipActivator[] activators;
 
-    private float fuel;
+    Vector3 previous_velocity;
+    Vector3 velocity_override;
 
-    private void Awake() {
-        character = GetComponent<Character>();
-        rb = GetComponent<Rigidbody>();
+    private void init() {
         activators = GetComponentsInChildren<ModularShipActivator>();
-        
+
         rb.mass = 0f;
         foreach (ModularShipComponent ship_component in GetComponentsInChildren<ModularShipComponent>()) {
             rb.mass += ship_component.data.mass;
@@ -20,10 +23,23 @@ public class ModularShipController : MonoBehaviour {
         }
     }
 
+    private void Awake() {
+        character = GetComponent<Character>();
+        rb = GetComponent<Rigidbody>();
+
+        init();
+    }
+
     private void Update() {
         foreach (ModularShipActivator activator in activators) {
             if (activator == null) continue;
             activator.update_active_state();
+        }
+
+        previous_velocity = rb.linearVelocity;
+        if (velocity_override != Vector3.zero) {
+            rb.linearVelocity = velocity_override;
+            velocity_override = Vector3.zero;
         }
     }
 
@@ -43,7 +59,36 @@ public class ModularShipController : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision) {
         ModularShipComponent ship_component = collision.GetContact(0).thisCollider.GetComponent<ModularShipComponent>();
-        if (ship_component != null) ship_component.apply_collision(collision);
+        if (ship_component != null) {
+            ship_component.apply_collision(collision);
+            velocity_override = previous_velocity - (ship_component.data.collision_velocity_damper * previous_velocity) / (rb.mass * 0.25f);
+        }
+    }
+
+    public void load_blueprint(ModularShipBlueprintData _blueprint) {
+        clear();
+        blueprint = _blueprint;
+        grid.load_blueprint_as_functional(blueprint, components);
+        init();
+    }
+
+    public void set_active(bool active) {
+        if (active) {
+            rb.isKinematic = false;
+        } else {
+            rb.isKinematic = true;
+        }
+    }
+
+    public void clear() {
+        foreach (Transform child_transform in components.GetComponentsInChildren<Transform>()) {
+            if (child_transform.gameObject == components.gameObject) continue;
+            Destroy(child_transform.gameObject);
+        }
+
+        grid.clear();
+
+        transform.rotation = Quaternion.identity;
     }
 
     public void on_component_destroyed(ModularShipComponent ship_component) {

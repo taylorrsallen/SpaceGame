@@ -2,6 +2,8 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "ShipComponentAudioData", menuName = "Scriptable Objects/ShipComponentAudioData")]
 public class ShipComponentAudioData : ScriptableObject {
+    [SerializeField] public GameObject explosion_effect;
+
     [SerializeField] public SoundPool collision_sounds;
     [SerializeField] public SoundPool destroy_sounds;
 

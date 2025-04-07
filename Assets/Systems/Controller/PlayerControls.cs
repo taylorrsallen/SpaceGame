@@ -116,6 +116,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ToggleBuildMode"",
+                    ""type"": ""Button"",
+                    ""id"": ""6052d67a-0223-4efd-8c8f-c21cb97e9db3"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -446,6 +455,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3e86db8f-c0c7-4889-938f-5016e925fa13"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleBuildMode"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1043,6 +1063,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
         m_Player_GrabCamera = m_Player.FindAction("GrabCamera", throwIfNotFound: true);
         m_Player_Zoom = m_Player.FindAction("Zoom", throwIfNotFound: true);
+        m_Player_ToggleBuildMode = m_Player.FindAction("ToggleBuildMode", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1132,6 +1153,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Sprint;
     private readonly InputAction m_Player_GrabCamera;
     private readonly InputAction m_Player_Zoom;
+    private readonly InputAction m_Player_ToggleBuildMode;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -1146,6 +1168,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
         public InputAction @GrabCamera => m_Wrapper.m_Player_GrabCamera;
         public InputAction @Zoom => m_Wrapper.m_Player_Zoom;
+        public InputAction @ToggleBuildMode => m_Wrapper.m_Player_ToggleBuildMode;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1185,6 +1208,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Zoom.started += instance.OnZoom;
             @Zoom.performed += instance.OnZoom;
             @Zoom.canceled += instance.OnZoom;
+            @ToggleBuildMode.started += instance.OnToggleBuildMode;
+            @ToggleBuildMode.performed += instance.OnToggleBuildMode;
+            @ToggleBuildMode.canceled += instance.OnToggleBuildMode;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1219,6 +1245,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Zoom.started -= instance.OnZoom;
             @Zoom.performed -= instance.OnZoom;
             @Zoom.canceled -= instance.OnZoom;
+            @ToggleBuildMode.started -= instance.OnToggleBuildMode;
+            @ToggleBuildMode.performed -= instance.OnToggleBuildMode;
+            @ToggleBuildMode.canceled -= instance.OnToggleBuildMode;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1411,6 +1440,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnSprint(InputAction.CallbackContext context);
         void OnGrabCamera(InputAction.CallbackContext context);
         void OnZoom(InputAction.CallbackContext context);
+        void OnToggleBuildMode(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
