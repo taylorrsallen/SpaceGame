@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ModularShipController : MonoBehaviour {
@@ -9,6 +10,7 @@ public class ModularShipController : MonoBehaviour {
     public Transform components;
 
     private ModularShipActivator[] activators;
+    private ModularShipFuelContainer[] fuel_containers;
 
     Vector3 previous_velocity;
     Vector3 velocity_override;
@@ -16,8 +18,11 @@ public class ModularShipController : MonoBehaviour {
     public Vector3 last_valid_camera_anchor_point;
     public Vector3 last_valid_camera_anchor_rotation;
 
+    public float total_available_fuel;
+
     private void init() {
         activators = GetComponentsInChildren<ModularShipActivator>();
+        fuel_containers = GetComponentsInChildren<ModularShipFuelContainer>();
 
         rb.mass = 0f;
         foreach (ModularShipComponent ship_component in GetComponentsInChildren<ModularShipComponent>()) {
@@ -36,7 +41,7 @@ public class ModularShipController : MonoBehaviour {
     private void Update() {
         foreach (ModularShipActivator activator in activators) {
             if (activator == null) continue;
-            activator.update_active_state();
+            activator.update_active_state(total_available_fuel);
         }
 
         if (components.childCount > 0) {
@@ -46,9 +51,30 @@ public class ModularShipController : MonoBehaviour {
     }
 
     private void FixedUpdate() {
+        total_available_fuel = 0f;
+        foreach (ModularShipFuelContainer fuel_container in fuel_containers) {
+            if (!fuel_container) continue;
+            total_available_fuel += fuel_container.fuel;
+        }
+            
+        // Debug.Log(total_available_fuel);
+
+        float total_fuel_to_use = 0f;
         foreach (ModularShipActivator activator in activators) {
             if (activator == null) continue;
-            activator.update_activatables(this);
+            total_fuel_to_use += activator.update_activatables_and_get_fuel_usage(this, total_available_fuel);
+        }
+
+        total_fuel_to_use *= Time.fixedDeltaTime;
+        foreach (ModularShipFuelContainer fuel_container in fuel_containers) {
+            if (!fuel_container) continue;
+            if (fuel_container.fuel > 0f) {
+                float fuel_to_use = Mathf.Min(total_fuel_to_use, fuel_container.fuel);
+                total_fuel_to_use -= fuel_to_use;
+                fuel_container.fuel -= fuel_to_use;
+            }
+
+            if (total_fuel_to_use == 0f) break;
         }
 
         float world_half_extent = AtmosphereManager.instance.world_horizontal_size * 0.5f;

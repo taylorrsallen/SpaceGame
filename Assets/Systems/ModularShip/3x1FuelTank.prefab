@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6149358514525775442}
   - component: {fileID: 8059321874106242417}
   - component: {fileID: -3078178887393306268}
+  - component: {fileID: 3137831567920369941}
   m_Layer: 0
   m_Name: 3x1FuelTank
   m_TagString: Untagged
@@ -201,8 +202,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 10
   data: {fileID: 11400000, guid: c20c45b8ec421224ebc9b24496d7b6ee, type: 2}
-  collision_velocity_to_damage_multiplier: 0.5
-  collision_velocity_to_volume_multiplier: 0.05
   modular_ship_controller: {fileID: 0}
 --- !u!64 &-3078178887393306268
 MeshCollider:
@@ -226,3 +225,17 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 8444210970189171048, guid: 13e035b7d739ae440bd303d7ebb65e71, type: 3}
+--- !u!114 &3137831567920369941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3983722852992836167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362f2beb287eb074ea4e4caabfdee6e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fuel_capacity: 0
+  fuel: 0

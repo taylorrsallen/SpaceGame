@@ -27,7 +27,7 @@ public class ContextMenu3D : MonoBehaviour {
         follow_transform.snap();
 
         if (target.data.component_data.activator) {
-            hotkey_text.text = target.data.component_data.hotkey;
+            hotkey_text.text = target.data.component_runtime_data.activator_hotkey.ToString();
         }
     }
 }

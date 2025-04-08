@@ -22,6 +22,8 @@ public class ModularShipBuilder : MonoBehaviour {
 
     public Grid3DItem set_hotkey_target;
 
+    public NineRect3D build_zone_background;
+
     private void Awake() {
         update_ui_collider();
     }
@@ -61,8 +63,8 @@ public class ModularShipBuilder : MonoBehaviour {
                 } else {
                     foreach (KeyCode key in System.Enum.GetValues(typeof(KeyCode)))
                     if (Input.GetKeyDown(key)) {
-                        set_hotkey_target.data.component_data.hotkey = key.ToString();
-                        Debug.Log(set_hotkey_target.data.component_data.hotkey);
+                        set_hotkey_target.data.component_runtime_data.activator_hotkey = key;
+                        Debug.Log(set_hotkey_target.data.component_runtime_data.activator_hotkey);
                         set_hotkey_target = null;
                     }
                 }
@@ -79,7 +81,7 @@ public class ModularShipBuilder : MonoBehaviour {
 
                     if (Input.GetMouseButtonDown(1)) {
                         set_hotkey_target = hovered_item;
-                        set_hotkey_target.data.component_data.hotkey = "SET KEY";
+                        // set_hotkey_target.data.component_runtime_data.hotkey = "SET KEY";
                     }
                 } else {
                     hover_context_menu.gameObject.SetActive(false);
@@ -118,6 +120,13 @@ public class ModularShipBuilder : MonoBehaviour {
                 }
             }
         }
+    }
+
+    public Grid3DItem spawn_grid_item(int item_id, Transform parent) {
+        Grid3DItem item = Instantiate(grid_item_prefab, parent);
+        item.init(new Grid3DItemData(GameManager.instance.ship_components[Random.Range(0, GameManager.instance.ship_components.Length)]));
+        item.set_default_runtime_data();
+        return item;
     }
 
     private void FixedUpdate() {

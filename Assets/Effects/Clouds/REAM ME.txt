@@ -1,0 +1,5 @@
+We need a more optimal way to render clouds. Im thinking of doing billboards for distant clouds that are random frames on a framesheet. 
+
+The ones you bump into might have to be a scripted system. Im thinking the liftime_loss speed increases if the bool is checked that the player bumped into said cloud ball. This would reduce the number of rigidbodies.
+
+Also not sre how but the clouds wont loop like the landscape will so I am

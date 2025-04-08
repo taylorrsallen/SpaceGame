@@ -1,11 +1,6 @@
-using TreeEditor;
-using UnityEditor.UIElements;
 using UnityEngine;
 
 public class AtmosphereManager : MonoBehaviour {
-
-    [SerializeField] public CurveField wind_strength_height_multiplier;
-
     private float wind_strength = 1f;
     private Vector2 wind_direction = new Vector2(1.0f, 0.0f);
     private Vector2 wind_target;

@@ -20,5 +20,12 @@ MonoBehaviour:
   grid_dimensions: {x: 2, y: 2}
   mesh_prefab: {fileID: 8534020876809586284, guid: ab18ad26aad123c4e8b9b19eb741cc0f, type: 3}
   component_prefab: {fileID: -2988155600422997063, guid: 648196af8cd38b04ba5a97682c209831, type: 3}
-  audio_data: {fileID: 11400000, guid: b4a5a338f5619774984c34ea35a27c4c, type: 2}
+  audio_data: {fileID: 11400000, guid: 5ce673de99a1c344586205ee3c1a4f40, type: 2}
   collision_velocity_damper: 0.02
+  activator: 0
+  activator_fuel_usage_per_second: 0.5
+  activator_hotkey: 32
+  activator_can_deactivate: 1
+  activator_toggle: 0
+  fuel_container: 0
+  fuel_capacity: 100

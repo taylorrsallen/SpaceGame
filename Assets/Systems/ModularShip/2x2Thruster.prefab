@@ -127,9 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
-  data: {fileID: 11400000, guid: 9ceec157644f6cd4e8b328d9e946f47a, type: 2}
-  collision_velocity_to_damage_multiplier: 0.5
-  collision_velocity_to_volume_multiplier: 0.05
+  data: {fileID: 11400000, guid: 33ddca6429f6ccc4cb7ffc8337115bc7, type: 2}
   modular_ship_controller: {fileID: 0}
 --- !u!82 &3059433175035662395
 AudioSource:
@@ -240,10 +238,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e17b038a0c2dd744aa908d8b24e9649e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hotkey: a
+  hotkey: 0
   active: 0
   can_deactivate: 1
   toggle: 0
+  fuel_usage_per_second: 0.5
 --- !u!1 &4738689365827390965
 GameObject:
   m_ObjectHideFlags: 0

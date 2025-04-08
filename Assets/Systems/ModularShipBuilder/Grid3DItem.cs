@@ -3,11 +3,13 @@ using System.Linq;
 using JetBrains.Annotations;
 using UnityEngine;
 
+// Data saved to blueprints
 public class Grid3DItemData {
     [SerializeField] public Vector2Int grid_coord;
     [SerializeField] public Vector2Int dimensions = new Vector2Int(2, 2);
     [SerializeField] public int rotation;
     [SerializeField] public ShipComponentData component_data;
+    [SerializeField] public ShipComponentRuntimeData component_runtime_data = new ShipComponentRuntimeData();
 
     public Grid3DItemData(ShipComponentData _component_data) {
         set_component_data(_component_data);
@@ -31,10 +33,15 @@ public class Grid3DItemData {
 public class Grid3DItem : MonoBehaviour {
     [SerializeField] public Grid3DItemData data;
     [SerializeField] public ContextMenu3D menu;
+    
 
     public void init(Grid3DItemData _data) {
         data = _data;
         refresh();
+    }
+
+    public void set_default_runtime_data() {
+        data.component_runtime_data.set_defaults(data.component_data);
     }
 
     public void refresh() {

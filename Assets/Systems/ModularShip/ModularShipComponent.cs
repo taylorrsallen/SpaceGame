@@ -8,10 +8,28 @@ public class ModularShipComponent : MonoBehaviour {
     [SerializeField] public float health = 10f;
 
     [SerializeField] public ShipComponentData data;
+    [SerializeField] public ShipComponentRuntimeData runtime_data;
+
     float collision_velocity_to_damage_multiplier = 0.5f;
     float collision_velocity_to_volume_multiplier = 0.05f;
 
     public ModularShipController modular_ship_controller;
+
+    public void init() {
+        ModularShipActivator activator = GetComponent<ModularShipActivator>();
+        if (activator) {
+            activator.hotkey = runtime_data.activator_hotkey;
+            activator.can_deactivate = runtime_data.activator_can_deactivate;
+            activator.toggle = runtime_data.activator_toggle;
+            activator.fuel_usage_per_second = data.activator_fuel_usage_per_second;
+        }
+
+        ModularShipFuelContainer fuel_container = GetComponent<ModularShipFuelContainer>();
+        if (fuel_container) {
+            fuel_container.fuel_capacity = data.fuel_capacity;
+            fuel_container.fuel = data.fuel_capacity;
+        }
+    }
 
     private void Awake() {
         audio_source = GetComponent<AudioSource>();

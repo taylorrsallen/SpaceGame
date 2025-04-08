@@ -62,8 +62,10 @@ public class Grid3D : MonoBehaviour {
         Transform item_parent = parent != null ? parent : transform;
         foreach (Grid3DItemData item_data in blueprint.item_datas) {
             ModularShipComponent ship_component = Instantiate(item_data.component_data.component_prefab, item_parent);
+            ship_component.runtime_data = item_data.component_runtime_data;
             ship_component.transform.localPosition = get_position_from_grid_coord(item_data.grid_coord) + item_data.get_center_position_offset();
             ship_component.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, item_data.rotation * 90f));
+            ship_component.init();
         }
     }
 

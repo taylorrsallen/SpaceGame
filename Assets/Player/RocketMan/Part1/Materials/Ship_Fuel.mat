@@ -45,6 +45,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _CubemapAsset_03eb7063847d4d5fa292a7ab0b7e646a_Out_0_Cubemap:
+        m_Texture: {fileID: 8900000, guid: a401345a565587b469ca38a5f6d42f9c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -112,7 +116,7 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
-    - _Fill: 0.31
+    - _Fill: 0.52
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
