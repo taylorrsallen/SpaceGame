@@ -11,6 +11,7 @@ public class ModularShipBuilder : MonoBehaviour {
     [SerializeField] Grid3D stash_grid;
 
     [SerializeField] public Grid3DItem grid_item_prefab;
+    [SerializeField] public ContextMenu3D hover_context_menu;
     [SerializeField] public ContextMenu3D context_menu_prefab;
 
     public Grid3DItem grabbed_item;
@@ -18,6 +19,8 @@ public class ModularShipBuilder : MonoBehaviour {
     public Vector3 cursor_previous_position;
     public Vector3 grabbed_item_rotation_target;
     public Vector3 grabbed_item_rotation;
+
+    public Grid3DItem set_hotkey_target;
 
     private void Awake() {
         update_ui_collider();
@@ -52,10 +55,37 @@ public class ModularShipBuilder : MonoBehaviour {
             Vector3 grid_coord_corner = new Vector3(world_coord.x, world_coord.y, hit.point.z);
             Util.DrawAABB2D(grid_coord_corner, Vector2.one * 0.5f, Color.white);
 
+            if (set_hotkey_target) {
+                if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)) {
+                    set_hotkey_target = null;
+                } else {
+                    foreach (KeyCode key in System.Enum.GetValues(typeof(KeyCode)))
+                    if (Input.GetKeyDown(key)) {
+                        set_hotkey_target.data.component_data.hotkey = key.ToString();
+                        Debug.Log(set_hotkey_target.data.component_data.hotkey);
+                        set_hotkey_target = null;
+                    }
+                }
+            }
+
             Grid3DItem hovered_item = hit_grid.get_grid_item_from_grid_coord(grid_coord);
             if (hovered_item) {
                 Vector3 item_position = hit_grid.get_position_from_grid_coord(hovered_item.data.grid_coord);
                 Util.DrawAABB2D(new Vector3(item_position.x, item_position.y, hit.point.z), (Vector2)hovered_item.get_rotated_dimensions() * 0.5f, Color.blue);
+
+                if (hovered_item.data.component_data.activator && !grabbed_item && !set_hotkey_target) {
+                    hover_context_menu.gameObject.SetActive(true);
+                    hover_context_menu.set_target(hovered_item);
+
+                    if (Input.GetMouseButtonDown(1)) {
+                        set_hotkey_target = hovered_item;
+                        set_hotkey_target.data.component_data.hotkey = "SET KEY";
+                    }
+                } else {
+                    hover_context_menu.gameObject.SetActive(false);
+                }
+            } else {
+                hover_context_menu.gameObject.SetActive(false);
             }
 
             if (grabbed_item) {
@@ -84,13 +114,7 @@ public class ModularShipBuilder : MonoBehaviour {
                     Debug.Log("Place");
                     Grid3DItem item = Instantiate(grid_item_prefab, build_grid.transform);
                     item.init(new Grid3DItemData(GameManager.instance.ship_components[Random.Range(0, GameManager.instance.ship_components.Length)]));
-
-                    if (!hit_grid.try_set_item(item, grid_coord)) {
-                        Destroy(item.gameObject);
-                    } else if (item.data.component_data.activator) {
-                        ContextMenu3D menu = Instantiate(context_menu_prefab, transform);
-                        menu.set_target(item);
-                    }
+                    if (!hit_grid.try_set_item(item, grid_coord)) { Destroy(item.gameObject); }
                 }
             }
         }

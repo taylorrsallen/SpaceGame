@@ -485,8 +485,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   expanded: 0
   target: {fileID: 0}
-  hotkey_text: {fileID: 4161431040840867546}
   nine_rect: {fileID: 6438494278679281990}
+  hotkey_text: {fileID: 4161431040840867546}
 --- !u!114 &6981662544278470734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -777,7 +777,7 @@ MonoBehaviour:
   base_texture: {fileID: 2800000, guid: a0492441c8985ed4286fb291181f9a2b, type: 3}
   base_material: {fileID: 2100000, guid: 9c9191f8581773f42b1bb21e035de9d4, type: 2}
   slice_dimension: 12
-  dimensions: {x: 3, y: 3}
+  dimensions: {x: 3, y: 21}
   interactive: 0
 --- !u!1 &6015908221037164729
 GameObject:

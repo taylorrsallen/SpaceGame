@@ -30,6 +30,7 @@ public class Grid3DItemData {
 
 public class Grid3DItem : MonoBehaviour {
     [SerializeField] public Grid3DItemData data;
+    [SerializeField] public ContextMenu3D menu;
 
     public void init(Grid3DItemData _data) {
         data = _data;

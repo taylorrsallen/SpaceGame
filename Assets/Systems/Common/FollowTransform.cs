@@ -8,6 +8,10 @@ public class FollowTransform : MonoBehaviour {
     public bool follow_rotation = false;
 
     private void Update() {
+        snap();
+    }
+
+    public void snap() {
         if (!follow) return;
         transform.position = follow.position + global_offset + follow.TransformDirection(local_offset);
         if (follow_rotation) transform.rotation = follow.rotation;
