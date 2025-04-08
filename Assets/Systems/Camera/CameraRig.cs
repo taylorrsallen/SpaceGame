@@ -53,7 +53,14 @@ public class CameraRig : MonoBehaviour {
         if (look_enabled) _update_look();
         _update_zoom();
 
-        if (follow_z_rotation) camera_3d.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, anchor_transform.rotation.eulerAngles.z));
+        if (follow_z_rotation) {
+            ModularShipController ship_controller = anchor_transform.GetComponent<ModularShipController>();
+            if (ship_controller) {
+                camera_3d.transform.rotation = Quaternion.Euler(ship_controller.last_valid_camera_anchor_rotation);
+            } else {
+                camera_3d.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, anchor_transform.rotation.eulerAngles.z));
+            }
+        }
     }
 
     #region GetSet
@@ -71,6 +78,9 @@ public class CameraRig : MonoBehaviour {
                 Rigidbody rb = anchor_transform.GetComponent<Rigidbody>();
                 if (rb) anchor_point = anchor_transform.position + anchor_transform.transform.TransformDirection(rb.centerOfMass);
             }
+
+            ModularShipController ship_controller = anchor_transform.GetComponent<ModularShipController>();
+            if (ship_controller) { anchor_point = ship_controller.last_valid_camera_anchor_point; }
         }
 
         transform.position = Vector3.Lerp(transform.position, anchor_point + anchor_offset, Time.deltaTime * anchor_lerp_speed);

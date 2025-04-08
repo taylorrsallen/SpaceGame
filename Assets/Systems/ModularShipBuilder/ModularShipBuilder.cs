@@ -11,6 +11,7 @@ public class ModularShipBuilder : MonoBehaviour {
     [SerializeField] Grid3D stash_grid;
 
     [SerializeField] public Grid3DItem grid_item_prefab;
+    [SerializeField] public ContextMenu3D context_menu_prefab;
 
     public Grid3DItem grabbed_item;
     public Vector3 cursor_velocity;
@@ -83,7 +84,13 @@ public class ModularShipBuilder : MonoBehaviour {
                     Debug.Log("Place");
                     Grid3DItem item = Instantiate(grid_item_prefab, build_grid.transform);
                     item.init(new Grid3DItemData(GameManager.instance.ship_components[Random.Range(0, GameManager.instance.ship_components.Length)]));
-                    if (!hit_grid.try_set_item(item, grid_coord)) Destroy(item.gameObject);
+
+                    if (!hit_grid.try_set_item(item, grid_coord)) {
+                        Destroy(item.gameObject);
+                    } else if (item.data.component_data.activator) {
+                        ContextMenu3D menu = Instantiate(context_menu_prefab, transform);
+                        menu.set_target(item);
+                    }
                 }
             }
         }

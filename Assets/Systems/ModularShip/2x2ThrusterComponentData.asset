@@ -22,3 +22,8 @@ MonoBehaviour:
   component_prefab: {fileID: 500394674562888929, guid: 942ece7fc04e75c488fd8c64ad95a1b2, type: 3}
   audio_data: {fileID: 11400000, guid: b4a5a338f5619774984c34ea35a27c4c, type: 2}
   collision_velocity_damper: 0.02
+  activator: 1
+  hotkey: space
+  active: 0
+  can_deactivate: 1
+  toggle: 0

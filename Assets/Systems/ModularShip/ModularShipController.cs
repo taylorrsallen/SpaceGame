@@ -13,6 +13,9 @@ public class ModularShipController : MonoBehaviour {
     Vector3 previous_velocity;
     Vector3 velocity_override;
 
+    public Vector3 last_valid_camera_anchor_point;
+    public Vector3 last_valid_camera_anchor_rotation;
+
     private void init() {
         activators = GetComponentsInChildren<ModularShipActivator>();
 
@@ -36,10 +39,9 @@ public class ModularShipController : MonoBehaviour {
             activator.update_active_state();
         }
 
-        previous_velocity = rb.linearVelocity;
-        if (velocity_override != Vector3.zero) {
-            rb.linearVelocity = velocity_override;
-            velocity_override = Vector3.zero;
+        if (components.childCount > 0) {
+            last_valid_camera_anchor_point = transform.position + transform.TransformDirection(rb.centerOfMass);
+            last_valid_camera_anchor_rotation = new Vector3(0f, 0f, transform.rotation.eulerAngles.z);
         }
     }
 
@@ -54,6 +56,12 @@ public class ModularShipController : MonoBehaviour {
             transform.position = new Vector3(transform.position.x - AtmosphereManager.instance.world_horizontal_size, transform.position.y, transform.position.z);
         } else if (transform.position.x <= -world_half_extent) {
             transform.position = new Vector3(transform.position.x + AtmosphereManager.instance.world_horizontal_size, transform.position.y, transform.position.z);
+        }
+
+        previous_velocity = rb.linearVelocity;
+        if (velocity_override != Vector3.zero) {
+            rb.linearVelocity = velocity_override;
+            velocity_override = Vector3.zero;
         }
     }
 

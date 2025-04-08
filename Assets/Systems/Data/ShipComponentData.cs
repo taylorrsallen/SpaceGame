@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public enum ShipComponentType {
@@ -25,4 +26,10 @@ public class ShipComponentData : ScriptableObject {
     [SerializeField] public ShipComponentAudioData audio_data;
     
     [SerializeField] public float collision_velocity_damper = 0.1f;
+
+    [SerializeField] public bool activator = false;
+    [SerializeField] public string hotkey = "space";
+    [SerializeField] public bool active = false;
+    [SerializeField] public bool can_deactivate = true;
+    [SerializeField] public bool toggle = false;
 }
