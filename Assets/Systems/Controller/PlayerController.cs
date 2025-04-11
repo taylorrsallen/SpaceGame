@@ -25,7 +25,12 @@ public class PlayerController : MonoBehaviour, IController {
     }
 
     void Update() {
-        
+        if (character != null) {
+            if (grab_camera_action.IsPressed()) {
+                CharacterCameraGrabMotion grab_motion = character.GetComponent<CharacterCameraGrabMotion>();
+                if (grab_motion != null) grab_motion.apply_camera_grab(look_input, camera_rig.current_zoom);
+            }
+        }
     }
     
     void FixedUpdate() {
@@ -46,11 +51,6 @@ public class PlayerController : MonoBehaviour, IController {
 
         character.jump = jump_action.IsPressed() ? true : false;
         character.crouch = crouch_action.IsPressed() ? true : false;
-
-        if (grab_camera_action.IsPressed()) {
-            CharacterCameraGrabMotion grab_motion = character.GetComponent<CharacterCameraGrabMotion>();
-            if (grab_motion != null) grab_motion.apply_camera_grab(look_input, camera_rig.current_zoom);
-        }
     }
 
     private void OnPrimary() { character.primary(); }

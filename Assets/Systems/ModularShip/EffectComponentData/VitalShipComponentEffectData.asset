@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: VitalShipComponentEffectData
   m_EditorClassIdentifier: 
   explosion_effect: {fileID: 3030171370775544461, guid: 04988952ca1eeef40beefe521f69d362, type: 3}
-  collision_sounds: {fileID: 11400000, guid: 193b1990c3e945949be68ef70cebca90, type: 2}
+  collision_sounds: {fileID: 11400000, guid: fd2110c5c871f7b478147c9dd93942a5, type: 2}
   destroy_sounds: {fileID: 11400000, guid: 76ef9b765f2fb734c9353f5f5393fda4, type: 2}
   collision_sound_range: {x: 0.05, y: 2}

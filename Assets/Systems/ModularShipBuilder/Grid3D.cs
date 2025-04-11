@@ -9,9 +9,13 @@ public class Grid3D : MonoBehaviour {
     public List<Grid3DItem> items_list = new List<Grid3DItem>();
     public Grid3DItem[] items;
 
-    private void Awake() {
+    public void init() {
         box_collider = GetComponent<BoxCollider>();
         clear();
+    }
+
+    public void set_interactive(bool interactive) {
+        box_collider.enabled = interactive;
     }
 
     public void remove_item(Grid3DItem item) {
@@ -43,6 +47,7 @@ public class Grid3D : MonoBehaviour {
 
     public void update_collider() {
         box_collider.size = new Vector3(get_world_dimensions().x, get_world_dimensions().y, 1f);
+        box_collider.transform.localPosition = new Vector3(0f, 0f, 1f);
     }
 
     public void load_blueprint_as_inventory(ModularShipBlueprintData blueprint, Transform parent = null) {
@@ -128,6 +133,11 @@ public class Grid3D : MonoBehaviour {
         return items[get_grid_id_from_grid_coord(grid_coord)];
     }
 
+    public Grid3DItem try_get_grid_item_from_grid_coord(Vector2Int grid_coord) {
+        if (!is_grid_coord_valid(grid_coord)) return null;
+        return items[get_grid_id_from_grid_coord(grid_coord)];
+    }
+
     public Vector2 get_world_coord_from_position(Vector3 position) {
         Vector2 world_coord = new Vector2(Mathf.Floor(position.x), Mathf.Floor(position.y));
         world_coord.x = position.x - world_coord.x > 0.5f ? world_coord.x + 0.5f : world_coord.x;
@@ -144,7 +154,7 @@ public class Grid3D : MonoBehaviour {
     }
 
     public Vector3 get_position_from_grid_coord(Vector2Int grid_coord) {
-        return new Vector3(grid_coord.x * 0.5f - dimensions.x * 0.25f + transform.position.x, grid_coord.y * 0.5f - dimensions.y * 0.25f + transform.position.y, transform.position.z);
+        return new Vector3(grid_coord.x * 0.5f - dimensions.x * 0.25f + transform.position.x, grid_coord.y * 0.5f - dimensions.y * 0.25f + transform.position.y, transform.position.z - 0.5f);
     }
 
     public Vector2Int get_grid_coord_from_world_coord(Vector2 world_coord) {

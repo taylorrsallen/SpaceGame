@@ -65,7 +65,6 @@ public class GameManager : MonoBehaviour {
         ModularShipBlueprintData new_blueprint = ship_builder.get_ship_blueprint();
 
         // Spawn & assign blueprint
-        ship_controller.transform.position = spawn_point;
         ship_controller.load_blueprint(new_blueprint);
         ship_controller.set_active(true);
 

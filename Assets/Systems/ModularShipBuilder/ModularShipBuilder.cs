@@ -6,13 +6,15 @@ public class ModularShipBuilder : MonoBehaviour {
     [SerializeField] LayerMask ui_layer;
     [SerializeField] public CharacterCameraGrabMotion ship_builder_camera_anchor;
 
-    [SerializeField] Grid3D build_grid;
-    [SerializeField] Grid3D shop_grid;
-    [SerializeField] Grid3D stash_grid;
+    [SerializeField] Grid3DVisualizer build_grid;
+    [SerializeField] Grid3DVisualizer shop_grid;
+    [SerializeField] Grid3DVisualizer stash_grid;
 
     [SerializeField] public Grid3DItem grid_item_prefab;
     [SerializeField] public ContextMenu3D hover_context_menu;
     [SerializeField] public ContextMenu3D context_menu_prefab;
+
+    public Grid3DVisualizer last_hovered_grid_visualizer;
 
     public Grid3DItem grabbed_item;
     public Vector3 cursor_velocity;
@@ -47,6 +49,8 @@ public class ModularShipBuilder : MonoBehaviour {
 
             Grid3D hit_grid = hit.collider.GetComponent<Grid3D>();
             if (hit_grid == null) return;
+            Grid3DVisualizer visualizer = hit_grid.transform.parent.GetComponent<Grid3DVisualizer>();
+            set_hovered_grid_visualizer(visualizer);
 
             Vector2 world_coord = hit_grid.get_world_coord_from_position(hit.point);
             Vector2Int grid_coord = hit_grid.get_grid_coord_from_world_coord(hit.point);
@@ -70,10 +74,12 @@ public class ModularShipBuilder : MonoBehaviour {
                 }
             }
 
-            Grid3DItem hovered_item = hit_grid.get_grid_item_from_grid_coord(grid_coord);
+            Grid3DItem hovered_item = hit_grid.try_get_grid_item_from_grid_coord(grid_coord);
             if (hovered_item) {
                 Vector3 item_position = hit_grid.get_position_from_grid_coord(hovered_item.data.grid_coord);
-                Util.DrawAABB2D(new Vector3(item_position.x, item_position.y, hit.point.z), (Vector2)hovered_item.get_rotated_dimensions() * 0.5f, Color.blue);
+
+                if (visualizer) visualizer.set_highlighter(hovered_item.data.grid_coord, hovered_item.get_rotated_dimensions(), Color.white);
+                // Util.DrawAABB2D(new Vector3(item_position.x, item_position.y, hit.point.z), (Vector2)hovered_item.get_rotated_dimensions() * 0.5f, Color.blue);
 
                 if (hovered_item.data.component_data.activator && !grabbed_item && !set_hotkey_target) {
                     hover_context_menu.gameObject.SetActive(true);
@@ -87,6 +93,7 @@ public class ModularShipBuilder : MonoBehaviour {
                     hover_context_menu.gameObject.SetActive(false);
                 }
             } else {
+                if (visualizer) visualizer.set_highlighter_active(false);
                 hover_context_menu.gameObject.SetActive(false);
             }
 
@@ -94,9 +101,10 @@ public class ModularShipBuilder : MonoBehaviour {
                 if (Input.GetKeyDown("r")) grabbed_item.rotate();
 
                 Vector2Int placement_grid_coord = grabbed_item.get_placement_grid_coord(grid_coord);
-                Vector3 item_position = hit_grid.get_position_from_grid_coord(placement_grid_coord);
                 Color placement_color = hit_grid.is_item_placement_valid(grabbed_item.get_rotated_dimensions(), placement_grid_coord) ? Color.green : Color.red;
-                Util.DrawAABB2D(new Vector3(item_position.x, item_position.y, hit.point.z), (Vector2)grabbed_item.get_rotated_dimensions() * 0.5f, placement_color);
+
+                if (visualizer) visualizer.set_highlighter(placement_grid_coord, grabbed_item.get_rotated_dimensions(), placement_color);
+                // Util.DrawAABB2D(new Vector3(item_position.x, item_position.y, hit.point.z), (Vector2)grabbed_item.get_rotated_dimensions() * 0.5f, placement_color);
 
                 foreach (Vector2Int connected_coord in grabbed_item.get_connected_coords_at_coord(placement_grid_coord)) {
                     if (!hit_grid.is_grid_coord_valid(connected_coord)) continue;
@@ -114,12 +122,20 @@ public class ModularShipBuilder : MonoBehaviour {
                     hit_grid.remove_item(grabbed_item);
                 } else {
                     Debug.Log("Place");
-                    Grid3DItem item = Instantiate(grid_item_prefab, build_grid.transform);
+                    Grid3DItem item = Instantiate(grid_item_prefab, build_grid.grid_3d.transform);
                     item.init(new Grid3DItemData(GameManager.instance.ship_components[Random.Range(0, GameManager.instance.ship_components.Length)]));
                     if (!hit_grid.try_set_item(item, grid_coord)) { Destroy(item.gameObject); }
                 }
             }
+        } else {
+            set_hovered_grid_visualizer(null);
         }
+    }
+
+    public void set_hovered_grid_visualizer(Grid3DVisualizer grid_visualizer) {
+        if (grid_visualizer == last_hovered_grid_visualizer) return;
+        if (last_hovered_grid_visualizer) last_hovered_grid_visualizer.set_highlighter_active(false);
+        last_hovered_grid_visualizer = grid_visualizer;
     }
 
     public Grid3DItem spawn_grid_item(int item_id, Transform parent) {
@@ -135,12 +151,12 @@ public class ModularShipBuilder : MonoBehaviour {
 
 
     public bool is_ship_valid() {
-        if (build_grid.items_list.Count == 0) return false;
-        Grid3DItem root_item = build_grid.items_list[0];
+        if (build_grid.grid_3d.items_list.Count == 0) return false;
+        Grid3DItem root_item = build_grid.grid_3d.items_list[0];
 
-        List<Grid3DItem> connected_items = build_grid.get_connected_items(root_item);
+        List<Grid3DItem> connected_items = build_grid.grid_3d.get_connected_items(root_item);
 
-        foreach (Grid3DItem item in build_grid.items_list) {
+        foreach (Grid3DItem item in build_grid.grid_3d.items_list) {
             if (!connected_items.Contains(item)) return false;
         }
 
@@ -148,26 +164,26 @@ public class ModularShipBuilder : MonoBehaviour {
     }
 
     public void load_blueprint(ModularShipBlueprintData blueprint) {
-        build_grid.clear();
-        build_grid.load_blueprint_as_inventory(blueprint);
+        build_grid.grid_3d.clear();
+        build_grid.grid_3d.load_blueprint_as_inventory(blueprint);
     }
 
     public  ModularShipBlueprintData get_ship_blueprint() {
         if (!is_ship_valid()) return null;
         List<Grid3DItemData> item_data = new List<Grid3DItemData>();
-        foreach (Grid3DItem item in build_grid.items_list) item_data.Add(item.data);
+        foreach (Grid3DItem item in build_grid.grid_3d.items_list) item_data.Add(item.data);
         return new ModularShipBlueprintData(item_data);
     }
 
     private void update_ui_collider() {
-        build_grid.update_collider();
-        build_grid.transform.position = new Vector3(0f, build_grid.get_world_half_extent().y - 1f, 1f);
-        shop_grid.update_collider();
-        shop_grid.transform.position = new Vector3(build_grid.get_world_half_extent().x + shop_grid.get_world_half_extent().x, shop_grid.get_world_half_extent().y - 1f, 1f);
-        stash_grid.update_collider();
-        stash_grid.transform.position = new Vector3(-build_grid.get_world_half_extent().x - stash_grid.get_world_half_extent().x, stash_grid.get_world_half_extent().y - 1f, 1f);
+        // build_grid.update_collider();
+        // build_grid.transform.position = new Vector3(0f, build_grid.get_world_half_extent().y - 1f, 1f);
+        // shop_grid.update_collider();
+        // shop_grid.transform.position = new Vector3(build_grid.get_world_half_extent().x + shop_grid.get_world_half_extent().x, shop_grid.get_world_half_extent().y - 1f, 1f);
+        // stash_grid.update_collider();
+        // stash_grid.transform.position = new Vector3(-build_grid.get_world_half_extent().x - stash_grid.get_world_half_extent().x, stash_grid.get_world_half_extent().y - 1f, 1f);
 
-        ship_builder_camera_anchor.x_bounds = new Vector2(-build_grid.get_world_half_extent().x - stash_grid.get_world_dimensions().x, build_grid.get_world_half_extent().x + shop_grid.get_world_dimensions().x);
-        ship_builder_camera_anchor.y_bounds = new Vector2(-1f, Mathf.Max(Mathf.Max(build_grid.get_world_dimensions().y, shop_grid.get_world_dimensions().y), stash_grid.get_world_dimensions().y) - 1f);
+        // ship_builder_camera_anchor.x_bounds = new Vector2(-build_grid.get_world_half_extent().x - stash_grid.get_world_dimensions().x, build_grid.get_world_half_extent().x + shop_grid.get_world_dimensions().x);
+        // ship_builder_camera_anchor.y_bounds = new Vector2(-1f, Mathf.Max(Mathf.Max(build_grid.get_world_dimensions().y, shop_grid.get_world_dimensions().y), stash_grid.get_world_dimensions().y) - 1f);
     }
 }

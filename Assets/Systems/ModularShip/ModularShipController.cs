@@ -20,21 +20,32 @@ public class ModularShipController : MonoBehaviour {
 
     public float total_available_fuel;
 
+    Vector3 center_of_mass_target;
+    float center_of_mass_lerp_speed = 15f;
+
     private void init() {
         activators = GetComponentsInChildren<ModularShipActivator>();
         fuel_containers = GetComponentsInChildren<ModularShipFuelContainer>();
 
-        rb.mass = 0f;
-        foreach (ModularShipComponent ship_component in GetComponentsInChildren<ModularShipComponent>()) {
-            rb.mass += ship_component.data.mass;
-            ship_component.modular_ship_controller = this;
-        }
+        foreach (ModularShipComponent ship_component in GetComponentsInChildren<ModularShipComponent>()) ship_component.modular_ship_controller = this;
+
+        rb.WakeUp();
+        rb.interpolation = RigidbodyInterpolation.None;
+        rb.useGravity = false;
+
+        force_update_center_of_mass();
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        rb.ResetInertiaTensor();
+        velocity_override = Vector3.zero;
+
+        rb.interpolation = RigidbodyInterpolation.Interpolate;
+        rb.useGravity = true;
     }
 
     private void Awake() {
         character = GetComponent<Character>();
         rb = GetComponent<Rigidbody>();
-
         init();
     }
 
@@ -51,6 +62,15 @@ public class ModularShipController : MonoBehaviour {
     }
 
     private void FixedUpdate() {
+        if (components.childCount == 0) {
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            return;
+        }
+
+        update_center_of_mass_target();
+        update_center_of_mass();
+
         total_available_fuel = 0f;
         foreach (ModularShipFuelContainer fuel_container in fuel_containers) {
             if (!fuel_container) continue;
@@ -99,6 +119,52 @@ public class ModularShipController : MonoBehaviour {
         }
     }
 
+    public Vector3 get_ship_position() { return transform.position + transform.TransformDirection(rb.centerOfMass); }
+    public float get_ship_radius() { return 5f; }
+
+    public void update_center_of_mass() {
+        rb.centerOfMass = Vector3.Lerp(rb.centerOfMass, center_of_mass_target, Time.fixedDeltaTime * center_of_mass_lerp_speed);
+        Util.DrawAABB2D(rb.position + transform.TransformDirection(rb.centerOfMass) - Vector3.one * 0.5f, Vector2.one, Color.blue);
+    }
+
+    public void update_center_of_mass_target() {
+        if (components.childCount == 0) {
+            center_of_mass_target = Vector3.zero;
+            rb.mass = 0;
+            return;
+        }
+
+        float total_mass = 0f;
+        Vector3 mass_sum = Vector3.zero;
+        foreach (ModularShipComponent component in components.GetComponentsInChildren<ModularShipComponent>()) {
+            mass_sum += component.transform.localPosition * component.data.mass;
+            total_mass += component.data.mass;
+        }
+
+        center_of_mass_target = mass_sum / total_mass;
+        rb.mass = total_mass;
+    }
+
+    public void force_update_center_of_mass() {
+        if (components.childCount == 0) {
+            rb.centerOfMass = Vector3.zero;
+            center_of_mass_target = Vector3.zero;
+            rb.mass = 0;
+            return;
+        }
+
+        float total_mass = 0f;
+        Vector3 mass_sum = Vector3.zero;
+        foreach (ModularShipComponent component in components.GetComponentsInChildren<ModularShipComponent>()) {
+            mass_sum += component.transform.localPosition * component.data.mass;
+            total_mass += component.data.mass;
+        }
+
+        rb.centerOfMass = mass_sum / total_mass;
+        center_of_mass_target = rb.centerOfMass;
+        rb.mass = total_mass;
+    }
+
     public void load_blueprint(ModularShipBlueprintData _blueprint) {
         clear();
         blueprint = _blueprint;
@@ -108,9 +174,9 @@ public class ModularShipController : MonoBehaviour {
 
     public void set_active(bool active) {
         if (active) {
-            rb.isKinematic = false;
+            gameObject.SetActive(true);
         } else {
-            rb.isKinematic = true;
+            gameObject.SetActive(false);
         }
     }
 
@@ -122,11 +188,12 @@ public class ModularShipController : MonoBehaviour {
 
         grid.clear();
 
+        transform.position = GameManager.instance.spawn_point;
         transform.rotation = Quaternion.identity;
     }
 
     public void on_component_destroyed(ModularShipComponent ship_component) {
-        rb.mass -= ship_component.data.mass;
+        update_center_of_mass_target();
         Destroy(ship_component.gameObject);
     }
 }
