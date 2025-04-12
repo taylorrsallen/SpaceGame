@@ -4,7 +4,6 @@ public class Ufe : NPC
 {
     protected override void SetDefaults()
     {
-        maxHp = 150;     
-        aiType = AiType.UFE;
+        maxHp = 150;             
     }
 }

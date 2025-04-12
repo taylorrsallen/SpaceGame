@@ -8,6 +8,8 @@ public class UfeAiType : AiType
     private BoxCollider _boxCollider;
     private GameObject _firePivot;
 
+    [SerializeField] private GameEffectData chargedEffect;
+
     private float _tacticTime = 3;
     private float _targetDampen = 0;
     private float _zrotation = 0f;
@@ -139,6 +141,8 @@ public class UfeAiType : AiType
 
         _atttackPosition = GetPlayerPosition(Random.Range(-_attackOffsetX, _attackOffsetX), 8);
         yield return new WaitForSeconds(1.5f);
+              
+
 
         GameObject projectile = Instantiate(Resources.Load<GameObject>("Gore/SaucerCharge"), _firePivot.transform);
         projectile.transform.localPosition = new Vector3(0, 0, 5);
@@ -162,8 +166,15 @@ public class UfeAiType : AiType
         }
         if (_attackId == 1)
         {
-            _tacticTime = 1;
-            _loopableMethodName = "S_RamPlayer";
+            if (GameManager.instance.ship_controller.get_ship_mass() > 75)
+            {
+                _attackId++;
+            }
+            else
+            {
+                _tacticTime = 1;
+                _loopableMethodName = "S_RamPlayer";
+            }
         }
 
         _attackId++;
