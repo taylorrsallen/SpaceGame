@@ -27,6 +27,9 @@ public class ShipComponentData : ScriptableObject {
     
     [SerializeField] public float collision_velocity_damper = 0.1f;
 
+    [SerializeField] public GameEffectData death_effects;
+    [SerializeField] public Vector2 death_delay_range = new Vector2(0.02f, 0.07f);
+
     // Activator
     [SerializeField] public bool activator = false;
     [SerializeField] public float activator_fuel_usage_per_second = 0.5f;
@@ -40,6 +43,7 @@ public class ShipComponentData : ScriptableObject {
     [SerializeField] public bool fuel_container = false;
     [SerializeField] public int fuel_capacity = 100;
     // Default fuel container runtime data
+
 }
 
 public class ShipComponentRuntimeData {

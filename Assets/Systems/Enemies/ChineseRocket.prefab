@@ -260,9 +260,6 @@ PrefabInstance:
       addedObject: {fileID: 1117260980766953589}
     - targetCorrespondingSourceObject: {fileID: 8693429084511872621, guid: 7ff79c761a464e34ab5055221ed105c1, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 9084343635845418172}
-    - targetCorrespondingSourceObject: {fileID: 8693429084511872621, guid: 7ff79c761a464e34ab5055221ed105c1, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 294497429011326212}
   m_SourcePrefab: {fileID: 100100000, guid: 7ff79c761a464e34ab5055221ed105c1, type: 3}
 --- !u!1 &3561356078414496411 stripped
@@ -294,8 +291,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 6631ca67e2bc6314c9cb2a22732ffd31, type: 3}
+  m_Resource: {fileID: 8300000, guid: 6631ca67e2bc6314c9cb2a22732ffd31, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -305,10 +302,10 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 387.06
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -316,23 +313,23 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
+      time: 0.26706278
+      value: 1.1
+      inSlope: -1.292308
+      outSlope: -1.292308
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
     - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: -0.77442825
+      outSlope: -0.77442825
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -340,8 +337,8 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
-      value: 0
+      time: 0.010757446
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -371,7 +368,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 1.1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -402,7 +399,8 @@ MonoBehaviour:
   engine_explode_effect: {fileID: 7816296162575101774, guid: 895a7326c81f24144b4f34127487b255, type: 3}
   speed: 2
   max_speed: 3
-  explosion_delay: 0.2
+  explosion_delay: 0
+  collision_effect: {fileID: 11400000, guid: 8b74fb8a6ef98c54fb74914d4d0688a0, type: 2}
 --- !u!54 &1117260980766953589
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -430,19 +428,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 56
   m_CollisionDetection: 0
---- !u!114 &9084343635845418172
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3561356078414496411}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2132e368498f5043a2bcfe102430e8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  doppleganger_prefab: {fileID: 3561356078414496411, guid: 3346dd643b4de724ca2bae9cde027deb, type: 3}
 --- !u!114 &294497429011326212
 MonoBehaviour:
   m_ObjectHideFlags: 0

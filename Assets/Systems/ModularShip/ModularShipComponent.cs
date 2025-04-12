@@ -13,6 +13,11 @@ public class ModularShipComponent : MonoBehaviour, IDamageable, IKnockbackable {
     float collision_velocity_to_damage_multiplier = 0.5f;
     float collision_velocity_to_volume_multiplier = 0.05f;
 
+    private bool is_dead;
+    private bool is_dying;
+    private float death_delay;
+    private float death_timer;
+
     public ModularShipController modular_ship_controller;
 
     public void init() {
@@ -37,19 +42,34 @@ public class ModularShipComponent : MonoBehaviour, IDamageable, IKnockbackable {
         health = data.max_health;
     }
 
+    private void Update() {
+        if (!is_dying) return;
+        death_timer += Time.deltaTime;
+        if (death_timer >= death_delay) die();
+    }
+
     public void damage(DamageArgs args) {
         health -= args.damage;
-        if (health <= 0f) die();
+        if (health <= 0f) start_die();
     }
 
     public void knockback(Vector3 force) {
         modular_ship_controller.knockback_from_component(this, force);
     }
 
+    public void start_die() {
+        if (is_dying) return;
+        is_dying = true;
+        death_delay = UnityEngine.Random.Range(data.death_delay_range.x, data.death_delay_range.y);
+    }
+
     public void die() {
+        if (is_dead) return;
+        is_dead = true;
         SoundManager.instance.play_sound_3d_pitched(data.audio_data.destroy_sounds.get_sound(), transform.position);
         Transform explosion = Instantiate(data.audio_data.explosion_effect).transform;
         explosion.position = transform.position;
+        if (data.death_effects != null) foreach (GameEffect effect in data.death_effects.game_effects) effect.Execute(new GameEffectArgs(gameObject, null, transform.position));
         modular_ship_controller.on_component_destroyed(this);
     }
 

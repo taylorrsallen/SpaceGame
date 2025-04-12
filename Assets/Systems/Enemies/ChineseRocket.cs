@@ -23,7 +23,7 @@ public class ChineseRocket : MonoBehaviour {
     private bool is_exploding;
     private bool is_engine_exploded;
 
-    public GameEffect[] collision_effects;
+    public GameEffectData collision_effect;
     
 
     private void Start() {
@@ -70,7 +70,7 @@ public class ChineseRocket : MonoBehaviour {
         if (is_engine_exploded) return;
         is_engine_exploded = true;
 
-        audio_source.PlayOneShot(engine_explode_sound.get_sound());
+        SoundManager.instance.play_sound_3d_pitched(engine_explode_sound.get_sound(), engine_collider.transform.position);
         Instantiate(engine_explode_effect, engine_collider.transform.position, Quaternion.identity);
 
         rb.useGravity = true;
@@ -82,7 +82,7 @@ public class ChineseRocket : MonoBehaviour {
     }
 
     private void explode() {
-        if (collision_effects != null) foreach(GameEffect collision_effect in collision_effects) collision_effect.Execute(new GameEffectArgs(gameObject, null, transform.position));
+        if (collision_effect != null) foreach(GameEffect collision_effect in collision_effect.game_effects) collision_effect.Execute(new GameEffectArgs(gameObject, null, transform.position));
         Destroy(gameObject);
     }
 }

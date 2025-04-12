@@ -125,11 +125,27 @@ public class RayGameEffect : GameEffect {
 public class SpawnerGameEffect : GameEffect {
     public GameEffectTarget effect_target = GameEffectTarget.SOURCE;
     public Vector3 local_offset = Vector3.zero;
+    public Vector3 scale = Vector3.one;
     public GameObject prefab;
 
     public override bool Execute(GameEffectArgs args) {
         Vector3 center_position = get_center_position(args, effect_target, local_offset);
-        GameObject.Instantiate(prefab, center_position, Quaternion.identity);
+        Transform spawn = GameObject.Instantiate(prefab, center_position, Quaternion.identity).transform;
+        spawn.localScale = scale;
+        return true;
+    }
+}
+
+public class SoundGameEffect : GameEffect {
+    public GameEffectTarget effect_target = GameEffectTarget.SOURCE;
+    public Vector3 local_offset = Vector3.zero;
+    public SoundPool sound_pool;
+    // public float volume;
+    public Vector2 pitch_range = new Vector2(0.9f, 1.1f);
+
+    public override bool Execute(GameEffectArgs args) {
+        Vector3 center_position = get_center_position(args, effect_target, local_offset);
+        SoundManager.instance.play_sound_3d_pitched(sound_pool.get_sound(), center_position, pitch_range.x, pitch_range.y);
         return true;
     }
 }

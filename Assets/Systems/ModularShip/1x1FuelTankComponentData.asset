@@ -22,6 +22,8 @@ MonoBehaviour:
   component_prefab: {fileID: -5299864637989955583, guid: e9da6673e8bf65640a6a4a3c2166dc6c, type: 3}
   audio_data: {fileID: 11400000, guid: 98474ce30f0625c49aca823571ec5016, type: 2}
   collision_velocity_damper: 0.01
+  death_effects: {fileID: 11400000, guid: 482b841cf527968479c5d8f8ee2191cb, type: 2}
+  death_delay_range: {x: 0.02, y: 0.07}
   activator: 0
   activator_fuel_usage_per_second: 0.5
   activator_hotkey: 32
