@@ -2482,6 +2482,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 571695938680942934, guid: 31691da4611b0c94897e842aa1e9c7a9, type: 3}
+      propertyPath: chargedLaserEffect
+      value: 
+      objectReference: {fileID: 11400000, guid: 4b2929f58ba593d44b5f9f7d9f7c3ec3, type: 2}
     - target: {fileID: 1495020850000651134, guid: 31691da4611b0c94897e842aa1e9c7a9, type: 3}
       propertyPath: m_Name
       value: UFE_AI

@@ -4,6 +4,6 @@ public class Ufe : NPC
 {
     protected override void SetDefaults()
     {
-        maxHp = 150;             
+        maxHp = 25;             
     }
 }
