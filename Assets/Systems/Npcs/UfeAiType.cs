@@ -1,6 +1,7 @@
 using NPCs.AI.Base;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class UfeAiType : AiType
 {
@@ -24,7 +25,11 @@ public class UfeAiType : AiType
         _boxCollider = gameObject.AddComponent<BoxCollider>();
         _rb = gameObject.AddComponent<Rigidbody>();
 
-
+        _firePivot = new GameObject();
+        _firePivot.name = "SaucerFirePivot";
+        _firePivot.transform.parent = this.transform;
+        _firePivot.transform.localEulerAngles = Vector3.zero;
+        _firePivot.transform.localPosition = Vector3.zero;
 
         _boxCollider.size = new Vector3(8, 1, 8);
 
@@ -116,12 +121,12 @@ public class UfeAiType : AiType
         _atttackPosition = GetPlayerPosition(Random.Range(-_attackOffsetX, _attackOffsetX), 8);
         yield return new WaitForSeconds(1.5f);
 
-
-        
+        GameObject projectile = Instantiate(Resources.Load<GameObject>("Gore/SaucerCharge"), _firePivot.transform);
+        projectile.transform.localPosition = new Vector3(0, 0, 5);
         //CreateChargeParticles
         yield return new WaitForSeconds(1.4f);
         //Shoot and restartLoop
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.4f);
         _tacticTime = 3;
         _loopableMethodName = "S_FollowPlayer";
 
