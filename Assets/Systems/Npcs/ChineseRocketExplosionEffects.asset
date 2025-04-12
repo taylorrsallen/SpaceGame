@@ -16,8 +16,8 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 7816296162575101774, guid: 895a7326c81f24144b4f34127487b255, type: 3}
     - {fileID: 11400000, guid: 76ef9b765f2fb734c9353f5f5393fda4, type: 2}
+    - {fileID: 2875415190756776641, guid: 8e4c3d105d3c4dc47b4f025d43d99a70, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -31,7 +31,97 @@ MonoBehaviour:
       Data: 4
     - Name: 
       Entry: 7
-      Data: 1|AreaGameEffect, Assembly-CSharp
+      Data: 1|SoundGameEffect, Assembly-CSharp
+    - Name: effect_target
+      Entry: 3
+      Data: 0
+    - Name: local_offset
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: sound_pool
+      Entry: 10
+      Data: 0
+    - Name: pitch_range
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0.9
+    - Name: 
+      Entry: 4
+      Data: 1.1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 2|SpawnerGameEffect, Assembly-CSharp
+    - Name: parent
+      Entry: 3
+      Data: 2
+    - Name: spawn_point
+      Entry: 3
+      Data: 0
+    - Name: look_target
+      Entry: 3
+      Data: 0
+    - Name: local_offset
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: scale
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: prefab
+      Entry: 10
+      Data: 1
+    - Name: look_at_target
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 3|AreaGameEffect, Assembly-CSharp
     - Name: effect_target
       Entry: 3
       Data: 0
@@ -64,13 +154,13 @@ MonoBehaviour:
       Data: 
     - Name: effects
       Entry: 7
-      Data: 2|GameEffect[], Assembly-CSharp
+      Data: 4|GameEffect[], Assembly-CSharp
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: 3|DamageGameEffect, Assembly-CSharp
+      Data: 5|DamageGameEffect, Assembly-CSharp
     - Name: damage_args
       Entry: 7
       Data: DamageArgs, Assembly-CSharp
@@ -97,7 +187,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 4|AreaGameEffect, Assembly-CSharp
+      Data: 6|AreaGameEffect, Assembly-CSharp
     - Name: effect_target
       Entry: 3
       Data: 0
@@ -130,13 +220,13 @@ MonoBehaviour:
       Data: 
     - Name: effects
       Entry: 7
-      Data: 5|GameEffect[], Assembly-CSharp
+      Data: 7|GameEffect[], Assembly-CSharp
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: 6|KnockbackGameEffect, Assembly-CSharp
+      Data: 8|KnockbackGameEffect, Assembly-CSharp
     - Name: knockback_source
       Entry: 3
       Data: 0
@@ -152,87 +242,6 @@ MonoBehaviour:
     - Name: 
       Entry: 13
       Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 7|SpawnerGameEffect, Assembly-CSharp
-    - Name: effect_target
-      Entry: 3
-      Data: 0
-    - Name: local_offset
-      Entry: 7
-      Data: UnityEngine.Vector3, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: scale
-      Entry: 7
-      Data: UnityEngine.Vector3, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 2
-    - Name: 
-      Entry: 4
-      Data: 2
-    - Name: 
-      Entry: 4
-      Data: 2
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: prefab
-      Entry: 10
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 8|SoundGameEffect, Assembly-CSharp
-    - Name: effect_target
-      Entry: 3
-      Data: 0
-    - Name: local_offset
-      Entry: 7
-      Data: UnityEngine.Vector3, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: sound_pool
-      Entry: 10
-      Data: 1
-    - Name: pitch_range
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0.9
-    - Name: 
-      Entry: 4
-      Data: 1.1
     - Name: 
       Entry: 8
       Data: 

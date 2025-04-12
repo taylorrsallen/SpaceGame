@@ -43,7 +43,12 @@ public class ChineseRocket : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        if (is_engine_exploded) return;
+        if (is_engine_exploded) {
+            rb.AddForceAtPosition(engine_collider.transform.position, engine_collider.transform.right);
+            return;
+        }
+
+        face_target.update_facing();
         Vector3 velocity = rb.linearVelocity;
         if (velocity.magnitude > max_speed) velocity = velocity.normalized * max_speed;
         rb.linearVelocity = velocity;
@@ -54,7 +59,11 @@ public class ChineseRocket : MonoBehaviour {
         if (rocket_collider == explosion_collider) {
             is_exploding = true;
         } else {
-            destroy_engine();
+            if (is_engine_exploded) {
+                explode();
+            } else {
+                destroy_engine();
+            }
         }
     }
 
@@ -82,7 +91,7 @@ public class ChineseRocket : MonoBehaviour {
     }
 
     private void explode() {
-        if (collision_effect != null) foreach(GameEffect collision_effect in collision_effect.game_effects) collision_effect.Execute(new GameEffectArgs(gameObject, null, transform.position));
+        collision_effect.Execute(new GameEffectArgs(gameObject, null, transform.position));
         Destroy(gameObject);
     }
 }

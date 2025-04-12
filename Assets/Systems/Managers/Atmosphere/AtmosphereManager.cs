@@ -1,20 +1,25 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class AtmosphereManager : MonoBehaviour {
     private float wind_strength = 1f;
     private Vector2 wind_direction = new Vector2(1.0f, 0.0f);
     private Vector2 wind_target;
-    public Vector2 wind_direction_horizontal_range = new Vector2(-1f, 1f);
-    public Vector2 wind_direction_vertical_range = new Vector2(-0.4f, 0.4f);
-    public float wind_change_speed = 5f;
-    public Vector2 wind_strength_range = new Vector2(1f, 10f);
-    public float wind_strength_noise_frequency = 10f;
+    [TabGroup("Wind")] public Vector2 wind_direction_horizontal_range = new Vector2(-1f, 1f);
+    [TabGroup("Wind")] public Vector2 wind_direction_vertical_range = new Vector2(-0.4f, 0.4f);
+    [TabGroup("Wind")] public float wind_change_speed = 5f;
+    [TabGroup("Wind")] public Vector2 wind_strength_range = new Vector2(1f, 10f);
+    [TabGroup("Wind")] public float wind_strength_noise_frequency = 10f;
 
-    public float troposphere_start = 0f;
-    public float stratosphere_start = 120f;
-    public float mesosphere_start = 500f;
-    public float thermosphere_start = 800f;
-    public float exosphere_start = 7000f;
+    [TabGroup("Atmosphere")] public float troposphere_start = 0f;
+    [TabGroup("Atmosphere")] public float stratosphere_start = 120f;
+    [TabGroup("Atmosphere")] public float mesosphere_start = 500f;
+    [TabGroup("Atmosphere")] public float thermosphere_start = 800f;
+    [TabGroup("Atmosphere")] public float exosphere_start = 7000f;
+    
+    [TabGroup("Height")] public AnimationCurve height_to_wind_curve;
+    [TabGroup("Height")] public AnimationCurve height_to_gravity_curve;
+    [TabGroup("Height")] public AnimationCurve height_to_cash_curve;
 
     public float world_horizontal_size = 400f;
 

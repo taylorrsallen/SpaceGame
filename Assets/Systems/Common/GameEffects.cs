@@ -124,23 +124,44 @@ public class RayGameEffect : GameEffect {
 
 public class SpawnerGameEffect : GameEffect {
     public GameEffectTarget parent = GameEffectTarget.SOURCE;
-    public GameEffectTarget effect_target = GameEffectTarget.SOURCE;
+    public GameEffectTarget spawn_point = GameEffectTarget.SOURCE;
+    public GameEffectTarget look_target = GameEffectTarget.TARGET;
     public Vector3 local_offset = Vector3.zero;
+    public Vector3 local_direction = Vector3.zero;
     public Vector3 scale = Vector3.one;
     public GameObject prefab;
 
+    public bool look_at_target;
+    public bool face_local_direction;
+
     public override bool Execute(GameEffectArgs args) {
-        Vector3 center_position = get_center_position(args, effect_target, local_offset);
+        Vector3 center_position = get_center_position(args, spawn_point, local_offset);
+        Util.DrawAABB2D(center_position - Vector3.one, Vector3.one * 2f, Color.blue);
+
+        Quaternion rotation;
+        if (look_at_target) {
+            Vector3 look_point = look_target switch {
+                GameEffectTarget.SOURCE => args.source.transform.position,
+                GameEffectTarget.TARGET => args.target.transform.position,
+                _ => args.position,
+            };
+            rotation = Quaternion.LookRotation((look_point - center_position).normalized);
+        } else if (face_local_direction) {
+            Transform spawn_transform = spawn_point == GameEffectTarget.SOURCE || spawn_point == GameEffectTarget.POSITION ? args.source.transform : args.target.transform;
+            rotation = Quaternion.LookRotation((center_position + spawn_transform.TransformDirection(local_direction)) - center_position);
+        } else {
+            rotation = prefab.transform.rotation;
+        }
 
         Transform spawn;
         if (parent == GameEffectTarget.POSITION) {
-            spawn = GameObject.Instantiate(prefab).transform;
+            spawn = GameObject.Instantiate(prefab, center_position, rotation).transform;
         } else {
-            spawn = GameObject.Instantiate(prefab, parent == GameEffectTarget.SOURCE ? args.source.transform : args.target.transform).transform;
+            spawn = GameObject.Instantiate(prefab, center_position, rotation, parent == GameEffectTarget.SOURCE ? args.source.transform : args.target.transform).transform;
         }
         
-        spawn.position = center_position;
-        spawn.rotation = Quaternion.identity;
+        Debug.Log("Spawned " + spawn.name + " at " + center_position);
+
         spawn.localScale = scale;
 
         return true;
@@ -156,6 +177,7 @@ public class SoundGameEffect : GameEffect {
 
     public override bool Execute(GameEffectArgs args) {
         Vector3 center_position = get_center_position(args, effect_target, local_offset);
+        Util.DrawAABB2D(center_position - Vector3.one * 0.5f, Vector3.one, Color.red);
         SoundManager.instance.play_sound_3d_pitched(sound_pool.get_sound(), center_position, pitch_range.x, pitch_range.y);
         return true;
     }

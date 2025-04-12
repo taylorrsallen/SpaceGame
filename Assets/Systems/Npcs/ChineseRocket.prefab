@@ -396,7 +396,7 @@ MonoBehaviour:
   engine_collider: {fileID: 3884946979311298517}
   collision_sound: {fileID: 8300000, guid: 1c02e3b114527de47aaca5183a8c7c15, type: 3}
   engine_explode_sound: {fileID: 11400000, guid: 76ef9b765f2fb734c9353f5f5393fda4, type: 2}
-  engine_explode_effect: {fileID: 7816296162575101774, guid: 895a7326c81f24144b4f34127487b255, type: 3}
+  engine_explode_effect: {fileID: 2875415190756776641, guid: 8e4c3d105d3c4dc47b4f025d43d99a70, type: 3}
   speed: 2
   max_speed: 3
   explosion_delay: 0

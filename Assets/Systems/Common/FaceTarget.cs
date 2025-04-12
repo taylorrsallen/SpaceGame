@@ -7,7 +7,7 @@ public class FaceTarget : MonoBehaviour {
     public float turn_speed = 100f;
     private Vector3 euler_target;
 
-    private void Update() {
+    public void update_facing() {
         if (!target) return;
         if (!is_facing_point(target.transform.position)) {
             ModularShipController ship_controller = target.GetComponent<ModularShipController>();
