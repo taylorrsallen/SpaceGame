@@ -58,6 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a847b94b69a2f7741b3eaa337cd1d3f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chargedEffect: {fileID: 11400000, guid: 9ff580eebb4d9344ba556ede1eb5db4d, type: 2}
 --- !u!1001 &2031823204920085747
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -27,6 +27,7 @@ namespace NPCs.Base
         private void InitializeAI()
         {
             _aiType = GetComponent<AiType>();
+            _aiType.Initialize(this);
         }
         public void TakeDamage(float damage)
         {

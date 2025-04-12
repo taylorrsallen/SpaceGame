@@ -141,11 +141,9 @@ public class UfeAiType : AiType
 
         _atttackPosition = GetPlayerPosition(Random.Range(-_attackOffsetX, _attackOffsetX), 8);
         yield return new WaitForSeconds(1.5f);
-              
 
+        chargedEffect.Execute(new GameEffectArgs(_firePivot, null, Vector3.zero));
 
-        GameObject projectile = Instantiate(Resources.Load<GameObject>("Gore/SaucerCharge"), _firePivot.transform);
-        projectile.transform.localPosition = new Vector3(0, 0, 5);
         //CreateChargeParticles
         yield return new WaitForSeconds(1.4f);
         //Shoot and restartLoop

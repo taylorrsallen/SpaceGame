@@ -15,7 +15,8 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects: []
+    ReferencedUnityObjects:
+    - {fileID: 9064260562934382819, guid: b2dba46331605b54f93866d5faf556fe, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -30,6 +31,9 @@ MonoBehaviour:
     - Name: 
       Entry: 7
       Data: 1|SpawnerGameEffect, Assembly-CSharp
+    - Name: parent
+      Entry: 3
+      Data: 0
     - Name: effect_target
       Entry: 3
       Data: 0
@@ -44,7 +48,7 @@ MonoBehaviour:
       Data: 0
     - Name: 
       Entry: 4
-      Data: 0
+      Data: 4
     - Name: 
       Entry: 8
       Data: 
@@ -64,8 +68,8 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: prefab
-      Entry: 6
-      Data: 
+      Entry: 10
+      Data: 0
     - Name: 
       Entry: 8
       Data: 
