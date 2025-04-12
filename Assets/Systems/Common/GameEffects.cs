@@ -123,6 +123,7 @@ public class RayGameEffect : GameEffect {
 }
 
 public class SpawnerGameEffect : GameEffect {
+    public GameEffectTarget parent = GameEffectTarget.SOURCE;
     public GameEffectTarget effect_target = GameEffectTarget.SOURCE;
     public Vector3 local_offset = Vector3.zero;
     public Vector3 scale = Vector3.one;
@@ -130,8 +131,18 @@ public class SpawnerGameEffect : GameEffect {
 
     public override bool Execute(GameEffectArgs args) {
         Vector3 center_position = get_center_position(args, effect_target, local_offset);
-        Transform spawn = GameObject.Instantiate(prefab, center_position, Quaternion.identity).transform;
+
+        Transform spawn;
+        if (parent == GameEffectTarget.POSITION) {
+            spawn = GameObject.Instantiate(prefab).transform;
+        } else {
+            spawn = GameObject.Instantiate(prefab, parent == GameEffectTarget.SOURCE ? args.source.transform : args.target.transform).transform;
+        }
+        
+        spawn.position = center_position;
+        spawn.rotation = Quaternion.identity;
         spawn.localScale = scale;
+
         return true;
     }
 }
