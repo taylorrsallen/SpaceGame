@@ -7,7 +7,7 @@ namespace NPCs.AI.Base
     {
         protected NPC _npcRoot;
         private Transform _playerTransform;
-        private Rigidbody _playerRigidBody;
+        protected Rigidbody _playerRigidBody;
         public void Initialize(NPC root)
         {
             _npcRoot = root;
