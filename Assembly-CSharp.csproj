@@ -98,10 +98,13 @@
     <Compile Include="Assets\Systems\Character\Character.cs" />
     <Compile Include="Assets\Systems\UI3D\ContextMenu3D.cs" />
     <Compile Include="Assets\Systems\ModularShip\ModularShipFuelContainer.cs" />
-    <Compile Include="Assets\UFEShip.cs" />
+    <Compile Include="Assets\Systems\Npcs\Ufe.cs" />
+    <Compile Include="Assets\UFEShipRotator.cs" />
     <Compile Include="Assets\Systems\Data\DataManager.cs" />
     <Compile Include="Assets\Systems\ModularShip\ModularShipEmitter.cs" />
     <Compile Include="Assets\Systems\ModularShipBuilder\Grid3DItem.cs" />
+    <Compile Include="Assets\Systems\Npcs\NPC.cs" />
+    <Compile Include="Assets\Systems\Npcs\AiType.cs" />
     <Compile Include="Assets\Systems\Common\GameEffects.cs" />
     <Compile Include="Assets\Systems\Camera\CameraRig.cs" />
     <Compile Include="Assets\Systems\ModularShipBuilder\ModularShipBuilder.cs" />
@@ -115,6 +118,7 @@
     <Compile Include="Assets\Systems\Managers\Sound\Sound3D.cs" />
     <Compile Include="Assets\Systems\Managers\Atmosphere\WindAudio.cs" />
     <Compile Include="Assets\Systems\Common\GameEffectData.cs" />
+    <Compile Include="Assets\Systems\Npcs\UfeAiType.cs" />
     <Compile Include="Assets\Systems\Common\Util.cs" />
   </ItemGroup>
   <ItemGroup>
