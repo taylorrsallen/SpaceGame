@@ -1,7 +1,6 @@
 using NPCs.AI.Base;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.VFX;
 
 public class UfeAiType : AiType
 {
@@ -14,11 +13,12 @@ public class UfeAiType : AiType
     private float _zrotation = 0f;
     private float _attackOffsetX = 14;
 
-    private int _tick;
+    private int _tick = 0;
+    private int _attackId = 0;
 
     private Vector3 _atttackPosition;
 
-    [SerializeField]private string _loopableMethodName = "";
+    private string _loopableMethodName = "";
 
     protected override void OnInit()
     {
@@ -53,20 +53,13 @@ public class UfeAiType : AiType
 
     }
 
-    private void CalculateStablization()
-    {
-        float DampingPrePass = (7 - (GetDistanceToPlayer(0, 10) * 0.4f));
-        DampingPrePass = Mathf.Clamp(DampingPrePass, 0.4f , 7);
-        _targetDampen = DampingPrePass;
-    }
-
     protected void S_FollowPlayer()
     {
         _tick--;
 
         _tacticTime -= 1 * Time.unscaledDeltaTime;
 
-        _rb.AddForce(GetDirectionOfTarget(GetPlayerPosition(0 , 10)) * 2000 * _rb.mass * Time.fixedDeltaTime);
+        _rb.AddForce(GetDirectionOfTarget(GetPlayerPosition(0, 10)) * 2000 * _rb.mass * Time.fixedDeltaTime);
 
         float x = Mathf.Clamp(_rb.linearVelocity.x, -120, 120);
         float y = Mathf.Clamp(_rb.linearVelocity.y, -120, 120);
@@ -79,15 +72,13 @@ public class UfeAiType : AiType
         if (_tick < 1)
         {
             _tick = 2;
-            CalculateStablization();
+            CalculateStablization(0, 10);
         }
-        if(_tacticTime < 0)
+        if (_tacticTime < 0)
         {
-            if(GetDistanceToPlayer(0, 10) < 15)
+            if (GetDistanceToPlayer(0, 10) < 15)
             {
-                _tacticTime = 3;
-                _loopableMethodName = "S_Attack";
-                StartCoroutine(TimedAttack1());
+                PickAttack();
             }
             else
             {
@@ -113,6 +104,34 @@ public class UfeAiType : AiType
         _firePivot.transform.LookAt(GetPlayerPosition());
     }
 
+    protected void S_RamPlayer()
+    {
+        _tick--;
+
+        _tacticTime -= 1 * Time.unscaledDeltaTime;
+
+        _rb.AddForce(GetDirectionOfTarget(GetPlayerPosition()) * 4000 * _rb.mass * Time.fixedDeltaTime);
+
+        float x = Mathf.Clamp(_rb.linearVelocity.x, -120, 120);
+        float y = Mathf.Clamp(_rb.linearVelocity.y, -120, 120);
+        float z = Mathf.Clamp(_rb.linearVelocity.z, -120, 120);
+        _rb.linearVelocity = new Vector3(x, y, z);
+
+        _rb.linearDamping = Mathf.Lerp(_rb.linearDamping, _targetDampen, 1 * Time.fixedDeltaTime);
+        //if(Vector3.Distance(transform.position, GetPlayerPosition()) < 12)
+
+        if (_tick < 1)
+        {
+            _tick = 2;
+            CalculateStablization();
+        }
+        if (_tacticTime < 0)
+        {
+            _tacticTime = 3;
+            _loopableMethodName = "S_FollowPlayer";
+        }
+    }
+
     IEnumerator TimedAttack1()
     {
 
@@ -132,4 +151,40 @@ public class UfeAiType : AiType
 
 
     }
+
+    private void PickAttack()
+    {
+        if (_attackId == 0)
+        {
+            _tacticTime = 3;
+            _loopableMethodName = "S_Attack";
+            StartCoroutine(TimedAttack1());
+        }
+        if (_attackId == 1)
+        {
+            _tacticTime = 1;
+            _loopableMethodName = "S_RamPlayer";
+        }
+
+        _attackId++;
+        if (_attackId > 1)
+        {
+            _attackId = 0;
+        }
+    }
+
+    private void CalculateStablization(float offsetX, float offsetY)
+    {
+        float DampingPrePass = (7 - (GetDistanceToPlayer(offsetX, offsetY) * 0.4f));
+        DampingPrePass = Mathf.Clamp(DampingPrePass, 0.4f, 7);
+        _targetDampen = DampingPrePass;
+    }
+    private void CalculateStablization()
+    {
+        float DampingPrePass = (7 - (GetDistanceToPlayer() * 0.4f));
+        DampingPrePass = Mathf.Clamp(DampingPrePass, 0.4f, 7);
+        _targetDampen = DampingPrePass;
+    }
+
+
 }
