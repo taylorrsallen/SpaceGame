@@ -120,6 +120,7 @@ public class ModularShipController : MonoBehaviour {
     }
 
     public Vector3 get_ship_position() { return transform.position + transform.TransformDirection(rb.centerOfMass); }
+    public Vector3 get_velocity() { return rb.linearVelocity; }
     public float get_ship_radius() { return 5f; }
 
     public void update_center_of_mass() {
@@ -195,5 +196,9 @@ public class ModularShipController : MonoBehaviour {
     public void on_component_destroyed(ModularShipComponent ship_component) {
         update_center_of_mass_target();
         Destroy(ship_component.gameObject);
+    }
+
+    public void knockback_from_component(ModularShipComponent component, Vector3 force) {
+        rb.AddForceAtPosition(force, component.transform.localPosition);
     }
 }

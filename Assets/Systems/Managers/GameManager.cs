@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour {
 
         player_controller = FindAnyObjectByType<PlayerController>();
         ship_builder = FindAnyObjectByType<ModularShipBuilder>();
-        ship_controller = FindAnyObjectByType<ModularShipController>();
+        ship_controller = FindAnyObjectByType<ModularShipController>(FindObjectsInactive.Include);
     }
 
     public void toggle_ship_builder() {

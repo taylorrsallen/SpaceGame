@@ -176,11 +176,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6065724480049345542, guid: 9ea5bf88269c93f40a38f835c001b4eb, type: 3}
   m_PrefabInstance: {fileID: 5254004867116722415}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &6899770082927889982 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1668884668287723217, guid: 9ea5bf88269c93f40a38f835c001b4eb, type: 3}
-  m_PrefabInstance: {fileID: 5254004867116722415}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5316844388976043254
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -231,7 +226,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8693429084511872621, guid: 7ff79c761a464e34ab5055221ed105c1, type: 3}
       propertyPath: m_Name
-      value: ChineseRocket
+      value: ChineseRocketDoppleganger
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -248,42 +243,13 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8693429084511872621, guid: 7ff79c761a464e34ab5055221ed105c1, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1976074331833424229}
-    - targetCorrespondingSourceObject: {fileID: 8693429084511872621, guid: 7ff79c761a464e34ab5055221ed105c1, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 8117835585803296019}
-    - targetCorrespondingSourceObject: {fileID: 8693429084511872621, guid: 7ff79c761a464e34ab5055221ed105c1, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4262829724000990408}
-    - targetCorrespondingSourceObject: {fileID: 8693429084511872621, guid: 7ff79c761a464e34ab5055221ed105c1, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1117260980766953589}
-    - targetCorrespondingSourceObject: {fileID: 8693429084511872621, guid: 7ff79c761a464e34ab5055221ed105c1, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 9084343635845418172}
-    - targetCorrespondingSourceObject: {fileID: 8693429084511872621, guid: 7ff79c761a464e34ab5055221ed105c1, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 294497429011326212}
   m_SourcePrefab: {fileID: 100100000, guid: 7ff79c761a464e34ab5055221ed105c1, type: 3}
 --- !u!1 &3561356078414496411 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8693429084511872621, guid: 7ff79c761a464e34ab5055221ed105c1, type: 3}
   m_PrefabInstance: {fileID: 5316844388976043254}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1976074331833424229
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3561356078414496411}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25540a5897c36ad43bf78fafd5cef9a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  turn_speed: 100
 --- !u!82 &8117835585803296019
 AudioSource:
   m_ObjectHideFlags: 0
@@ -381,88 +347,8 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &4262829724000990408
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3561356078414496411}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f33831503a3ae294291ec7d14690c3d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rocket_particle: {fileID: 8267625954038169971}
-  damage_particle: {fileID: 6899770082927889982}
-  explosion_collider: {fileID: 2890199682736005203}
-  engine_collider: {fileID: 3884946979311298517}
-  collision_sound: {fileID: 8300000, guid: 1c02e3b114527de47aaca5183a8c7c15, type: 3}
-  engine_explode_sound: {fileID: 11400000, guid: 76ef9b765f2fb734c9353f5f5393fda4, type: 2}
-  engine_explode_effect: {fileID: 7816296162575101774, guid: 895a7326c81f24144b4f34127487b255, type: 3}
-  speed: 2
-  max_speed: 3
-  explosion_delay: 0.2
---- !u!54 &1117260980766953589
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3561356078414496411}
-  serializedVersion: 4
-  m_Mass: 5
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 1
-  m_Constraints: 56
-  m_CollisionDetection: 0
---- !u!114 &9084343635845418172
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3561356078414496411}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2132e368498f5043a2bcfe102430e8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  doppleganger_prefab: {fileID: 3561356078414496411, guid: 3346dd643b4de724ca2bae9cde027deb, type: 3}
---- !u!114 &294497429011326212
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3561356078414496411}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ad7f4303fa59084397b94486998f8ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  max_distance: 400
 --- !u!4 &4190505791274571809 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8353776115152682199, guid: 7ff79c761a464e34ab5055221ed105c1, type: 3}
-  m_PrefabInstance: {fileID: 5316844388976043254}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &8267625954038169971 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4284537110004557189, guid: 7ff79c761a464e34ab5055221ed105c1, type: 3}
   m_PrefabInstance: {fileID: 5316844388976043254}
   m_PrefabAsset: {fileID: 0}

@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
-public class ModularShipComponent : MonoBehaviour {
+public class ModularShipComponent : MonoBehaviour, IDamageable, IKnockbackable {
     private AudioSource audio_source;
 
     [SerializeField] public float health = 10f;
@@ -37,10 +37,13 @@ public class ModularShipComponent : MonoBehaviour {
         health = data.max_health;
     }
 
-    public void damage(float amount, int type) {
-        // Debug.Log("[" + name + "] took " + amount + " damage");
-        health -= amount;
+    public void damage(DamageArgs args) {
+        health -= args.damage;
         if (health <= 0f) die();
+    }
+
+    public void knockback(Vector3 force) {
+        modular_ship_controller.knockback_from_component(this, force);
     }
 
     public void die() {
@@ -58,6 +61,6 @@ public class ModularShipComponent : MonoBehaviour {
         float damage_to_deal = collision.relativeVelocity.magnitude * collision_velocity_to_damage_multiplier;
         damage_to_deal -= damage_to_deal * data.percent_armor;
         damage_to_deal -= data.flat_armor;
-        damage(damage_to_deal, 0);
+        damage(new DamageArgs(damage_to_deal));
     }
 }
