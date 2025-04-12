@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class UFEShip : MonoBehaviour {
+public class UFEShipRotator : MonoBehaviour {
     [SerializeField] float rotation_speed;
 
     private void Update() {
