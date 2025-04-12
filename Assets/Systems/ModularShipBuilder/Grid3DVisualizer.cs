@@ -9,6 +9,7 @@ public class Grid3DVisualizer : MonoBehaviour {
     public Vector2Int grid_dimensions;
 
     public Texture2D grid_texture;
+    public Material grid_material;
     public Texture2D border_texture;
     public int border_pixel_size;
     public int border_pixel_offset;
@@ -20,6 +21,7 @@ public class Grid3DVisualizer : MonoBehaviour {
         grid_3d = GetComponentInChildren<Grid3D>();
         grid_3d.init();
         grid_texture_quad = transform.GetChild(1).GetComponentInChildren<MeshRenderer>();
+        grid_texture_quad.material = grid_material;
         grid_border = transform.GetChild(2).GetComponentInChildren<NineRect3D>();
         highlighter = transform.GetChild(4).GetComponent<NineRect3D>();
 

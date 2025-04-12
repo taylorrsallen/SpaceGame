@@ -1,4 +1,6 @@
 /.vscode
+/Assembly-CSharp-Editor.csproj
+/Assembly-CSharp.csproj
 /Temp
 /Logs
 /Library
