@@ -1,15 +1,12 @@
 using NPCs.AI.Base;
 using UnityEngine;
 
-public interface IDamage
-{
-    public void TakeDamage(float damage);
-}
+
 
 
 namespace NPCs.Base
 {
-    public abstract class NPC : MonoBehaviour, IDamage
+    public abstract class NPC : MonoBehaviour, IDamageable
     {
         private float _hp = 100;
         private AiType _aiType;
@@ -44,6 +41,17 @@ namespace NPCs.Base
         }
         protected virtual void OnDeath()
         {
+        }
+
+        public void damage(DamageArgs args)
+        {
+            _hp -= args.damage;
+            OnHit();
+            if (_hp < 0)
+            {
+                OnDeath();
+                Destroy(gameObject);
+            }
         }
     }
 }

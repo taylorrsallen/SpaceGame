@@ -9,11 +9,13 @@ public class UfeAiType : AiType
     private GameObject _firePivot;
 
     [SerializeField] private GameEffectData chargedEffect;
+    [SerializeField] private GameEffectData chargedLaserEffect;
 
     private float _tacticTime = 3;
     private float _targetDampen = 0;
     private float _zrotation = 0f;
-    private float _attackOffsetX = 14;
+    private float _attackOffsetX = 20;
+    private float _attackSpeed = 2000;
 
     private int _tick = 0;
     private int _attackId = 0;
@@ -93,7 +95,7 @@ public class UfeAiType : AiType
     {
         _targetDampen = 2;
 
-        _rb.AddForce(GetDirectionOfTarget(_atttackPosition) * 2000 * _rb.mass * Time.fixedDeltaTime);
+        _rb.AddForce(GetDirectionOfTarget(_atttackPosition) * _attackSpeed * _rb.mass * Time.fixedDeltaTime);
 
         float x = Mathf.Clamp(_rb.linearVelocity.x, -120, 120);
         float y = Mathf.Clamp(_rb.linearVelocity.y, -120, 120);
@@ -120,7 +122,7 @@ public class UfeAiType : AiType
         _rb.linearVelocity = new Vector3(x, y, z);
 
         _rb.linearDamping = Mathf.Lerp(_rb.linearDamping, _targetDampen, 1 * Time.fixedDeltaTime);
-        //if(Vector3.Distance(transform.position, GetPlayerPosition()) < 12)
+        
 
         if (_tick < 1)
         {
@@ -147,6 +149,49 @@ public class UfeAiType : AiType
         //CreateChargeParticles
         yield return new WaitForSeconds(1.4f);
         //Shoot and restartLoop
+
+
+        yield return new WaitForSeconds(0.4f);
+        _tacticTime = 3;
+        _loopableMethodName = "S_FollowPlayer";
+
+
+    }
+
+    IEnumerator TimedAttack2()
+    {
+
+        //gives time for player to move and time for the ship to slowdown for firing
+
+        int _side = Random.Range(0, 3);
+
+        if (_side == 0)
+        {
+            _atttackPosition = GetPlayerPosition(20, 15);
+        }
+        if (_side == 1)
+        {
+            _atttackPosition = GetPlayerPosition(-20, 15);
+        }
+        if (_side == 2)
+        {
+            _atttackPosition = GetPlayerPosition(20, 5);
+        }
+        if (_side == 3)
+        {
+            _atttackPosition = GetPlayerPosition(-20, 5);
+        }
+
+
+        yield return new WaitForSeconds(1.5f);
+
+        chargedLaserEffect.Execute(new GameEffectArgs(_firePivot, null, Vector3.zero));
+
+        //CreateChargeParticles
+        yield return new WaitForSeconds(5f);
+        //Shoot and restartLoop
+
+
         yield return new WaitForSeconds(0.4f);
         _tacticTime = 3;
         _loopableMethodName = "S_FollowPlayer";
@@ -158,6 +203,7 @@ public class UfeAiType : AiType
     {
         if (_attackId == 0)
         {
+            _attackSpeed = 5000;
             _tacticTime = 3;
             _loopableMethodName = "S_Attack";
             StartCoroutine(TimedAttack1());
@@ -175,8 +221,16 @@ public class UfeAiType : AiType
             }
         }
 
+        if (_attackId == 2)
+        {
+            _attackSpeed = 2000;
+            _tacticTime = 3;
+            _loopableMethodName = "S_Attack";
+            StartCoroutine(TimedAttack2());
+        }
+
         _attackId++;
-        if (_attackId > 1)
+        if (_attackId > 2)
         {
             _attackId = 0;
         }
