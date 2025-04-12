@@ -3265,6 +3265,24 @@ MonoBehaviour:
   mesosphere_start: 500
   thermosphere_start: 800
   exosphere_start: 7000
+  height_to_wind_curve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  height_to_gravity_curve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  height_to_cash_curve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   world_horizontal_size: 1000
 --- !u!1001 &1395441350
 PrefabInstance:

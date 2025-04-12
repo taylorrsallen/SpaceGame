@@ -34,7 +34,10 @@ MonoBehaviour:
     - Name: parent
       Entry: 3
       Data: 0
-    - Name: effect_target
+    - Name: spawn_point
+      Entry: 3
+      Data: 0
+    - Name: look_target
       Entry: 3
       Data: 0
     - Name: local_offset
@@ -49,6 +52,21 @@ MonoBehaviour:
     - Name: 
       Entry: 4
       Data: 4
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: local_direction
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
     - Name: 
       Entry: 8
       Data: 
@@ -70,6 +88,12 @@ MonoBehaviour:
     - Name: prefab
       Entry: 10
       Data: 0
+    - Name: look_at_target
+      Entry: 5
+      Data: false
+    - Name: face_local_direction
+      Entry: 5
+      Data: true
     - Name: 
       Entry: 8
       Data: 
