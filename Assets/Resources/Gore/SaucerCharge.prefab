@@ -4853,6 +4853,7 @@ GameObject:
   - component: {fileID: 667808947231125222}
   - component: {fileID: 3255244580709593260}
   - component: {fileID: 6312355942712071298}
+  - component: {fileID: 5838733453012771623}
   m_Layer: 0
   m_Name: SaucerCharge
   m_TagString: Untagged
@@ -9685,3 +9686,16 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &5838733453012771623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9064260562934382819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bc8fb050d784ee469d5014120c7fe2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifetime: 4

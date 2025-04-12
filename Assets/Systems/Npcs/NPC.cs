@@ -1,3 +1,4 @@
+using NPCs.AI.Base;
 using UnityEngine;
 
 public interface IDamage
@@ -14,12 +15,6 @@ namespace NPCs.Base
         private AiType _aiType;
 
         protected float maxHp = 100;
-        protected AiType aiType;
-        public enum AiType 
-        {        
-            townsfolk,
-            UFE
-        }
 
         public void Awake()
         {
@@ -31,15 +26,8 @@ namespace NPCs.Base
 
         private void InitializeAI()
         {
-            switch(aiType)
-            {
-                case AiType.townsfolk:
-                    break;
-                case AiType.UFE:
-                    UfeAiType AI = gameObject.AddComponent<UfeAiType>();
-                    AI.Initialize(this);
-                    break;
-            }
+            _aiType = GetComponent<AiType>();
+            _aiType.Initialize(this);
         }
         public void TakeDamage(float damage)
         {
