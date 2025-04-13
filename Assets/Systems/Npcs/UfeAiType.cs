@@ -93,7 +93,6 @@ public class UfeAiType : AiType
 
     protected void S_Attack()
     {
-        _targetDampen = 2;
 
         _rb.AddForce(GetDirectionOfTarget(_atttackPosition) * _attackSpeed * _rb.mass * Time.fixedDeltaTime);
 
@@ -103,7 +102,7 @@ public class UfeAiType : AiType
 
         _rb.linearVelocity = new Vector3(x, y, z);
 
-        _rb.linearDamping = Mathf.Lerp(_rb.linearDamping, _targetDampen, 1 * Time.fixedDeltaTime);
+        _rb.linearDamping = Mathf.Lerp(_rb.linearDamping, _targetDampen, 2 * Time.fixedDeltaTime);
 
         _firePivot.transform.LookAt(GetPlayerPosition());
     }
@@ -203,7 +202,8 @@ public class UfeAiType : AiType
     {
         if (_attackId == 0)
         {
-            _attackSpeed = 5000;
+            _attackSpeed = 9000;
+            _targetDampen = 6;
             _tacticTime = 3;
             _loopableMethodName = "S_Attack";
             StartCoroutine(TimedAttack1());
@@ -225,6 +225,7 @@ public class UfeAiType : AiType
         {
             _attackSpeed = 2000;
             _tacticTime = 3;
+            _targetDampen = 2;
             _loopableMethodName = "S_Attack";
             StartCoroutine(TimedAttack2());
         }
