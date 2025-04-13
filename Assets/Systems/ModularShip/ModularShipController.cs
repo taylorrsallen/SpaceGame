@@ -23,6 +23,8 @@ public class ModularShipController : MonoBehaviour {
     Vector3 center_of_mass_target;
     float center_of_mass_lerp_speed = 15f;
 
+    public bool is_in_water = false;
+
     private void init() {
         activators = GetComponentsInChildren<ModularShipActivator>();
         fuel_containers = GetComponentsInChildren<ModularShipFuelContainer>();
@@ -31,7 +33,6 @@ public class ModularShipController : MonoBehaviour {
 
         rb.WakeUp();
         rb.interpolation = RigidbodyInterpolation.None;
-        rb.useGravity = false;
 
         force_update_center_of_mass();
         rb.linearVelocity = Vector3.zero;
@@ -40,7 +41,6 @@ public class ModularShipController : MonoBehaviour {
         velocity_override = Vector3.zero;
 
         rb.interpolation = RigidbodyInterpolation.Interpolate;
-        rb.useGravity = true;
     }
 
     private void Awake() {
@@ -109,6 +109,8 @@ public class ModularShipController : MonoBehaviour {
             rb.linearVelocity = velocity_override;
             velocity_override = Vector3.zero;
         }
+
+        rb.AddForce(AtmosphereManager.instance.get_gravity() * rb.mass);
     }
 
     private void OnCollisionEnter(Collision collision) {
@@ -192,6 +194,8 @@ public class ModularShipController : MonoBehaviour {
 
         transform.position = GameManager.instance.spawn_point;
         transform.rotation = Quaternion.identity;
+
+        exit_water();
     }
 
     public void on_component_destroyed(ModularShipComponent ship_component) {
@@ -201,5 +205,21 @@ public class ModularShipController : MonoBehaviour {
 
     public void knockback_from_component(ModularShipComponent component, Vector3 force) {
         rb.AddForceAtPosition(force, component.transform.localPosition);
+    }
+
+    public void enter_water() {
+        if (is_in_water) return;
+        is_in_water = true;
+        rb.linearDamping = 0.5f;
+        rb.angularDamping = 0.5f;
+        rb.linearVelocity *= 0.3f;
+        rb.angularVelocity *= 0.3f;
+    }
+
+    public void exit_water() {
+        if (!is_in_water) return;
+        is_in_water = false;
+        rb.linearDamping = 0f;
+        rb.angularDamping = 0f;
     }
 }

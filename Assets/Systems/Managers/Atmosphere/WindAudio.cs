@@ -17,6 +17,12 @@ public class WindAudio : MonoBehaviour {
     }
 
     private void Update() {
+        if (GameManager.instance.ship_controller.is_in_water) {
+            audio_source.volume = 0f;
+            audio_source.pitch = 0f;
+            return;
+        }
+
         audio_source.volume = Mathf.Lerp(volume_range.x, volume_range.y, Mathf.Min(AtmosphereManager.instance.get_wind_strength(), max_volume_at_wind_magnitude) / max_volume_at_wind_magnitude);
         audio_source.pitch = Mathf.Lerp(speed_range.x, speed_range.y, Mathf.Min(AtmosphereManager.instance.get_wind_strength(), max_speed_at_wind_magnitude) / max_speed_at_wind_magnitude);
     }

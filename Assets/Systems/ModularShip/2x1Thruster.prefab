@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 6852254519480276201}
   - component: {fileID: 2673417768262429310}
   - component: {fileID: -4797664866080608553}
-  - component: {fileID: -1516597072389353210}
   - component: {fileID: 1359479055913604362}
+  - component: {fileID: -1516597072389353210}
   - component: {fileID: 3322081863810545543}
   m_Layer: 0
   m_Name: 2x1Thruster
@@ -189,23 +189,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &-1516597072389353210
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5130119216902090330}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4808816bb8edaf54cacf711189d37018, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 10
-  data: {fileID: 11400000, guid: fcd8a8785002eea43a7f655ae3f10cd9, type: 2}
-  collision_velocity_to_damage_multiplier: 0.5
-  collision_velocity_to_volume_multiplier: 0.05
-  modular_ship_controller: {fileID: 0}
 --- !u!64 &1359479055913604362
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -228,6 +211,21 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -397440897179317363, guid: 13e035b7d739ae440bd303d7ebb65e71, type: 3}
+--- !u!114 &-1516597072389353210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5130119216902090330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4808816bb8edaf54cacf711189d37018, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 10
+  data: {fileID: 11400000, guid: fcd8a8785002eea43a7f655ae3f10cd9, type: 2}
+  modular_ship_controller: {fileID: 0}
 --- !u!114 &3322081863810545543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,10 +238,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e17b038a0c2dd744aa908d8b24e9649e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hotkey: a
+  hotkey: 0
   active: 0
   can_deactivate: 1
   toggle: 0
+  fuel_usage_per_second: 0.5
 --- !u!1 &8680941868929118195
 GameObject:
   m_ObjectHideFlags: 0

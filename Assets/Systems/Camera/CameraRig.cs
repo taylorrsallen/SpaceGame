@@ -28,6 +28,7 @@ public class CameraRig : MonoBehaviour {
     public bool avoid_clipping = true;
 
     public bool follow_z_rotation = false;
+    public bool zero_z_rotation = false;
     public bool focus_center_of_mass = true;
 
     Vector3 CameraHalfExtents {
@@ -60,6 +61,8 @@ public class CameraRig : MonoBehaviour {
             } else {
                 camera_3d.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, anchor_transform.rotation.eulerAngles.z));
             }
+        } else if (zero_z_rotation) {
+            camera_3d.transform.rotation = Quaternion.identity;
         }
     }
 

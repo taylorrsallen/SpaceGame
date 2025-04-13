@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 2464731684424816844}
   - component: {fileID: 7819755694756913752}
   - component: {fileID: -7047405934644710021}
-  - component: {fileID: -5299864637989955583}
   - component: {fileID: 5947697317861756303}
+  - component: {fileID: -5299864637989955583}
   - component: {fileID: 5162262630617866686}
   m_Layer: 0
   m_Name: 1x1FuelTank
@@ -188,21 +188,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &-5299864637989955583
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 285937477076547786}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4808816bb8edaf54cacf711189d37018, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 2
-  data: {fileID: 11400000, guid: d728094f01e94be4cbcce4b854a7dede, type: 2}
-  modular_ship_controller: {fileID: 0}
 --- !u!64 &5947697317861756303
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -225,6 +210,21 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 8108563764783910780, guid: 13e035b7d739ae440bd303d7ebb65e71, type: 3}
+--- !u!114 &-5299864637989955583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 285937477076547786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4808816bb8edaf54cacf711189d37018, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 2
+  data: {fileID: 11400000, guid: d728094f01e94be4cbcce4b854a7dede, type: 2}
+  modular_ship_controller: {fileID: 0}
 --- !u!114 &5162262630617866686
 MonoBehaviour:
   m_ObjectHideFlags: 0
