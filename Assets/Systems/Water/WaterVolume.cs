@@ -6,6 +6,9 @@ public class WaterVolume : MonoBehaviour {
 
     public float effect_cooldown = 0.35f;
     private float effect_timer = 0f;
+
+    public Vector2 velocity_to_splash_range = new Vector2(5f, 100f);
+    public Vector2 splash_size_range = new Vector2(0.2f, 1f);
     
     private void Update() {
         effect_timer = Mathf.Min(effect_timer + Time.deltaTime, effect_cooldown);
@@ -30,10 +33,13 @@ public class WaterVolume : MonoBehaviour {
     }
 
     private void try_play_water_enter_effect(Vector3 position) {
+        float velocity = GameManager.instance.ship_controller.get_velocity().magnitude;
+        if (velocity < velocity_to_splash_range.x) return;
         if (effect_timer < effect_cooldown) return;
         effect_timer = 0f;
 
-        Instantiate(water_enter_effect, position, water_enter_effect.transform.rotation);
+        Transform splash = Instantiate(water_enter_effect, position, water_enter_effect.transform.rotation).transform;
+        splash.localScale = Vector3.one * Mathf.Lerp(splash_size_range.x, splash_size_range.y, Mathf.Min(velocity - 5f, velocity_to_splash_range.y) / velocity_to_splash_range.y);
         SoundManager.instance.play_sound_3d_pitched(water_enter_sound, position);
     }
 }

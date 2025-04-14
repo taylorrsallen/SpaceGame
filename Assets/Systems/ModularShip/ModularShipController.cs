@@ -8,6 +8,7 @@ public class ModularShipController : MonoBehaviour {
     public ModularShipBlueprintData blueprint;
     public Grid3D grid;
     public Transform components;
+    public Light thruster_light;
 
     private ModularShipActivator[] activators;
     private ModularShipFuelContainer[] fuel_containers;
@@ -24,6 +25,9 @@ public class ModularShipController : MonoBehaviour {
     float center_of_mass_lerp_speed = 15f;
 
     public bool is_in_water = false;
+
+    public float china_intensity = 0f;
+
 
     private void init() {
         activators = GetComponentsInChildren<ModularShipActivator>();
@@ -50,10 +54,14 @@ public class ModularShipController : MonoBehaviour {
     }
 
     private void Update() {
+        float light_intensity = 0f;
         foreach (ModularShipActivator activator in activators) {
             if (activator == null) continue;
             activator.update_active_state(total_available_fuel);
+            if (activator.active) light_intensity += Random.Range(0.9f, 1.1f);
         }
+
+        thruster_light.intensity = light_intensity;
 
         if (components.childCount > 0) {
             last_valid_camera_anchor_point = transform.position + transform.TransformDirection(rb.centerOfMass);

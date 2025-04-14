@@ -42,7 +42,7 @@ public class ModularShipBuilder : MonoBehaviour {
         if (Physics.Raycast(ray, out hit, 50f, ui_layer)) {
             if (grabbed_item) {
                 grabbed_item.transform.position = hit.point - Vector3.forward * 1.1f;
-                grabbed_item_rotation_target = new Vector3(-cursor_velocity.y * 3f, cursor_velocity.x * 3f, grabbed_item.data.rotation * 90f) + AtmosphereManager.instance.get_wind_force();
+                grabbed_item_rotation_target = new Vector3(-cursor_velocity.y * 3f, cursor_velocity.x * 3f, grabbed_item.data.rotation * 90f) + AtmosphereManager.instance.get_wind_force(grabbed_item.transform.position.y);
                 grabbed_item_rotation = Vector3.Lerp(grabbed_item_rotation, grabbed_item_rotation_target, Time.deltaTime * 10f);
                 grabbed_item.transform.rotation = Quaternion.Euler(grabbed_item_rotation);
             }

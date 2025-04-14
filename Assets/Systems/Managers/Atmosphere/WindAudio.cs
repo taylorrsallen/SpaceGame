@@ -23,7 +23,7 @@ public class WindAudio : MonoBehaviour {
             return;
         }
 
-        audio_source.volume = Mathf.Lerp(volume_range.x, volume_range.y, Mathf.Min(AtmosphereManager.instance.get_wind_strength(), max_volume_at_wind_magnitude) / max_volume_at_wind_magnitude);
-        audio_source.pitch = Mathf.Lerp(speed_range.x, speed_range.y, Mathf.Min(AtmosphereManager.instance.get_wind_strength(), max_speed_at_wind_magnitude) / max_speed_at_wind_magnitude);
+        audio_source.volume = Mathf.Lerp(volume_range.x, volume_range.y, Mathf.Min(AtmosphereManager.instance.get_wind_strength(transform.position.y), max_volume_at_wind_magnitude) / max_volume_at_wind_magnitude);
+        audio_source.pitch = Mathf.Lerp(speed_range.x, speed_range.y, Mathf.Min(AtmosphereManager.instance.get_wind_strength(transform.position.y), max_speed_at_wind_magnitude) / max_speed_at_wind_magnitude);
     }
 }

@@ -11,6 +11,7 @@ public class ShipControllerSpeedAudio : MonoBehaviour {
     public Vector2 volume_speed_range = new Vector2(20f, 120f);
     public Vector2 pitch_range = new Vector2(0.9f, 2f);
     public Vector2 pitch_speed_range = new Vector2(100f, 200f);
+    public float max_height = 7000f;
 
     private void Awake() {
         audio_source = GetComponent<AudioSource>();
@@ -21,7 +22,7 @@ public class ShipControllerSpeedAudio : MonoBehaviour {
         Vector3 velocity = GameManager.instance.ship_controller.get_velocity();
         float speed = velocity.magnitude;
         float wind_dot = Vector3.Dot(velocity.normalized, AtmosphereManager.instance.get_wind_direction());
-        speed -= wind_dot * AtmosphereManager.instance.get_wind_strength();
+        speed -= wind_dot * AtmosphereManager.instance.get_wind_strength(GameManager.instance.ship_controller.transform.position.y);
         // Debug.Log("Speed " + speed + " | Dot " + wind_dot);
         audio_source.volume = get_volume(speed);
         audio_source.pitch = get_pitch(speed);
@@ -29,11 +30,12 @@ public class ShipControllerSpeedAudio : MonoBehaviour {
 
     public float get_volume(float speed) {
         if (GameManager.instance.ship_controller.is_in_water) return 0f;
+        float wind_multiplier = AtmosphereManager.instance.get_wind_multiplier(GameManager.instance.ship_controller.transform.position.y);
         float noise = Mathf.Lerp(volume_noise_range.x, volume_noise_range.y, Mathf.PerlinNoise1D(Time.realtimeSinceStartup * volume_noise_frequency));
         if (speed < volume_speed_range.x) {
-            return volume_range.x + noise;
+            return (volume_range.x + noise) * wind_multiplier;
         } else {
-            return Mathf.Lerp(volume_range.x, volume_range.y, (Mathf.Min(speed, volume_speed_range.y) - volume_speed_range.x) / (volume_speed_range.y - volume_speed_range.x)) + noise;
+            return (Mathf.Lerp(volume_range.x, volume_range.y, (Mathf.Min(speed, volume_speed_range.y) - volume_speed_range.x) / (volume_speed_range.y - volume_speed_range.x)) + noise) * wind_multiplier;
         }
     }
 
