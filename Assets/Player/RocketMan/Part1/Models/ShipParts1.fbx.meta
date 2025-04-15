@@ -27,6 +27,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Parts
+    second: {fileID: -876546973899608171, guid: 93395be59a56ef748931255d18ce8631, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: RocketWarhead
     second: {fileID: 2100000, guid: 91ad82a6afa071642b0b6e06b6178d5b, type: 2}
   - first:
