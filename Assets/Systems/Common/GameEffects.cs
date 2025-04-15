@@ -187,7 +187,7 @@ public class ExplosionPostProcessGameEffect : GameEffect {
     public float intensity;
 
     public override bool Execute(GameEffectArgs args) {
-        AtmosphereManager.instance.global_volume.apply_explosion_post_processing(intensity);
+        AtmosphereManager.instance.global_volume.apply_explosion_post_processing(intensity * args.multiplier);
         return true;
     }
 }

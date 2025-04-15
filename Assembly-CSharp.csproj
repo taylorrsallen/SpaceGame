@@ -69,6 +69,7 @@
     <Compile Include="Assets\Systems\Managers\GameManager.cs" />
     <Compile Include="Assets\Systems\Managers\Atmosphere\ReactiveGlobalVolume.cs" />
     <Compile Include="Assets\Systems\Npcs\ChineseRocket.cs" />
+    <Compile Include="Assets\Systems\Npcs\PropellerRotator.cs" />
     <Compile Include="Assets\Systems\Matter\IMatterCollider.cs" />
     <Compile Include="Assets\Systems\Data\ShipComponentAudioData.cs" />
     <Compile Include="Assets\Systems\Data\ContentDatabase.cs" />
@@ -83,12 +84,17 @@
     <Compile Include="Assets\Systems\Managers\Sound\SoundPool.cs" />
     <Compile Include="Assets\Systems\ModularShipBuilder\ModularShipBlueprintData.cs" />
     <Compile Include="Assets\Systems\Data\ShipComponentData.cs" />
+    <Compile Include="Assets\Systems\Npcs\BiPlaneAIType.cs" />
+    <Compile Include="Assets\Systems\Npcs\MeteoriteAiType.cs" />
     <Compile Include="Assets\Systems\Matter\MatterData.cs" />
+    <Compile Include="Assets\Systems\Npcs\BiPlane.cs" />
     <Compile Include="Assets\Systems\Dialogue\DialogueReaderData.cs" />
     <Compile Include="Assets\Systems\Water\UnderwaterAudio.cs" />
     <Compile Include="Assets\Systems\Managers\Atmosphere\WindyParticle.cs" />
     <Compile Include="Assets\Systems\Character\CharacterSpringMotion.cs" />
     <Compile Include="Assets\Systems\Controller\PlayerControls.cs" />
+    <Compile Include="Assets\Systems\Npcs\AirBalloon.cs" />
+    <Compile Include="Assets\Systems\Npcs\Meteorite.cs" />
     <Compile Include="Assets\Systems\Water\WaterVolume.cs" />
     <Compile Include="Assets\Systems\ModularShipBuilder\Grid3D.cs" />
     <Compile Include="Assets\Systems\Controller\PlayerController.cs" />
@@ -104,11 +110,11 @@
     <Compile Include="Assets\Systems\UI3D\ContextMenu3D.cs" />
     <Compile Include="Assets\Systems\ModularShip\ModularShipFuelContainer.cs" />
     <Compile Include="Assets\Systems\Managers\Atmosphere\HeavyWindAudio.cs" />
-    <Compile Include="Assets\Systems\Npcs\Ufe.cs" />
     <Compile Include="Assets\UFEShipRotator.cs" />
     <Compile Include="Assets\Systems\Data\DataManager.cs" />
     <Compile Include="Assets\Systems\ModularShip\ModularShipEmitter.cs" />
     <Compile Include="Assets\Systems\ModularShipBuilder\Grid3DItem.cs" />
+    <Compile Include="Assets\Systems\Npcs\AirBalloonAiType.cs" />
     <Compile Include="Assets\Systems\Npcs\NPC.cs" />
     <Compile Include="Assets\Systems\Npcs\AiType.cs" />
     <Compile Include="Assets\Systems\Common\GameEffects.cs" />
@@ -126,6 +132,7 @@
     <Compile Include="Assets\Systems\Managers\Atmosphere\WindAudio.cs" />
     <Compile Include="Assets\Systems\Common\GameEffectData.cs" />
     <Compile Include="Assets\Systems\Npcs\UfeAiType.cs" />
+    <Compile Include="Assets\Systems\Npcs\UFO.cs" />
     <Compile Include="Assets\Systems\Common\Util.cs" />
   </ItemGroup>
   <ItemGroup>
