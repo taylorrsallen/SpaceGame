@@ -38,10 +38,7 @@ public class UfeAiType : AiType
         _boxCollider.size = new Vector3(8, 1, 8);
 
         _rb.useGravity = false;
-        _rb.constraints = RigidbodyConstraints.FreezeRotationX;
-        _rb.constraints = RigidbodyConstraints.FreezeRotationY;
-        _rb.constraints = RigidbodyConstraints.FreezeRotationZ;
-        _rb.constraints = RigidbodyConstraints.FreezePositionZ;
+        _rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionZ;
         _rb.mass = 20;
 
         _loopableMethodName = "S_FollowPlayer";
@@ -49,12 +46,12 @@ public class UfeAiType : AiType
 
     public void FixedUpdate()
     {
-
         _zrotation = _rb.linearVelocity.x * -1;
         transform.eulerAngles = new Vector3(0, 0, _zrotation);
 
         SendMessage(_loopableMethodName);
 
+        CheckForKillDistance();
     }
 
     protected void S_FollowPlayer()

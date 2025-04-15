@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace NPCs.Base
 {
-    public class NPC : MonoBehaviour, IDamageable
+    public abstract class NPC : MonoBehaviour, IDamageable
     {
         private float _hp = 100;
         private AiType _aiType;
@@ -43,7 +43,11 @@ namespace NPCs.Base
         protected virtual void OnDeath()
         {
         }
-
+        public void Kill()
+        {
+            OnDeath();
+            Destroy(gameObject);
+        }
         public void damage(DamageArgs args)
         {
             _hp -= args.damage;

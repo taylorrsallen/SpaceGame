@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2671918934241540027}
-  - component: {fileID: 5124857351083221406}
   - component: {fileID: 571695938680942934}
+  - component: {fileID: 7855164425512609054}
   m_Layer: 0
   m_Name: UFE_AI
   m_TagString: Untagged
@@ -34,18 +34,6 @@ Transform:
   - {fileID: 1997563098274540312}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5124857351083221406
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1495020850000651134}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad08a2bd2fa6bdb4d9da58a6873b4349, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &571695938680942934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,6 +48,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chargedEffect: {fileID: 11400000, guid: 9ff580eebb4d9344ba556ede1eb5db4d, type: 2}
   chargedLaserEffect: {fileID: 11400000, guid: 4b2929f58ba593d44b5f9f7d9f7c3ec3, type: 2}
+--- !u!114 &7855164425512609054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495020850000651134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0fd0842d3f85ea498f510c999a270e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp: 100
 --- !u!1001 &2031823204920085747
 PrefabInstance:
   m_ObjectHideFlags: 0
