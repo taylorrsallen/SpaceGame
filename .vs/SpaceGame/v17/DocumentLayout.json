@@ -3,20 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\trumb\\Documents\\unityProjects\\SPcae\\SpaceGame\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{6069C91B-B0DC-90CE-2EC4-147CEED1ED66}|Assembly-CSharp.csproj|c:\\users\\trumb\\documents\\unityprojects\\spcae\\spacegame\\assets\\systems\\npcs\\anynpc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6069C91B-B0DC-90CE-2EC4-147CEED1ED66}|Assembly-CSharp.csproj|solutionrelative:assets\\systems\\npcs\\anynpc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6069C91B-B0DC-90CE-2EC4-147CEED1ED66}|Assembly-CSharp.csproj|c:\\users\\trumb\\documents\\unityprojects\\spcae\\spacegame\\assets\\systems\\npcs\\npc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6069C91B-B0DC-90CE-2EC4-147CEED1ED66}|Assembly-CSharp.csproj|solutionrelative:assets\\systems\\npcs\\npc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{6069C91B-B0DC-90CE-2EC4-147CEED1ED66}|Assembly-CSharp.csproj|c:\\users\\trumb\\documents\\unityprojects\\spcae\\spacegame\\assets\\systems\\npcs\\ufeaitype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6069C91B-B0DC-90CE-2EC4-147CEED1ED66}|Assembly-CSharp.csproj|solutionrelative:assets\\systems\\npcs\\ufeaitype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6069C91B-B0DC-90CE-2EC4-147CEED1ED66}|Assembly-CSharp.csproj|c:\\users\\trumb\\documents\\unityprojects\\spcae\\spacegame\\assets\\systems\\npcs\\aitype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{6069C91B-B0DC-90CE-2EC4-147CEED1ED66}|Assembly-CSharp.csproj|C:\\Users\\trumb\\Documents\\unityProjects\\SPcae\\SpaceGame\\assets\\systems\\npcs\\aitype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6069C91B-B0DC-90CE-2EC4-147CEED1ED66}|Assembly-CSharp.csproj|solutionrelative:assets\\systems\\npcs\\aitype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6069C91B-B0DC-90CE-2EC4-147CEED1ED66}|Assembly-CSharp.csproj|c:\\users\\trumb\\documents\\unityprojects\\spcae\\spacegame\\assets\\ufeshiprotator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{6069C91B-B0DC-90CE-2EC4-147CEED1ED66}|Assembly-CSharp.csproj|C:\\Users\\trumb\\Documents\\unityProjects\\SPcae\\SpaceGame\\assets\\ufeshiprotator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6069C91B-B0DC-90CE-2EC4-147CEED1ED66}|Assembly-CSharp.csproj|solutionrelative:assets\\ufeshiprotator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6069C91B-B0DC-90CE-2EC4-147CEED1ED66}|Assembly-CSharp.csproj|c:\\users\\trumb\\documents\\unityprojects\\spcae\\spacegame\\assets\\systems\\npcs\\ufe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6069C91B-B0DC-90CE-2EC4-147CEED1ED66}|Assembly-CSharp.csproj|solutionrelative:assets\\systems\\npcs\\ufe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\trumb\\Documents\\unityProjects\\SPcae\\SpaceGame\\Assets\\Systems\\Npcs\\Ufe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Systems\\Npcs\\Ufe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -31,6 +39,32 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "NPC.cs",
+              "DocumentMoniker": "C:\\Users\\trumb\\Documents\\unityProjects\\SPcae\\SpaceGame\\Assets\\Systems\\Npcs\\NPC.cs",
+              "RelativeDocumentMoniker": "Assets\\Systems\\Npcs\\NPC.cs",
+              "ToolTip": "C:\\Users\\trumb\\Documents\\unityProjects\\SPcae\\SpaceGame\\Assets\\Systems\\Npcs\\NPC.cs",
+              "RelativeToolTip": "Assets\\Systems\\Npcs\\NPC.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwBQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T00:59:27.31Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AnyNpc.cs",
+              "DocumentMoniker": "C:\\Users\\trumb\\Documents\\unityProjects\\SPcae\\SpaceGame\\Assets\\Systems\\Npcs\\AnyNpc.cs",
+              "RelativeDocumentMoniker": "Assets\\Systems\\Npcs\\AnyNpc.cs",
+              "ToolTip": "C:\\Users\\trumb\\Documents\\unityProjects\\SPcae\\SpaceGame\\Assets\\Systems\\Npcs\\AnyNpc.cs",
+              "RelativeToolTip": "Assets\\Systems\\Npcs\\AnyNpc.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T00:58:59.739Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "AiType.cs",
               "DocumentMoniker": "C:\\Users\\trumb\\Documents\\unityProjects\\SPcae\\SpaceGame\\Assets\\Systems\\Npcs\\AiType.cs",
               "RelativeDocumentMoniker": "Assets\\Systems\\Npcs\\AiType.cs",
@@ -38,12 +72,11 @@
               "RelativeToolTip": "Assets\\Systems\\Npcs\\AiType.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-12T19:46:57.9Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-12T19:46:57.9Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "UfeAiType.cs",
               "DocumentMoniker": "C:\\Users\\trumb\\Documents\\unityProjects\\SPcae\\SpaceGame\\Assets\\Systems\\Npcs\\UfeAiType.cs",
               "RelativeDocumentMoniker": "Assets\\Systems\\Npcs\\UfeAiType.cs",
@@ -56,7 +89,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "Ufe.cs",
               "DocumentMoniker": "C:\\Users\\trumb\\Documents\\unityProjects\\SPcae\\SpaceGame\\Assets\\Systems\\Npcs\\Ufe.cs",
               "RelativeDocumentMoniker": "Assets\\Systems\\Npcs\\Ufe.cs",
@@ -64,12 +97,11 @@
               "RelativeToolTip": "Assets\\Systems\\Npcs\\Ufe.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-12T18:36:03.394Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-12T18:36:03.394Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "UFEShipRotator.cs",
               "DocumentMoniker": "C:\\Users\\trumb\\Documents\\unityProjects\\SPcae\\SpaceGame\\Assets\\UFEShipRotator.cs",
               "RelativeDocumentMoniker": "Assets\\UFEShipRotator.cs",
@@ -77,8 +109,7 @@
               "RelativeToolTip": "Assets\\UFEShipRotator.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-12T18:21:20.89Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-12T18:21:20.89Z"
             }
           ]
         }

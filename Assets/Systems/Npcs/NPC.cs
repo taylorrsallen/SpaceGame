@@ -6,23 +6,24 @@ using UnityEngine;
 
 namespace NPCs.Base
 {
-    public abstract class NPC : MonoBehaviour, IDamageable
+    public class NPC : MonoBehaviour, IDamageable
     {
         private float _hp = 100;
         private AiType _aiType;
 
-        protected float maxHp = 100;
+        [SerializeField] protected float maxHp = 100;
 
         public void Awake()
         {
-            SetDefaults();
             InitializeAI();
         }
 
-        protected abstract void SetDefaults();
 
         private void InitializeAI()
         {
+            _hp = maxHp;
+
+
             _aiType = GetComponent<AiType>();
             _aiType.Initialize(this);
         }
