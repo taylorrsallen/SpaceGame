@@ -6,28 +6,22 @@ namespace NPCs.AI.Base
     public abstract class AiType : MonoBehaviour
     {
         protected NPC _npcRoot;
-        private Transform _playerTransform;
-        protected Rigidbody _playerRigidBody;
         public void Initialize(NPC root)
         {
             _npcRoot = root;
-
-            _playerTransform = GameObject.Find("RocketController").transform;
-
-            _playerRigidBody = _playerTransform.GetComponent<Rigidbody>();
-            
-
+        
             OnInit();
         }
         protected abstract void OnInit();
-
         protected Vector3 GetPlayerPosition(float offsetX, float offsetY)
         {
-            return _playerTransform.position + _playerRigidBody.centerOfMass + new Vector3(offsetX, offsetY, 0);
+            
+
+            return GameManager.instance.ship_controller.get_ship_position() + new Vector3(offsetX, offsetY, 0);
         }
         protected Vector3 GetPlayerPosition()
         {
-            return _playerTransform.position + _playerRigidBody.centerOfMass;
+            return GameManager.instance.ship_controller.get_ship_position();
         }
 
         protected Vector3 GetDirectionOfTarget(Vector3 positionOfTarget)
