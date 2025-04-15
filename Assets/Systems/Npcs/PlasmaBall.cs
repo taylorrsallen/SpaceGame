@@ -1,9 +1,9 @@
 using UnityEngine;
 using NPCs.Base;
-public class UFE : NPC
+public class PlasmaBall : NPC
 {
     protected override void OnDeath()
     {
-        
+
     }
 }
