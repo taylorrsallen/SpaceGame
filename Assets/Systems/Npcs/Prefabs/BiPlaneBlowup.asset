@@ -28,19 +28,10 @@ MonoBehaviour:
       Data: 0|GameEffect[], Assembly-CSharp
     - Name: 
       Entry: 12
-      Data: 4
+      Data: 3
     - Name: 
       Entry: 7
-      Data: 1|ExplosionPostProcessGameEffect, Assembly-CSharp
-    - Name: intensity
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 2|SoundGameEffect, Assembly-CSharp
+      Data: 1|SoundGameEffect, Assembly-CSharp
     - Name: effect_target
       Entry: 3
       Data: 2
@@ -79,7 +70,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 3|SpawnerGameEffect, Assembly-CSharp
+      Data: 2|SpawnerGameEffect, Assembly-CSharp
     - Name: parent
       Entry: 3
       Data: 2
@@ -148,7 +139,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 4|AreaGameEffect, Assembly-CSharp
+      Data: 3|AreaGameEffect, Assembly-CSharp
     - Name: effect_target
       Entry: 3
       Data: 0
@@ -181,25 +172,34 @@ MonoBehaviour:
       Data: 
     - Name: effects
       Entry: 7
-      Data: 5|GameEffect[], Assembly-CSharp
+      Data: 4|GameEffect[], Assembly-CSharp
     - Name: 
       Entry: 12
-      Data: 1
+      Data: 2
     - Name: 
       Entry: 7
-      Data: 6|DamageGameEffect, Assembly-CSharp
+      Data: 5|DamageGameEffect, Assembly-CSharp
     - Name: damage_args
       Entry: 7
       Data: DamageArgs, Assembly-CSharp
     - Name: damage
       Entry: 4
-      Data: 33
+      Data: 2
     - Name: 
       Entry: 8
       Data: 
     - Name: effect_target
       Entry: 3
       Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 6|ExplosionPostProcessGameEffect, Assembly-CSharp
+    - Name: intensity
+      Entry: 4
+      Data: 0.1
     - Name: 
       Entry: 8
       Data: 

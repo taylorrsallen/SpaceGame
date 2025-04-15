@@ -3,11 +3,12 @@ using UnityEngine;
 
 public class ModularShipController : MonoBehaviour {
     private Character character;
-    public Rigidbody rb;
+    [HideInInspector] public Rigidbody rb;
 
     public ModularShipBlueprintData blueprint;
-    public Grid3D grid;
-    public Transform components;
+    [TabGroup("Setup")] public Grid3D grid;
+    [TabGroup("Setup")] public Transform components;
+    [TabGroup("Setup")] public Collider player_trigger;
 
     private ModularShipActivator[] activators;
     private ModularShipFuelContainer[] fuel_containers;
@@ -116,6 +117,7 @@ public class ModularShipController : MonoBehaviour {
         }
 
         rb.AddForce(AtmosphereManager.instance.get_gravity() * rb.mass);
+        player_trigger.transform.position = get_ship_position();
     }
     #endregion
 

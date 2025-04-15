@@ -132,6 +132,7 @@
     <Compile Include="Assets\Systems\Managers\Atmosphere\WindAudio.cs" />
     <Compile Include="Assets\Systems\Common\GameEffectData.cs" />
     <Compile Include="Assets\Systems\Npcs\UfeAiType.cs" />
+    <Compile Include="Assets\Systems\Npcs\PlasmaBall.cs" />
     <Compile Include="Assets\Systems\Npcs\UFO.cs" />
     <Compile Include="Assets\Systems\Common\Util.cs" />
   </ItemGroup>
