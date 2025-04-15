@@ -28,7 +28,7 @@ MonoBehaviour:
       Data: 0|GameEffect[], Assembly-CSharp
     - Name: 
       Entry: 12
-      Data: 3
+      Data: 4
     - Name: 
       Entry: 7
       Data: 1|SoundGameEffect, Assembly-CSharp
@@ -175,7 +175,7 @@ MonoBehaviour:
       Data: 4|GameEffect[], Assembly-CSharp
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 1
     - Name: 
       Entry: 7
       Data: 5|DamageGameEffect, Assembly-CSharp
@@ -195,8 +195,56 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
       Entry: 7
-      Data: 6|ExplosionPostProcessGameEffect, Assembly-CSharp
+      Data: 6|AreaGameEffect, Assembly-CSharp
+    - Name: effect_target
+      Entry: 3
+      Data: 0
+    - Name: local_offset
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: area_radius
+      Entry: 4
+      Data: 5
+    - Name: area_layer_mask
+      Entry: 7
+      Data: UnityEngine.LayerMask, UnityEngine.CoreModule
+    - Name: 
+      Entry: 3
+      Data: 64
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: effects
+      Entry: 7
+      Data: 7|GameEffect[], Assembly-CSharp
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 8|ExplosionPostProcessGameEffect, Assembly-CSharp
     - Name: intensity
       Entry: 4
       Data: 0.1

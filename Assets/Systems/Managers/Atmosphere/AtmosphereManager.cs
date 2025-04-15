@@ -82,11 +82,9 @@ public class AtmosphereManager : MonoBehaviour {
     public static AtmosphereManager instance { get; private set; }
 
     private void Awake() {
-        if (instance != null && instance != this) {
-            Destroy(this);
-        } else {
-            instance = this;
-        }
+        if (instance != null && instance != this) Destroy(this);
+        else instance = this;
+        DontDestroyOnLoad(this);
 
         wind_target = wind_direction;
         update_time_scale();

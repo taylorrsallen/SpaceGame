@@ -17,7 +17,12 @@ public class ContextMenu3D : MonoBehaviour {
     [TabGroup("UI")] public Color color_override = Color.white;
 
     private void Awake() {
+        init();
+    }
+
+    public void init() {
         follow_transform = GetComponent<FollowTransform>();
+        nine_rect.init();
     }
 
     private void Update() {

@@ -29,7 +29,13 @@ public class ModularShipController : MonoBehaviour {
     public float china_intensity = 0f;
 
     #region Init
-    private void init() {
+    public void init() {
+        character = GetComponent<Character>();
+        rb = GetComponent<Rigidbody>();
+        refresh();
+    }
+
+    public void refresh() {
         activators = GetComponentsInChildren<ModularShipActivator>();
         fuel_containers = GetComponentsInChildren<ModularShipFuelContainer>();
 
@@ -45,12 +51,6 @@ public class ModularShipController : MonoBehaviour {
         velocity_override = Vector3.zero;
 
         rb.interpolation = RigidbodyInterpolation.Interpolate;
-    }
-
-    private void Awake() {
-        character = GetComponent<Character>();
-        rb = GetComponent<Rigidbody>();
-        init();
     }
     #endregion
 
@@ -205,7 +205,7 @@ public class ModularShipController : MonoBehaviour {
         clear();
         blueprint = _blueprint;
         grid.load_blueprint_as_functional(blueprint, components);
-        init();
+        refresh();
     }
 
     public void clear() {

@@ -13,15 +13,16 @@ public class GameManager : MonoBehaviour {
     [SerializeField] public ShipComponentData[] ship_components;
 
     private void Awake() {
-        if (instance != null && instance != this) {
-            Destroy(this);
-        } else {
-            instance = this;
-        }
+        if (instance != null && instance != this) Destroy(this);
+        else instance = this;
+        DontDestroyOnLoad(this);
 
         player_controller = FindAnyObjectByType<PlayerController>();
-        ship_builder = FindAnyObjectByType<ModularShipBuilder>();
+        ship_builder = FindAnyObjectByType<ModularShipBuilder>(FindObjectsInactive.Include);
         ship_controller = FindAnyObjectByType<ModularShipController>(FindObjectsInactive.Include);
+
+        ship_controller.init();
+        ship_builder.init();
 
         for (int i = 0; i < ship_components.Length; i++) ship_components[i].id = i;
     }
