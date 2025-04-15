@@ -13,7 +13,6 @@ namespace NPCs.AI.Base
             OnInit();
         }
         protected abstract void OnInit();
-
         protected Vector3 GetPlayerPosition(float offsetX, float offsetY)
         {
             
