@@ -59,6 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chargedEffect: {fileID: 11400000, guid: 9ff580eebb4d9344ba556ede1eb5db4d, type: 2}
+  chargedLaserEffect: {fileID: 11400000, guid: 4b2929f58ba593d44b5f9f7d9f7c3ec3, type: 2}
 --- !u!1001 &2031823204920085747
 PrefabInstance:
   m_ObjectHideFlags: 0
