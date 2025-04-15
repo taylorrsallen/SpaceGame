@@ -1,4 +1,4 @@
-using Unity.VisualScripting;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class ModularShipController : MonoBehaviour {
@@ -8,7 +8,6 @@ public class ModularShipController : MonoBehaviour {
     public ModularShipBlueprintData blueprint;
     public Grid3D grid;
     public Transform components;
-    public Light thruster_light;
 
     private ModularShipActivator[] activators;
     private ModularShipFuelContainer[] fuel_containers;
@@ -28,7 +27,7 @@ public class ModularShipController : MonoBehaviour {
 
     public float china_intensity = 0f;
 
-
+    #region Init
     private void init() {
         activators = GetComponentsInChildren<ModularShipActivator>();
         fuel_containers = GetComponentsInChildren<ModularShipFuelContainer>();
@@ -52,16 +51,14 @@ public class ModularShipController : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
         init();
     }
+    #endregion
 
+    #region Update
     private void Update() {
-        float light_intensity = 0f;
         foreach (ModularShipActivator activator in activators) {
             if (activator == null) continue;
             activator.update_active_state(total_available_fuel);
-            if (activator.active) light_intensity += Random.Range(0.9f, 1.1f);
         }
-
-        thruster_light.intensity = light_intensity;
 
         if (components.childCount > 0) {
             last_valid_camera_anchor_point = transform.position + transform.TransformDirection(rb.centerOfMass);
@@ -120,7 +117,9 @@ public class ModularShipController : MonoBehaviour {
 
         rb.AddForce(AtmosphereManager.instance.get_gravity() * rb.mass);
     }
+    #endregion
 
+    #region Physics
     private void OnCollisionEnter(Collision collision) {
         ModularShipComponent ship_component = collision.GetContact(0).thisCollider.GetComponent<ModularShipComponent>();
         if (ship_component != null) {
@@ -128,11 +127,6 @@ public class ModularShipController : MonoBehaviour {
             velocity_override = previous_velocity - (ship_component.data.collision_velocity_damper * previous_velocity) / (rb.mass * 0.25f);
         }
     }
-
-    public Vector3 get_ship_position() { return transform.position + transform.TransformDirection(rb.centerOfMass); }
-    public Vector3 get_velocity() { return rb.linearVelocity; }
-    public float get_ship_mass() { return rb.mass; }
-    public float get_ship_radius() { return 5f; }
 
     public void update_center_of_mass() {
         rb.centerOfMass = Vector3.Lerp(rb.centerOfMass, center_of_mass_target, Time.fixedDeltaTime * center_of_mass_lerp_speed);
@@ -176,13 +170,13 @@ public class ModularShipController : MonoBehaviour {
         center_of_mass_target = rb.centerOfMass;
         rb.mass = total_mass;
     }
+    #endregion
 
-    public void load_blueprint(ModularShipBlueprintData _blueprint) {
-        clear();
-        blueprint = _blueprint;
-        grid.load_blueprint_as_functional(blueprint, components);
-        init();
-    }
+    #region GetSet
+    public Vector3 get_ship_position() { return transform.position + transform.TransformDirection(rb.centerOfMass); }
+    public Vector3 get_velocity() { return rb.linearVelocity; }
+    public float get_ship_mass() { return rb.mass; }
+    public float get_ship_radius() { return 5f; }
 
     public void set_active(bool active) {
         if (active) {
@@ -190,6 +184,26 @@ public class ModularShipController : MonoBehaviour {
         } else {
             gameObject.SetActive(false);
         }
+    }
+    #endregion
+
+    #region Blueprint
+    [Button]
+    public void save_as(string ship_name) {
+        blueprint.save_as(ship_name);
+    }
+
+    [Button]
+    public void load(string ship_name) {
+        blueprint.load(ship_name);
+        load_blueprint(blueprint);
+    }
+
+    public void load_blueprint(ModularShipBlueprintData _blueprint) {
+        clear();
+        blueprint = _blueprint;
+        grid.load_blueprint_as_functional(blueprint, components);
+        init();
     }
 
     public void clear() {
@@ -205,7 +219,9 @@ public class ModularShipController : MonoBehaviour {
 
         exit_water();
     }
+    #endregion
 
+    #region Components
     public void on_component_destroyed(ModularShipComponent ship_component) {
         update_center_of_mass_target();
         Destroy(ship_component.gameObject);
@@ -214,7 +230,9 @@ public class ModularShipController : MonoBehaviour {
     public void knockback_from_component(ModularShipComponent component, Vector3 force) {
         rb.AddForceAtPosition(force, component.transform.localPosition);
     }
+    #endregion
 
+    #region Water
     public void enter_water() {
         if (is_in_water) return;
         is_in_water = true;
@@ -230,4 +248,5 @@ public class ModularShipController : MonoBehaviour {
         rb.linearDamping = 0f;
         rb.angularDamping = 0f;
     }
+    #endregion
 }

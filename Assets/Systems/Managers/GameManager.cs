@@ -22,11 +22,13 @@ public class GameManager : MonoBehaviour {
         player_controller = FindAnyObjectByType<PlayerController>();
         ship_builder = FindAnyObjectByType<ModularShipBuilder>();
         ship_controller = FindAnyObjectByType<ModularShipController>(FindObjectsInactive.Include);
+
+        for (int i = 0; i < ship_components.Length; i++) ship_components[i].id = i;
     }
 
     public void toggle_ship_builder() {
         if (ship_builder.gameObject.activeSelf) {
-            enter_play_mode();
+            if (!ship_builder.set_hotkey_target) enter_play_mode();
         } else {
             enter_ship_builder();
         }

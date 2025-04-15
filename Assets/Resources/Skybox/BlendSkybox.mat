@@ -150,15 +150,15 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _DstBlendAlpha: 0
-    - _EarthToSpace: 0
+    - _EarthToSpace: 1
     - _EnvironmentReflections: 1
     - _Exposure: 1.1
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _GroundToSky: 0.012307692
+    - _GroundToSky: 1
     - _ImageType: 0
-    - _Intensity: 1.1
+    - _Intensity: 0.80798054
     - _Layout: 0
     - _Mapping: 1
     - _Metallic: 0
@@ -171,8 +171,8 @@ Material:
     - _Rotation: 0
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
-    - _SpaceIntensity: 1
-    - _SpaceToMars: 0
+    - _SpaceIntensity: 23.237566
+    - _SpaceToMars: 1
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1

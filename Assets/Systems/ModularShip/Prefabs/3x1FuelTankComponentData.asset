@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6195c88f64962224f8bc56a75e8c0a4a, type: 3}
+  m_Name: 3x1FuelTankComponentData
+  m_EditorClassIdentifier: 
+  types: 
+  mass: 3
+  max_health: 4
+  percent_armor: 0
+  flat_armor: 0
+  grid_dimensions: {x: 3, y: 1}
+  mesh_prefab: {fileID: 3983722852992836167, guid: 1eed67954c2707b42acba463edc155f3, type: 3}
+  component_prefab: {fileID: 8059321874106242417, guid: 3bac4c08da9d125449c661861ae9a287, type: 3}
+  audio_data: {fileID: 11400000, guid: 98474ce30f0625c49aca823571ec5016, type: 2}
+  collision_velocity_damper: 0.02
+  death_effects: {fileID: 11400000, guid: 482b841cf527968479c5d8f8ee2191cb, type: 2}
+  death_delay_range: {x: 0.2, y: 0.4}
+  activator: 0
+  activator_fuel_usage_per_second: 0.5
+  activator_hotkey: 32
+  activator_can_deactivate: 1
+  activator_toggle: 0
+  fuel_container: 1
+  fuel_capacity: 200
