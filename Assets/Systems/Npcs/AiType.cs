@@ -46,5 +46,16 @@ namespace NPCs.AI.Base
             float distance = Vector3.Distance(transform.position, GetPlayerPosition() + new Vector3(offsetX, offsetY, 0));
             return distance;
         }
+        private int _KillDistanceCheck = 6;
+        protected void CheckForKillDistance()
+        {
+            _KillDistanceCheck--;
+            if (_KillDistanceCheck <= 0)
+            {
+                _KillDistanceCheck = 8;
+                if (GetDistanceToPlayer() >= 400)
+                    Destroy(gameObject);
+            } 
+        }        
     }
 }

@@ -11,18 +11,19 @@ namespace NPCs.Base
         private float _hp = 100;
         private AiType _aiType;
 
-        protected float maxHp = 100;
+        [SerializeField] protected float maxHp = 100;
 
         public void Awake()
         {
-            SetDefaults();
             InitializeAI();
         }
 
-        protected abstract void SetDefaults();
 
         private void InitializeAI()
         {
+            _hp = maxHp;
+
+
             _aiType = GetComponent<AiType>();
             _aiType.Initialize(this);
         }
@@ -42,7 +43,11 @@ namespace NPCs.Base
         protected virtual void OnDeath()
         {
         }
-
+        public void Kill()
+        {
+            OnDeath();
+            Destroy(gameObject);
+        }
         public void damage(DamageArgs args)
         {
             _hp -= args.damage;

@@ -8,6 +8,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1040825894587921467, guid: 1bf2235cd8136fd479b7aceb853ed111, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1868576065135132421, guid: 1bf2235cd8136fd479b7aceb853ed111, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1991232690120226486, guid: 1bf2235cd8136fd479b7aceb853ed111, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2246980231261891042, guid: 1bf2235cd8136fd479b7aceb853ed111, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4426809333179656961, guid: 1bf2235cd8136fd479b7aceb853ed111, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -48,9 +64,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5250175466423292811, guid: 1bf2235cd8136fd479b7aceb853ed111, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7816296162575101774, guid: 1bf2235cd8136fd479b7aceb853ed111, type: 3}
       propertyPath: m_Name
       value: Gore_Vital Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 8657208352523015310, guid: 1bf2235cd8136fd479b7aceb853ed111, type: 3}
+      propertyPath: looping
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
