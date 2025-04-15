@@ -95,6 +95,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 887201251252313886}
+  - component: {fileID: 8525968258785896727}
+  - component: {fileID: 2090283248684877339}
   m_Layer: 0
   m_Name: Meteorite_AI
   m_TagString: Untagged
@@ -111,13 +113,39 @@ Transform:
   m_GameObject: {fileID: 3221537014128865778}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.8454071, y: 37.496845, z: 0.018188173}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4916321084795896835}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8525968258785896727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3221537014128865778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b60bed68e0496e543b948fa600536099, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp: 4
+  BiPlaneExplosion: {fileID: 11400000, guid: fe7033cfba9f3ab4f9c599ef108e4094, type: 2}
+--- !u!114 &2090283248684877339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3221537014128865778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe387dd9753d5a84eb8da6a89f3f6711, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5724522997251153593
 GameObject:
   m_ObjectHideFlags: 0
