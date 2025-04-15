@@ -24,7 +24,7 @@ public class BiPlaneAIType : AiType
 
         transform.eulerAngles = new Vector3(0, 0, _rb.linearVelocity.y * 2);
 
-        _rb.AddForce(Vector3.right * 50 + Vector3.up * sinewave * 3);
+        _rb.AddForce(Vector3.right * 50 + Vector3.up * sinewave * 33);
 
         CheckForKillDistance();
     }
