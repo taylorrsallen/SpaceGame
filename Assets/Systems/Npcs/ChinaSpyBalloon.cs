@@ -1,7 +1,6 @@
-using NPCs.Base;
 using UnityEngine;
-
-public class AirBalloon : NPC
+using NPCs.Base;
+public class ChinaSpyBalloon : NPC
 {
     [SerializeField] private GameEffectData Explosion;
     protected override void OnDeath()

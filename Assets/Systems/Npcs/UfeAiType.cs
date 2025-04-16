@@ -9,16 +9,23 @@ public class UfeAiType : AiType
     private GameObject _firePivot;
 
     [SerializeField] private GameEffectData chargedEffect;
-    [SerializeField] private GameEffectData chargedLaserEffect;
+    [SerializeField] private GameObject chargedLaserEffect;
+    [SerializeField] private GameObject PlasmaBallProjectile;
+    [SerializeField] private GameObject LaserProjectile;
+    [SerializeField] private AudioSource SoundPlayer;
 
     private float _tacticTime = 3;
     private float _targetDampen = 0;
     private float _zrotation = 0f;
     private float _attackOffsetX = 20;
     private float _attackSpeed = 2000;
+    private float _lerpSpeed = 5;
+
+    private Vector3 _oldPlayerPos;
 
     private int _tick = 0;
     private int _attackId = 0;
+    private bool _trackPlayer = false;
 
     private Vector3 _atttackPosition;
 
@@ -101,7 +108,22 @@ public class UfeAiType : AiType
 
         _rb.linearDamping = Mathf.Lerp(_rb.linearDamping, _targetDampen, 2 * Time.fixedDeltaTime);
 
-        _firePivot.transform.LookAt(GetPlayerPosition());
+
+
+        if (_trackPlayer == true)
+        {
+            _oldPlayerPos = Vector3.Lerp(_oldPlayerPos, GetPlayerPosition() + GameManager.instance.ship_controller.get_velocity() * 2.8f, _lerpSpeed * 22 * Time.deltaTime);
+
+            _lerpSpeed -= 0.8f * Time.fixedDeltaTime;
+            _lerpSpeed = Mathf.Clamp(_lerpSpeed, 0, 100);
+        }
+        else
+        {
+            _oldPlayerPos = GetPlayerPosition();
+        }
+
+
+        _firePivot.transform.LookAt(_oldPlayerPos);
     }
 
     protected void S_RamPlayer()
@@ -136,16 +158,24 @@ public class UfeAiType : AiType
     {
 
         //gives time for player to move and time for the ship to slowdown for firing
-
+        _trackPlayer = false;
         _atttackPosition = GetPlayerPosition(Random.Range(-_attackOffsetX, _attackOffsetX), 8);
         yield return new WaitForSeconds(1.5f);
+
+        SoundPlayer.PlayOneShot(Resources.Load<AudioClip>("Sounds/Saucer_Charge1"));
+
+        yield return new WaitForSeconds(0.5f);
 
         chargedEffect.Execute(new GameEffectArgs(_firePivot, null, Vector3.zero));
 
         //CreateChargeParticles
         yield return new WaitForSeconds(1.4f);
         //Shoot and restartLoop
+        SoundPlayer.PlayOneShot(Resources.Load<AudioClip>("Sounds/Saucer_PlasmaFire"));
+        GameObject PlasmaTemp = Instantiate(PlasmaBallProjectile);
 
+        PlasmaTemp.transform.position = _firePivot.transform.position + (_firePivot.transform.forward * 5.8f);
+        PlasmaTemp.transform.eulerAngles = _firePivot.transform.eulerAngles;
 
         yield return new WaitForSeconds(0.4f);
         _tacticTime = 3;
@@ -178,14 +208,28 @@ public class UfeAiType : AiType
             _atttackPosition = GetPlayerPosition(-20, 5);
         }
 
+        _trackPlayer = true;
+        _lerpSpeed = 5;
 
         yield return new WaitForSeconds(1.5f);
 
-        chargedLaserEffect.Execute(new GameEffectArgs(_firePivot, null, Vector3.zero));
+        SoundPlayer.PlayOneShot(Resources.Load<AudioClip>("Sounds/Saucer_LaserCharge"));
+       
+        yield return new WaitForSeconds(1.5f); 
 
-        //CreateChargeParticles
-        yield return new WaitForSeconds(5f);
-        //Shoot and restartLoop
+        GameObject lasertemp = Instantiate(chargedLaserEffect, _firePivot.transform);
+
+        lasertemp.transform.localPosition = new Vector3(0, 0, 5.39f);
+        lasertemp.transform.localEulerAngles = Vector3.zero;
+
+        yield return new WaitForSeconds(4f);
+
+        SoundPlayer.PlayOneShot(Resources.Load<AudioClip>("Sounds/Saucer_LaserSHOOT"));
+
+        GameObject PlasmaTemp = Instantiate(LaserProjectile);
+
+        PlasmaTemp.transform.position = _firePivot.transform.position + (_firePivot.transform.forward * 5.8f);
+        PlasmaTemp.transform.eulerAngles = _firePivot.transform.eulerAngles;
 
 
         yield return new WaitForSeconds(0.4f);
@@ -200,7 +244,7 @@ public class UfeAiType : AiType
         if (_attackId == 0)
         {
             _attackSpeed = 9000;
-            _targetDampen = 6;
+            _targetDampen = 20;
             _tacticTime = 3;
             _loopableMethodName = "S_Attack";
             StartCoroutine(TimedAttack1());
@@ -222,7 +266,7 @@ public class UfeAiType : AiType
         {
             _attackSpeed = 2000;
             _tacticTime = 3;
-            _targetDampen = 2;
+            _targetDampen = 12;
             _loopableMethodName = "S_Attack";
             StartCoroutine(TimedAttack2());
         }
