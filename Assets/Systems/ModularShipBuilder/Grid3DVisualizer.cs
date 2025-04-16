@@ -17,12 +17,12 @@ public class Grid3DVisualizer : MonoBehaviour {
 
     private MeshRenderer[] inner_border_quads = new MeshRenderer[4];
 
-    private void Start() {
-        grid_3d = GetComponentInChildren<Grid3D>();
+    public void init() {
+        grid_3d = GetComponentInChildren<Grid3D>(true);
         grid_3d.init();
-        grid_texture_quad = transform.GetChild(1).GetComponentInChildren<MeshRenderer>();
+        grid_texture_quad = transform.GetChild(1).GetComponentInChildren<MeshRenderer>(true);
         grid_texture_quad.material = grid_material;
-        grid_border = transform.GetChild(2).GetComponentInChildren<NineRect3D>();
+        grid_border = transform.GetChild(2).GetComponentInChildren<NineRect3D>(true);
         highlighter = transform.GetChild(4).GetComponent<NineRect3D>();
 
         for (int i = 0; i < 4; i++) {
@@ -30,6 +30,8 @@ public class Grid3DVisualizer : MonoBehaviour {
             inner_border_quads[i].material = grid_texture_quad.material;
         }
 
+        grid_border.init();
+        highlighter.init();
         set_interactive(interactive);
         set_highlighter_active(false);
         refresh();

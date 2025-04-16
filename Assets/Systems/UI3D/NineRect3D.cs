@@ -17,8 +17,14 @@ public class NineRect3D : MonoBehaviour {
     public bool interactive;
 
     private void Awake() {
+        init();
+    }
+
+    public void init() {
+        Debug.Log(name + " init");
+
         int i = 0;
-        foreach (MeshRenderer quad in GetComponentsInChildren<MeshRenderer>()) {
+        foreach (MeshRenderer quad in GetComponentsInChildren<MeshRenderer>(true)) {
             quads[i] = quad;
             i++;
         }

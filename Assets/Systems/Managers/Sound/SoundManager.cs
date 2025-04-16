@@ -6,11 +6,9 @@ public class SoundManager : MonoBehaviour {
     [SerializeField] GameObject sound_3d_prefab;
 
     private void Awake() {
-        if (instance != null && instance != this) {
-            Destroy(this);
-        } else {
-            instance = this;
-        }
+        if (instance != null && instance != this) Destroy(this);
+        else instance = this;
+        DontDestroyOnLoad(this);
     }
 
     public void play_sound_3d(AudioClip clip, Vector3 position) {

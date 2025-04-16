@@ -29,6 +29,13 @@ public class ModularShipBuilder : MonoBehaviour {
     private Vector3 grabbed_item_rotation_target;
     private Vector3 grabbed_item_rotation;
 
+    public void init() {
+        build_grid.init();
+        shop_grid.init();
+        stash_grid.init();
+        hover_context_menu.init();
+    }
+
     private void Update() {
         update_hover_targets();
         
