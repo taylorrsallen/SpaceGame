@@ -7,6 +7,8 @@ public class ModularShipBlueprintData {
     const string SHIPS_FOLDER = "/Ships";
     public List<Grid3DItemData> item_datas = new List<Grid3DItemData>();
 
+    public ModularShipBlueprintData() {}
+
     public ModularShipBlueprintData(List<Grid3DItemData> _item_datas) {
         item_datas = _item_datas;
     }

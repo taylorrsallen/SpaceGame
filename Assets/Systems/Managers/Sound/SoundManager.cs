@@ -22,6 +22,9 @@ public class SoundManager : MonoBehaviour {
     public void play_sound_3d_pitched(AudioClip clip, Vector3 position, float pitch_min = 0.8f, float pitch_max = 1.2f) {
         AudioSource sound_3d = Instantiate(sound_3d_prefab).GetComponent<AudioSource>();
 
+        Lifetime lifetime = sound_3d.GetComponent<Lifetime>();
+        lifetime.lifetime = clip.length;
+
         sound_3d.transform.position = position;
         sound_3d.clip = clip;
         sound_3d.pitch = Random.Range(pitch_min, pitch_max);

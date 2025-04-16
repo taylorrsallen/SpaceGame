@@ -1,9 +1,6 @@
 using System;
 using Sirenix.OdinInspector;
-using Sirenix.OdinInspector.Editor;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class AtmosphereManager : MonoBehaviour {
     private float wind_strength = 1f;

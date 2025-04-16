@@ -21,8 +21,6 @@ public class NineRect3D : MonoBehaviour {
     }
 
     public void init() {
-        Debug.Log(name + " init");
-
         int i = 0;
         foreach (MeshRenderer quad in GetComponentsInChildren<MeshRenderer>(true)) {
             quads[i] = quad;
