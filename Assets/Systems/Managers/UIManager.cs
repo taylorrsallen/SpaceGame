@@ -29,10 +29,12 @@ public class UIManager : MonoBehaviour {
     [TabGroup("Setup"), SerializeField] private LayerMask ui_layer;
 
     [TabGroup("Cursor"), SerializeField] private Light cursor_light;
-    [TabGroup("Cursor"), SerializeField] public float cursor_light_intensity;
-    [TabGroup("Cursor"), SerializeField] public float cursor_light_normal_offset;
-    [TabGroup("Cursor"), SerializeField] public float cursor_light_default_distance;
-    [TabGroup("Cursor"), SerializeField] public Color cursor_color;
+    [TabGroup("Cursor")] public float cursor_light_intensity;
+    [TabGroup("Cursor")] public float cursor_light_normal_offset;
+    [TabGroup("Cursor")] public float cursor_light_default_distance;
+    [TabGroup("Cursor")] public Color cursor_color;
+
+    [TabGroup("Prefabs")] public ContextMenu3D context_menu_prefab;
 
     private IUI3D hovered_ui_3d;
     private IUI3D pressed_ui_3d;

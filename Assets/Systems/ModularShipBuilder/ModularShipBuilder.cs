@@ -4,7 +4,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class ModularShipBuilder : MonoBehaviour {
-    [TabGroup("Setup")] LayerMask ui_layer;
+    [TabGroup("Setup"), SerializeField] private LayerMask ui_layer;
     [TabGroup("Setup")] public CharacterCameraGrabMotion ship_builder_camera_anchor;
     [TabGroup("Setup")] public Grid3DVisualizer build_grid;
     [TabGroup("Setup")] public Grid3DVisualizer shop_grid;
@@ -66,9 +66,9 @@ public class ModularShipBuilder : MonoBehaviour {
         } else if (hovered_item) {
             try_pick_up_hovered_item(hovered_grid);
         } else {
-            // Grid3DItem item = Instantiate(grid_item_prefab, build_grid.grid_3d.transform);
-            // item.init(new Grid3DItemData(GameManager.instance.ship_components[Random.Range(0, GameManager.instance.ship_components.Length)]));
-            // if (!hovered_grid.try_set_item(item, hovered_coord)) { Destroy(item.gameObject); }
+            Grid3DItem item = Instantiate(grid_item_prefab, build_grid.grid_3d.transform);
+            item.init(new Grid3DItemData(GameManager.instance.ship_components[Random.Range(0, GameManager.instance.ship_components.Length)]));
+            if (!hovered_grid.try_set_item(item, hovered_coord)) { Destroy(item.gameObject); }
         }
     }
 
@@ -139,13 +139,15 @@ public class ModularShipBuilder : MonoBehaviour {
         if (set_hotkey_target) {
             hover_context_menu.gameObject.SetActive(true);
             hover_context_menu.set_target(set_hotkey_target);
-            hover_context_menu.hotkey_text.text = "Press any key...";
-            hover_context_menu.color_override = Color.green;
-        } else if (!grabbed_item && is_valid_hotkey_target(hovered_item)) {
+            hover_context_menu.set_text("Press any key...");
+            hover_context_menu.frame_color_override = Color.green;
+            hover_context_menu.refresh();
+        } else if (!grabbed_item && is_valid_hotkey_target(hovered_item) && !hovered_grid.shop) {
             hover_context_menu.gameObject.SetActive(true);
             hover_context_menu.set_target(hovered_item);
             hover_context_menu.display_hotkey_text(hovered_item);
-            hover_context_menu.color_override = Color.white;
+            hover_context_menu.frame_color_override = Color.white;
+            hover_context_menu.refresh();
         } else {
             hover_context_menu.gameObject.SetActive(false);
         }
@@ -186,6 +188,17 @@ public class ModularShipBuilder : MonoBehaviour {
     }
 
     private void try_pick_up_hovered_item(Grid3D hit_grid) {
+        if(hit_grid.shop) {
+            if(hovered_item.data.component_data.value.can_player_afford()) {
+                GameManager.instance.spawn_resource_remove_particle(hovered_item.data.component_data.value, shop_money_source);
+                pick_up_hovered_item(hit_grid);
+            }
+        } else {
+            pick_up_hovered_item(hit_grid);
+        }
+    }
+
+    private void pick_up_hovered_item(Grid3D hit_grid) {
         grabbed_item = hovered_item;
         hit_grid.remove_item(grabbed_item);
     }
@@ -193,7 +206,7 @@ public class ModularShipBuilder : MonoBehaviour {
     public void sell_item(Grid3DItem item, ShopData shop_data) {
         GameResource resource_to_add = new GameResource(item.data.component_data.value);
         resource_to_add.amount = shop_data.get_sell_price(resource_to_add);
-        GameManager.instance.spawn_resource_particle(resource_to_add, shop_money_source);
+        GameManager.instance.spawn_resource_add_particle(resource_to_add, shop_money_source);
     }
 
     public bool is_valid_hotkey_target(Grid3DItem item) {
