@@ -4,25 +4,28 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class ModularShipBuilder : MonoBehaviour {
-    [SerializeField] LayerMask ui_layer;
-    [SerializeField] public CharacterCameraGrabMotion ship_builder_camera_anchor;
-
+    [TabGroup("Setup")] LayerMask ui_layer;
+    [TabGroup("Setup")] public CharacterCameraGrabMotion ship_builder_camera_anchor;
     [TabGroup("Setup")] public Grid3DVisualizer build_grid;
     [TabGroup("Setup")] public Grid3DVisualizer shop_grid;
     [TabGroup("Setup")] public Grid3DVisualizer stash_grid;
     [TabGroup("Setup")] public Grid3DItem grid_item_prefab;
     [TabGroup("Setup")] public ContextMenu3D hover_context_menu;
     [TabGroup("Setup")] public ContextMenu3D context_menu_prefab;
-    [TabGroup("Setup")] public KeyCode[] illegal_hotkeys;
-    [TabGroup("Setup")] public KeyCode[] ignored_hotkeys;
 
-    public Vector2Int hovered_coord;
-    public Grid3D hovered_grid;
-    public Grid3DVisualizer hovered_grid_visualizer;
+    [TabGroup("Hotkeys")] public KeyCode[] illegal_hotkeys;
+    [TabGroup("Hotkeys")] public KeyCode[] ignored_hotkeys;
 
-    public Grid3DItem hovered_item;
-    public Grid3DItem grabbed_item;
-    public Grid3DItem set_hotkey_target;
+    [TabGroup("Shop")] public Transform shop_money_source;
+
+
+    [HideInInspector] public Vector2Int hovered_coord;
+    [HideInInspector] public Grid3D hovered_grid;
+    [HideInInspector] public Grid3DVisualizer hovered_grid_visualizer;
+
+    [HideInInspector] public Grid3DItem hovered_item;
+    [HideInInspector] public Grid3DItem grabbed_item;
+    [HideInInspector] public Grid3DItem set_hotkey_target;
 
     private Vector3 cursor_velocity;
     private Vector3 cursor_previous_position;
@@ -61,11 +64,11 @@ public class ModularShipBuilder : MonoBehaviour {
         if (grabbed_item) {
             try_place_grabbed_item(hovered_grid, hovered_coord);
         } else if (hovered_item) {
-            pick_up_hovered_item(hovered_grid);
+            try_pick_up_hovered_item(hovered_grid);
         } else {
-            Grid3DItem item = Instantiate(grid_item_prefab, build_grid.grid_3d.transform);
-            item.init(new Grid3DItemData(GameManager.instance.ship_components[Random.Range(0, GameManager.instance.ship_components.Length)]));
-            if (!hovered_grid.try_set_item(item, hovered_coord)) { Destroy(item.gameObject); }
+            // Grid3DItem item = Instantiate(grid_item_prefab, build_grid.grid_3d.transform);
+            // item.init(new Grid3DItemData(GameManager.instance.ship_components[Random.Range(0, GameManager.instance.ship_components.Length)]));
+            // if (!hovered_grid.try_set_item(item, hovered_coord)) { Destroy(item.gameObject); }
         }
     }
 
@@ -172,12 +175,25 @@ public class ModularShipBuilder : MonoBehaviour {
     #region GridHelpers
     private void try_place_grabbed_item(Grid3D hit_grid, Vector2Int grid_coord) {
         Vector2Int placement_grid_coord = grabbed_item.get_placement_grid_coord(grid_coord);
-        if (hit_grid.try_set_item(grabbed_item, placement_grid_coord)) grabbed_item = null;
+        if(hit_grid.shop) {
+            if(hit_grid.try_set_item(grabbed_item, placement_grid_coord)) {
+                sell_item(grabbed_item, hit_grid.shop);
+                grabbed_item = null;
+            }
+        } else {
+            if(hit_grid.try_set_item(grabbed_item, placement_grid_coord)) grabbed_item = null;
+        }
     }
 
-    private void pick_up_hovered_item(Grid3D hit_grid) {
+    private void try_pick_up_hovered_item(Grid3D hit_grid) {
         grabbed_item = hovered_item;
         hit_grid.remove_item(grabbed_item);
+    }
+
+    public void sell_item(Grid3DItem item, ShopData shop_data) {
+        GameResource resource_to_add = new GameResource(item.data.component_data.value);
+        resource_to_add.amount = shop_data.get_sell_price(resource_to_add);
+        GameManager.instance.spawn_resource_particle(resource_to_add, shop_money_source);
     }
 
     public bool is_valid_hotkey_target(Grid3DItem item) {

@@ -66,13 +66,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Systems\ModularShip\ModularShipComponent.cs" />
-    <Compile Include="Assets\Systems\Managers\GameManager.cs" />
     <Compile Include="Assets\Systems\Managers\Atmosphere\ReactiveGlobalVolume.cs" />
-    <Compile Include="Assets\Systems\Npcs\ChineseRocket.cs" />
     <Compile Include="Assets\Systems\Npcs\PropellerRotator.cs" />
     <Compile Include="Assets\Systems\Matter\IMatterCollider.cs" />
     <Compile Include="Assets\Systems\Data\ShipComponentAudioData.cs" />
     <Compile Include="Assets\Systems\Managers\UIManager.cs" />
+    <Compile Include="Assets\Systems\Managers\Game\GameResource.cs" />
     <Compile Include="Assets\Systems\Data\ContentDatabase.cs" />
     <Compile Include="Assets\Systems\Npcs\DistanceDespawn.cs" />
     <Compile Include="Assets\Systems\Npcs\LoopDoppleganger.cs" />
@@ -84,10 +83,13 @@
     <Compile Include="Assets\Systems\Common\Interfaces.cs" />
     <Compile Include="Assets\Systems\Menus\HUD.cs" />
     <Compile Include="Assets\Systems\ModularShip\ModularShipController.cs" />
+    <Compile Include="Assets\Systems\Npcs\ChinaSpyBalloon.cs" />
     <Compile Include="Assets\Systems\Managers\Sound\SoundPool.cs" />
     <Compile Include="Assets\Systems\ModularShipBuilder\ModularShipBlueprintData.cs" />
     <Compile Include="Assets\Systems\Data\ShipComponentData.cs" />
+    <Compile Include="Assets\Systems\Npcs\China\ChinaIntensity.cs" />
     <Compile Include="Assets\Systems\Npcs\BiPlaneAIType.cs" />
+    <Compile Include="Assets\Systems\Npcs\ChinaSpyBalloonAiType.cs" />
     <Compile Include="Assets\Systems\Menus\CameraIntro.cs" />
     <Compile Include="Assets\Systems\Npcs\MeteoriteAiType.cs" />
     <Compile Include="Assets\Systems\Matter\MatterData.cs" />
@@ -97,18 +99,22 @@
     <Compile Include="Assets\Systems\Menus\PauseMenu.cs" />
     <Compile Include="Assets\Systems\Menus\ConsoleMenu.cs" />
     <Compile Include="Assets\Systems\Water\UnderwaterAudio.cs" />
+    <Compile Include="Assets\Systems\Npcs\SpaceSpeksAiType.cs" />
     <Compile Include="Assets\Systems\Managers\Atmosphere\WindyParticle.cs" />
     <Compile Include="Assets\Systems\Character\CharacterSpringMotion.cs" />
     <Compile Include="Assets\Systems\Controller\PlayerControls.cs" />
     <Compile Include="Assets\Systems\Npcs\AirBalloon.cs" />
     <Compile Include="Assets\Systems\Menus\IIntroPlayer.cs" />
+    <Compile Include="Assets\Systems\Managers\Game\GameManager.cs" />
     <Compile Include="Assets\Systems\Npcs\Meteorite.cs" />
     <Compile Include="Assets\Systems\Water\WaterVolume.cs" />
     <Compile Include="Assets\Systems\ModularShipBuilder\Grid3D.cs" />
+    <Compile Include="Assets\Systems\ModularShipBuilder\Grid3DShop.cs" />
     <Compile Include="Assets\Systems\Controller\PlayerController.cs" />
     <Compile Include="Assets\Systems\Common\Lifetime.cs" />
     <Compile Include="Assets\Systems\Managers\Atmosphere\WindBlown.cs" />
     <Compile Include="Assets\Systems\Dialogue\DialogueReader3D.cs" />
+    <Compile Include="Assets\Systems\Npcs\SpaceSpeks.cs" />
     <Compile Include="Assets\Systems\Managers\Atmosphere\AtmosphereManager.cs" />
     <Compile Include="Assets\Systems\Water\OutOfWaterAudio.cs" />
     <Compile Include="Assets\Systems\UI3D\Menu3D.cs" />
@@ -117,6 +123,7 @@
     <Compile Include="Assets\Systems\Common\FollowTransform.cs" />
     <Compile Include="Assets\Systems\Matter\SingleMatterCollider.cs" />
     <Compile Include="Assets\Systems\Character\Character.cs" />
+    <Compile Include="Assets\Systems\Npcs\China\ChineseRocket.cs" />
     <Compile Include="Assets\Systems\UI3D\ContextMenu3D.cs" />
     <Compile Include="Assets\Systems\ModularShip\ModularShipFuelContainer.cs" />
     <Compile Include="Assets\Systems\Managers\Atmosphere\HeavyWindAudio.cs" />

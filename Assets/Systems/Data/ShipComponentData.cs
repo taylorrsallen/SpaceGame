@@ -1,5 +1,6 @@
 using System;
 using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 using UnityEngine;
 
 public enum ShipComponentType {
@@ -11,7 +12,7 @@ public enum ShipComponentType {
 }
 
 [CreateAssetMenu(fileName = "ShipComponentData", menuName = "Scriptable Objects/ShipComponentData")]
-public class ShipComponentData : ScriptableObject {
+public class ShipComponentData : SerializedScriptableObject {
     [TabGroup("Base")] public ShipComponentType[] types;
     [TabGroup("Base")] public int id = 0;
     [TabGroup("Base")] public float mass = 5f;
@@ -23,12 +24,13 @@ public class ShipComponentData : ScriptableObject {
     [TabGroup("Inventory")] public GameObject mesh_prefab;
     [TabGroup("Inventory")] public ModularShipComponent component_prefab;
 
-    [SerializeField] public ShipComponentAudioData audio_data;
-    
-    [SerializeField] public float collision_velocity_damper = 0.1f;
+    [TabGroup("Damage")] public float collision_velocity_damper = 0.1f;
+    [TabGroup("Damage")] public GameEffectData death_effects;
+    [TabGroup("Damage")] public Vector2 death_delay_range = new Vector2(0.02f, 0.07f);
 
-    [SerializeField] public GameEffectData death_effects;
-    [SerializeField] public Vector2 death_delay_range = new Vector2(0.02f, 0.07f);
+    [TabGroup("Shop"), NonSerialized, OdinSerialize] public GameResource value;
+
+    [SerializeField] public ShipComponentAudioData audio_data;
 
     // Activator
     [Header("Activator")]

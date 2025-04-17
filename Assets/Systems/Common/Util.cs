@@ -22,6 +22,10 @@ static public class Util {
         DrawBox2D(origin, origin + Vector3.right * size.x, origin + Vector3.up * size.y, origin + Vector3.right * size.x + Vector3.up * size.y, color);
     }
 
+    public static void DrawCenteredAABB2D(Vector3 origin, Vector2 size, Color color) {
+        DrawAABB2D(new Vector3(origin.x - size.x * 0.5f, origin.y - size.y * 0.5f, origin.z), size, color);
+    }
+
     // c d
     // a b
     public static void DrawBox2D(Vector3 a, Vector3 b, Vector3 c, Vector3 d, Color color) {

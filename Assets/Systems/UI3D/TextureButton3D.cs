@@ -107,7 +107,7 @@ public class TextureButton3D : MonoBehaviour, IUI3D {
             text_color_target = pressed_text_color;
         }
 
-        if(hovered_sound) SoundManager.instance.play_sound_3d_pitched(release_sound, transform.position);
+        if(hovered_sound) SoundManager.instance.play_sound_3d_pitched(hovered_sound, transform.position);
     }
 
     public void set_unhovered() {
@@ -130,7 +130,7 @@ public class TextureButton3D : MonoBehaviour, IUI3D {
         emission_intensity_target = pressed_intensity;
         text_color_target = pressed_text_color;
 
-        if(pressed_sound) SoundManager.instance.play_sound_3d_pitched(release_sound, transform.position);
+        if(pressed_sound) SoundManager.instance.play_sound_3d_pitched(pressed_sound, transform.position);
     }
 
     public void unpress() {

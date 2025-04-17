@@ -13,20 +13,23 @@ public class ModularShipController : MonoBehaviour {
     private ModularShipActivator[] activators;
     private ModularShipFuelContainer[] fuel_containers;
 
-    Vector3 previous_velocity;
-    Vector3 velocity_override;
+    private Vector3 previous_velocity;
+    private Vector3 velocity_override;
+    private Vector3 center_of_mass_target;
+    private float center_of_mass_lerp_speed = 15f;
 
-    public Vector3 last_valid_camera_anchor_point;
-    public Vector3 last_valid_camera_anchor_rotation;
+    [HideInInspector] public Vector3 last_valid_camera_anchor_point;
+    [HideInInspector] public Vector3 last_valid_camera_anchor_rotation;
 
-    public float total_available_fuel;
+    [ReadOnly] public float total_available_fuel;
+    [ReadOnly] public bool is_in_water = false;
 
-    Vector3 center_of_mass_target;
-    float center_of_mass_lerp_speed = 15f;
-
-    public bool is_in_water = false;
-
-    public float china_intensity = 0f;
+    [Header("China")]
+    [ReadOnly] public float china_intensity = 0f;
+    [SerializeField] private float china_search_frequency = 1f;
+    private float china_search_timer = 0f;
+    [SerializeField] private float max_china_search_distance = 80f;
+    [SerializeField] private LayerMask china_search_layer;
 
     #region Init
     public void init() {
@@ -62,13 +65,14 @@ public class ModularShipController : MonoBehaviour {
         }
 
         if (components.childCount > 0) {
-            Debug.Log(last_valid_camera_anchor_point);
             last_valid_camera_anchor_point = transform.position + transform.TransformDirection(rb.centerOfMass);
             last_valid_camera_anchor_rotation = new Vector3(0f, 0f, transform.rotation.eulerAngles.z);
         }
     }
 
     private void FixedUpdate() {
+        search_for_china();
+
         if (components.childCount == 0) {
             rb.linearVelocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
@@ -119,6 +123,24 @@ public class ModularShipController : MonoBehaviour {
 
         rb.AddForce(AtmosphereManager.instance.get_gravity() * rb.mass);
         player_trigger.transform.position = get_ship_position();
+    }
+
+    private void search_for_china() {
+        Util.DrawCenteredAABB2D(get_ship_position(), Vector2.one * max_china_search_distance, Color.blue);
+
+        china_search_timer += Time.unscaledDeltaTime;
+        if(china_search_timer >= china_search_frequency) china_search_timer -= china_search_frequency;
+        else return;
+
+        china_intensity = 0f;
+
+        Collider[] colliders = Physics.OverlapSphere(get_ship_position(), max_china_search_distance, china_search_layer);
+        foreach(Collider collider in colliders) {
+            ChinaIntensity _china_intensity = collider.GetComponent<ChinaIntensity>();
+            if(_china_intensity == null) continue;
+            float distance = Vector3.Distance(get_ship_position(), _china_intensity.transform.position);
+            china_intensity += _china_intensity.intensity * (1f - (distance / max_china_search_distance));
+        }
     }
     #endregion
 

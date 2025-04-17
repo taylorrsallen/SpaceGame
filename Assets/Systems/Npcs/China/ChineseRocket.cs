@@ -1,8 +1,6 @@
 using UnityEngine;
 
-[RequireComponent(typeof(AudioSource))]
 public class ChineseRocket : MonoBehaviour {
-    private AudioSource audio_source;
     private Rigidbody rb;
     private FaceTarget face_target;
 
@@ -24,10 +22,8 @@ public class ChineseRocket : MonoBehaviour {
     private bool is_engine_exploded;
 
     public GameEffectData collision_effect;
-    
 
     private void Start() {
-        audio_source = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
         face_target = GetComponent<FaceTarget>();
         face_target.target = GameManager.instance.player_controller.character.transform;
