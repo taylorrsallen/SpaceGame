@@ -6,8 +6,10 @@ public class Grid3D : MonoBehaviour {
     public Vector2Int dimensions = new Vector2Int(1, 1);
     private BoxCollider box_collider;
 
-    public List<Grid3DItem> items_list = new List<Grid3DItem>();
-    public Grid3DItem[] items;
+    [HideInInspector] public List<Grid3DItem> items_list = new List<Grid3DItem>();
+    [HideInInspector] public Grid3DItem[] items;
+
+    public ShopData shop;
 
     public void init() {
         box_collider = GetComponent<BoxCollider>();

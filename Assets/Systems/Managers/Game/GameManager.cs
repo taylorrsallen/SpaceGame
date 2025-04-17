@@ -15,14 +15,17 @@ public class GameManager : MonoBehaviour {
     [HideInInspector] public ModularShipBuilder ship_builder;
     [HideInInspector] public ModularShipController ship_controller;
     
+    [Header("Career Mode")]
     public string starting_ship;
-
     public Vector3 spawn_point = new Vector3(0f, 0f, 0f);
 
-    [SerializeField] public ShipComponentData[] ship_components;
+    [Header("Game Data")]
+    public ShipComponentData[] ship_components;
+    public GameResourceData[] game_resources;
+    [HideInInspector] public ulong[] player_resources;
 
     private void Awake() {
-        if (instance != null && instance != this) Destroy(this);
+        if(instance != null && instance != this) Destroy(this);
         else instance = this;
         DontDestroyOnLoad(this);
 
@@ -33,7 +36,9 @@ public class GameManager : MonoBehaviour {
         ship_controller.init();
         ship_builder.init();
 
-        for (int i = 0; i < ship_components.Length; i++) ship_components[i].id = i;
+        for(int i = 0; i < ship_components.Length; i++) ship_components[i].id = i;
+        player_resources = new ulong[game_resources.Length];
+        for(uint i = 0; i < game_resources.Length; i++) { player_resources[i] = 0; }
     }
 
     public void start_career_mode() {
@@ -41,6 +46,16 @@ public class GameManager : MonoBehaviour {
         enter_play_mode_with_loaded_ship(starting_ship);
     }
 
+    public void add_resource(GameResource resource) {
+        player_resources[resource.id] += resource.amount;
+    }
+
+    public void spawn_resource_particle(GameResource resource, Transform spawn_transform) {
+        // TEMP
+        add_resource(resource);
+    }
+
+    #region ShipBuilder
     public void toggle_ship_builder() {
         if (ship_builder.gameObject.activeSelf) {
             if (!ship_builder.set_hotkey_target) enter_play_mode_from_ship_builder();
@@ -119,4 +134,5 @@ public class GameManager : MonoBehaviour {
     private Vector3 get_ship_spawn_position() {
         return ship_controller.transform.position - ship_controller.rb.centerOfMass + Vector3.up * (ship_controller.get_bounds().size.y * 0.5f + spawn_point.y);
     }
+    #endregion
 }

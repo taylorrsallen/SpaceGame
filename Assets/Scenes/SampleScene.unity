@@ -3138,7 +3138,6 @@ GameObject:
   m_Component:
   - component: {fileID: 692315753}
   - component: {fileID: 692315754}
-  - component: {fileID: 692315755}
   - component: {fileID: 692315756}
   - component: {fileID: 692315757}
   - component: {fileID: 692315758}
@@ -3196,36 +3195,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 56
   m_CollisionDetection: 2
---- !u!114 &692315755
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 692315749}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!114 &692315756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3269,6 +3238,11 @@ MonoBehaviour:
   total_available_fuel: 0
   is_in_water: 0
   china_intensity: 0
+  china_search_frequency: 1
+  max_china_search_distance: 80
+  china_search_layer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!114 &692315758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3293,8 +3267,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6aca107b981de6d4a998dcd57c5df8be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  temp_prefab: {fileID: 7353057713218363749, guid: 05ea7da317815b244a47011aa70f6482, type: 3}
-  spawn_rate: 5
+  temp_prefab: {fileID: 3561356078414496411, guid: c513a6ccadd151941af532f9ea9e852a, type: 3}
+  spawn_rate: 1
   no_spawn_zone: {x: 98, y: 74}
   max_spawn_zone: {x: 150, y: 150}
 --- !u!4 &699667823 stripped
@@ -4356,6 +4330,7 @@ MonoBehaviour:
   dimensions: {x: 60, y: 60}
   items_list: []
   items: []
+  is_shop: 0
 --- !u!65 &996901724
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5508,6 +5483,10 @@ PrefabInstance:
     - target: {fileID: 1495584779642969693, guid: 4480b4241da0edb49b0dd77fdd52eed4, type: 3}
       propertyPath: grid_dimensions.y
       value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 8422048218392921929, guid: 4480b4241da0edb49b0dd77fdd52eed4, type: 3}
+      propertyPath: is_shop
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9124310195117115613, guid: 4480b4241da0edb49b0dd77fdd52eed4, type: 3}
       propertyPath: m_Name
@@ -7157,6 +7136,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b825936a58881854396e901d31046f77, type: 2}
   - {fileID: 11400000, guid: c20c45b8ec421224ebc9b24496d7b6ee, type: 2}
   - {fileID: 11400000, guid: fcd8a8785002eea43a7f655ae3f10cd9, type: 2}
+  game_resources:
+  - {fileID: 11400000, guid: 9a25cc58f65eda748a8305a75f133094, type: 2}
 --- !u!1 &1572855477
 GameObject:
   m_ObjectHideFlags: 0

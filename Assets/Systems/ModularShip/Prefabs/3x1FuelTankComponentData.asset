@@ -12,7 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6195c88f64962224f8bc56a75e8c0a4a, type: 3}
   m_Name: 3x1FuelTankComponentData
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: value
+      Entry: 7
+      Data: GameResource, Assembly-CSharp
+    - Name: id
+      Entry: 3
+      Data: 0
+    - Name: amount
+      Entry: 3
+      Data: 21999
+    - Name: 
+      Entry: 8
+      Data: 
   types: 
+  id: 4
   mass: 3
   max_health: 4
   percent_armor: 0
@@ -20,10 +42,10 @@ MonoBehaviour:
   grid_dimensions: {x: 3, y: 1}
   mesh_prefab: {fileID: 3983722852992836167, guid: 1eed67954c2707b42acba463edc155f3, type: 3}
   component_prefab: {fileID: 8059321874106242417, guid: 3bac4c08da9d125449c661861ae9a287, type: 3}
-  audio_data: {fileID: 11400000, guid: 98474ce30f0625c49aca823571ec5016, type: 2}
   collision_velocity_damper: 0.02
   death_effects: {fileID: 11400000, guid: 482b841cf527968479c5d8f8ee2191cb, type: 2}
   death_delay_range: {x: 0.2, y: 0.4}
+  audio_data: {fileID: 11400000, guid: 98474ce30f0625c49aca823571ec5016, type: 2}
   activator: 0
   activator_fuel_usage_per_second: 0.5
   activator_hotkey: 32

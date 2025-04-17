@@ -12,7 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6195c88f64962224f8bc56a75e8c0a4a, type: 3}
   m_Name: 2x2NoseComponentData
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: value
+      Entry: 7
+      Data: GameResource, Assembly-CSharp
+    - Name: id
+      Entry: 3
+      Data: 0
+    - Name: amount
+      Entry: 3
+      Data: 1999
+    - Name: 
+      Entry: 8
+      Data: 
   types: 
+  id: 3
   mass: 0.5
   max_health: 2
   percent_armor: 0
@@ -20,8 +42,10 @@ MonoBehaviour:
   grid_dimensions: {x: 2, y: 2}
   mesh_prefab: {fileID: 8534020876809586284, guid: ab18ad26aad123c4e8b9b19eb741cc0f, type: 3}
   component_prefab: {fileID: -2988155600422997063, guid: 648196af8cd38b04ba5a97682c209831, type: 3}
-  audio_data: {fileID: 11400000, guid: 5ce673de99a1c344586205ee3c1a4f40, type: 2}
   collision_velocity_damper: 0.02
+  death_effects: {fileID: 0}
+  death_delay_range: {x: 0.02, y: 0.07}
+  audio_data: {fileID: 11400000, guid: 5ce673de99a1c344586205ee3c1a4f40, type: 2}
   activator: 0
   activator_fuel_usage_per_second: 0.5
   activator_hotkey: 32

@@ -129,6 +129,8 @@ public class AtmosphereManager : MonoBehaviour {
         if (china_intensity > 0f) {
             chinese_music_lerp_target = china_intensity;
             space_music_lerp_target = Mathf.Clamp01(space_music_lerp_target - chinese_music_lerp_target);
+        } else {
+            chinese_music_lerp_target = 0f;
         }
 
         if (alien_music_lerp_target > 0f) {
