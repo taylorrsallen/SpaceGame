@@ -230,4 +230,6 @@ public class AtmosphereManager : MonoBehaviour {
             return new Vector3(0f, -9.8f, 0f) * height_to_gravity_curve.Evaluate(Mathf.Min(GameManager.instance.ship_controller.transform.position.y, height_to_gravity_range.y) / height_to_gravity_range.y);
         }
     }
+
+    public float get_atmospheric_friction() { return 0.1f; }
 }

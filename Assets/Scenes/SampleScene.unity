@@ -2664,6 +2664,88 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!1001 &577720668
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 692315753}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 2b7b157171e53fe4ebb2591c20c791cd, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.56
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2b7b157171e53fe4ebb2591c20c791cd, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.56
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2b7b157171e53fe4ebb2591c20c791cd, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.56
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2b7b157171e53fe4ebb2591c20c791cd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2b7b157171e53fe4ebb2591c20c791cd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2b7b157171e53fe4ebb2591c20c791cd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2b7b157171e53fe4ebb2591c20c791cd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071069
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2b7b157171e53fe4ebb2591c20c791cd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2b7b157171e53fe4ebb2591c20c791cd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2b7b157171e53fe4ebb2591c20c791cd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2b7b157171e53fe4ebb2591c20c791cd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2b7b157171e53fe4ebb2591c20c791cd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2b7b157171e53fe4ebb2591c20c791cd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2b7b157171e53fe4ebb2591c20c791cd, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 2b7b157171e53fe4ebb2591c20c791cd, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: aca4710be1d3d004192bc5e11e874166, type: 2}
+    - target: {fileID: 919132149155446097, guid: 2b7b157171e53fe4ebb2591c20c791cd, type: 3}
+      propertyPath: m_Name
+      value: flame_effect
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2b7b157171e53fe4ebb2591c20c791cd, type: 3}
+--- !u!4 &577720669 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2b7b157171e53fe4ebb2591c20c791cd, type: 3}
+  m_PrefabInstance: {fileID: 577720668}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &608411247
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3163,7 +3245,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &692315753
 Transform:
   m_ObjectHideFlags: 0
@@ -3177,6 +3259,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 577720669}
   - {fileID: 699667823}
   - {fileID: 996901725}
   - {fileID: 70781795}
@@ -3248,6 +3331,11 @@ MonoBehaviour:
   grid: {fileID: 996901723}
   components: {fileID: 70781795}
   player_trigger: {fileID: 1717438016}
+  flame_effect: {fileID: 933697688}
+  flame_scale_bounds_multiplier: 0.11
+  flame_height_bounds_multiplier: 0.5
+  flame_height_offset: 1
+  flame_effect_velocity_intensity: 0.05
   last_valid_camera_anchor_point: {x: 0, y: 0, z: 0}
   last_valid_camera_anchor_rotation: {x: 0, y: 0, z: 0}
   total_available_fuel: 0
@@ -4293,6 +4381,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 928423215}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &933697688 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 2b7b157171e53fe4ebb2591c20c791cd, type: 3}
+  m_PrefabInstance: {fileID: 577720668}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &966730154 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5405668985680891428, guid: 3b3dbb64e14f5114ba28831c18dacf66, type: 3}
@@ -5231,7 +5324,7 @@ MonoBehaviour:
   intro_audio_only_video: {fileID: 26642588}
   audio_delay: 0.25
   fade_in_time: 1.5
-  hold_time: 1.5
+  hold_time: 2
   fade_out_time: 0.5
   emission_intensity: 1.5
 --- !u!82 &1127207671
@@ -6572,6 +6665,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1804221190717621790, guid: b3b7b53589c8a8b40a7407597b2ea9c0, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 11400000, guid: 40a1b134ab2f43f4188a2f510a0ed88f, type: 2}
+    - target: {fileID: 1804221190717621790, guid: b3b7b53589c8a8b40a7407597b2ea9c0, type: 3}
       propertyPath: minimum_frame_size.x
       value: 1.11
       objectReference: {fileID: 0}
@@ -6775,7 +6872,7 @@ MonoBehaviour:
   intro_audio: {fileID: 0}
   audio_delay: 0.3
   fade_in_time: 1.5
-  hold_time: 1.5
+  hold_time: 2
   fade_out_time: 0.5
   emission_intensity: 0.4
 --- !u!1 &1427898303
