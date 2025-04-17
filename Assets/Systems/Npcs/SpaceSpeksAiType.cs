@@ -7,13 +7,20 @@ public class SpaceSpeksAiType : AiType
     private BoxCollider _boxCollider;
 
     private float _timeLeftTillBlowup = 0;
-
+    private float _PickedSpeed = 0;
 
     protected override void OnInit()
     {
-        _boxCollider = gameObject.AddComponent<BoxCollider>();
+        _boxCollider = GetComponent<BoxCollider>();
+
+        if (_boxCollider == null)
+        {
+            _boxCollider = gameObject.AddComponent<BoxCollider>();
+            _boxCollider.size = new Vector3(4, 14, 2);
+        }
+
         _rb = gameObject.AddComponent<Rigidbody>();
-        _boxCollider.size = new Vector3(4, 14, 2);
+
         _rb.useGravity = true;
 
         _rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezePositionZ;
@@ -21,12 +28,13 @@ public class SpaceSpeksAiType : AiType
         _rb.linearDamping = 0.5f;
         enabled = false;
         Invoke("S_FlyWhenRight", Random.Range(3, 12));
+        _PickedSpeed = Random.Range(85000, 100000);
     }
     public void Update()
     {
         _timeLeftTillBlowup -= Time.deltaTime;
 
-        _rb.AddRelativeForce(Vector3.up * 85000 * Time.deltaTime);
+        _rb.AddRelativeForce(Vector3.up * _PickedSpeed * Time.deltaTime);
 
     }
 

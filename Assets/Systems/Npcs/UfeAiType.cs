@@ -33,8 +33,17 @@ public class UfeAiType : AiType
 
     protected override void OnInit()
     {
-        _boxCollider = gameObject.AddComponent<BoxCollider>();
+        _boxCollider = GetComponent<BoxCollider>();
+
+        if (_boxCollider == null)
+        {
+            _boxCollider = gameObject.AddComponent<BoxCollider>();
+            _boxCollider.size = new Vector3(8, 1, 8);
+        }
+
         _rb = gameObject.AddComponent<Rigidbody>();
+
+        _rb.useGravity = false;
 
         _firePivot = new GameObject();
         _firePivot.name = "SaucerFirePivot";
@@ -42,9 +51,6 @@ public class UfeAiType : AiType
         _firePivot.transform.localEulerAngles = Vector3.zero;
         _firePivot.transform.localPosition = Vector3.zero;
 
-        _boxCollider.size = new Vector3(8, 1, 8);
-
-        _rb.useGravity = false;
         _rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionZ;
         _rb.mass = 20;
 

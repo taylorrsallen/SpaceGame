@@ -7,7 +7,13 @@ public class ChinaSpyBalloonAiType : AiType
 
     protected override void OnInit()
     {
-        _boxCollider = gameObject.AddComponent<BoxCollider>();
+        _boxCollider = GetComponent<BoxCollider>();
+
+        if (_boxCollider == null)
+        {
+            _boxCollider = gameObject.AddComponent<BoxCollider>();
+            _boxCollider.size = new Vector3(4, 14, 2);
+        }
         _rb = gameObject.AddComponent<Rigidbody>();
         _boxCollider.size = new Vector3(3, 5, 3);
         _rb.useGravity = false;
