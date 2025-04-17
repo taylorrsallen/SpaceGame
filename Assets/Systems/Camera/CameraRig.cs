@@ -42,10 +42,11 @@ public class CameraRig : MonoBehaviour {
     }
 
     #region Init
-    void Awake() {
+    public void init() {
         yaw = transform.GetChild(0);
         pitch = yaw.GetChild(0);
         camera_3d = pitch.GetChild(0).gameObject.GetComponent<Camera>();
+        _update_zoom();
     }
     #endregion
     

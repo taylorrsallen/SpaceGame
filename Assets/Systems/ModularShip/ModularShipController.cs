@@ -62,6 +62,7 @@ public class ModularShipController : MonoBehaviour {
         }
 
         if (components.childCount > 0) {
+            Debug.Log(last_valid_camera_anchor_point);
             last_valid_camera_anchor_point = transform.position + transform.TransformDirection(rb.centerOfMass);
             last_valid_camera_anchor_rotation = new Vector3(0f, 0f, transform.rotation.eulerAngles.z);
         }
@@ -132,7 +133,6 @@ public class ModularShipController : MonoBehaviour {
 
     public void update_center_of_mass() {
         rb.centerOfMass = Vector3.Lerp(rb.centerOfMass, center_of_mass_target, Time.fixedDeltaTime * center_of_mass_lerp_speed);
-        Util.DrawAABB2D(rb.position + transform.TransformDirection(rb.centerOfMass) - Vector3.one * 0.5f, Vector2.one, Color.blue);
     }
 
     public void update_center_of_mass_target() {
@@ -187,6 +187,13 @@ public class ModularShipController : MonoBehaviour {
             gameObject.SetActive(false);
         }
     }
+
+    public Bounds get_bounds() {
+        Collider[] colliders = components.GetComponentsInChildren<Collider>();
+        Bounds bounds = new Bounds(get_ship_position(), Vector3.zero);
+        foreach(Collider collider in colliders) bounds.Encapsulate(collider.bounds);
+        return bounds;
+    }
     #endregion
 
     #region Blueprint
@@ -197,6 +204,7 @@ public class ModularShipController : MonoBehaviour {
 
     [Button]
     public void load(string ship_name) {
+        if(blueprint == null) blueprint = new ModularShipBlueprintData();
         blueprint.load(ship_name);
         load_blueprint(blueprint);
     }
@@ -215,9 +223,6 @@ public class ModularShipController : MonoBehaviour {
         }
 
         grid.clear();
-
-        transform.position = GameManager.instance.spawn_point;
-        transform.rotation = Quaternion.identity;
 
         exit_water();
     }

@@ -16,12 +16,15 @@ public class PlayerController : MonoBehaviour, IController {
 
     void Start() {
         player_controls = new PlayerControls();
+        player_controls.Enable();
         jump_action = player_controls.FindAction("Jump");
         jump_action.Enable();
         crouch_action = player_controls.FindAction("Crouch");
         crouch_action.Enable();
         grab_camera_action = player_controls.FindAction("GrabCamera");
         grab_camera_action.Enable();
+
+        camera_rig.init();
     }
 
     void Update() {
