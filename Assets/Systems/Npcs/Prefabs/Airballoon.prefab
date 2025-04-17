@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: 0.05
-  Explosion: {fileID: 11400000, guid: 94f82a9561536e042ad47988bfe78c22, type: 2}
+  Explosion: {fileID: 11400000, guid: 7ecb7e6c5820fba43bfc8ad5d012fa53, type: 2}
 --- !u!114 &264621180159351533
 MonoBehaviour:
   m_ObjectHideFlags: 0

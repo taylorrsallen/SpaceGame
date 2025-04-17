@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Ship_BottleRocket
-  m_Shader: {fileID: -6465566751694194690, guid: 93395be59a56ef748931255d18ce8631, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: fe804bc36c1914b488cf868925c15676, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -91,6 +91,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _AddPrecomputedVelocity: 0
+    - _Alpha: 0
     - _AlphaClip: 0
     - _AlphaToMask: 0
     - _Blend: 0
