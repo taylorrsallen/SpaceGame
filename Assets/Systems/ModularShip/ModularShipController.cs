@@ -9,9 +9,16 @@ public class ModularShipController : MonoBehaviour {
     [TabGroup("Setup")] public Grid3D grid;
     [TabGroup("Setup")] public Transform components;
     [TabGroup("Setup")] public Collider player_trigger;
+    [TabGroup("Setup")] public MeshRenderer flame_effect;
 
     private ModularShipActivator[] activators;
     private ModularShipFuelContainer[] fuel_containers;
+    private Bounds ship_bounds;
+
+    [TabGroup("Appearance"), SerializeField] private float flame_scale_bounds_multiplier = 1f;
+    [TabGroup("Appearance"), SerializeField] private float flame_height_bounds_multiplier = 1f;
+    [TabGroup("Appearance"), SerializeField] private float flame_height_offset = 1f;
+    [TabGroup("Appearance"), SerializeField] private float flame_effect_velocity_intensity = 0.05f;
 
     private Vector3 previous_velocity;
     private Vector3 velocity_override;
@@ -54,6 +61,7 @@ public class ModularShipController : MonoBehaviour {
         velocity_override = Vector3.zero;
 
         rb.interpolation = RigidbodyInterpolation.Interpolate;
+        ship_bounds = get_bounds();
     }
     #endregion
 
@@ -67,6 +75,18 @@ public class ModularShipController : MonoBehaviour {
         if (components.childCount > 0) {
             last_valid_camera_anchor_point = transform.position + transform.TransformDirection(rb.centerOfMass);
             last_valid_camera_anchor_rotation = new Vector3(0f, 0f, transform.rotation.eulerAngles.z);
+
+            float flame_intensity = rb.linearVelocity.magnitude * flame_effect_velocity_intensity * AtmosphereManager.instance.get_atmospheric_friction();
+            if(flame_intensity < 0.2f) {
+                flame_effect.gameObject.SetActive(false);
+            } else {
+                flame_effect.gameObject.SetActive(true);
+                flame_effect.material.SetFloat("_Intensity", flame_intensity);
+                flame_effect.transform.rotation = Quaternion.LookRotation(rb.linearVelocity.normalized);
+                flame_effect.transform.Rotate(new Vector3(90f, 0f, 0f));
+                flame_effect.transform.position = get_ship_position() + flame_effect.transform.up * ship_bounds.size.y * flame_height_bounds_multiplier + flame_effect.transform.up * flame_height_offset;
+                flame_effect.transform.localScale = Vector3.one * ship_bounds.size.x * flame_scale_bounds_multiplier;
+            }
         }
     }
 

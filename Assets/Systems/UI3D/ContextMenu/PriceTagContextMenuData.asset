@@ -25,5 +25,6 @@ MonoBehaviour:
   scale: 0.4
   frame_x_text_multiplier: 0.69
   frame_x_base: 1
-  frame_minimum_size: {x: 1.11, y: 2}
+  frame_minimum_size: {x: 0.58, y: 2}
   text_offset: {x: 0.58, y: 1.2}
+  follow_offset: {x: -0.15, y: -0.15, z: -0.8}
