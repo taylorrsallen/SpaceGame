@@ -46,13 +46,19 @@ public class GameManager : MonoBehaviour {
         enter_play_mode_with_loaded_ship(starting_ship);
     }
 
-    public void add_resource(GameResource resource) {
-        player_resources[resource.id] += resource.amount;
-    }
+    public string get_player_resource_as_string(int resource_id) { return game_resources[resource_id].get_amount_as_string(player_resources[resource_id]); }
 
-    public void spawn_resource_particle(GameResource resource, Transform spawn_transform) {
+    public void add_resource(GameResource resource) { player_resources[resource.id] += resource.amount; }
+    public void remove_resource(GameResource resource) { player_resources[resource.id] -= resource.amount; }
+
+    public void spawn_resource_add_particle(GameResource resource, Transform spawn_transform) {
         // TEMP
         add_resource(resource);
+    }
+
+    public void spawn_resource_remove_particle(GameResource resource, Transform target_transform) {
+        // TEMP
+        remove_resource(resource);
     }
 
     #region ShipBuilder

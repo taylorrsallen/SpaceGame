@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -5,6 +6,9 @@ using UnityEngine;
 public class Grid3D : MonoBehaviour {
     public Vector2Int dimensions = new Vector2Int(1, 1);
     private BoxCollider box_collider;
+
+    public Action<Grid3DItem> item_added;
+    public Action<Grid3DItem> item_removed;
 
     [HideInInspector] public List<Grid3DItem> items_list = new List<Grid3DItem>();
     [HideInInspector] public Grid3DItem[] items;
@@ -26,6 +30,7 @@ public class Grid3D : MonoBehaviour {
             if (items[grid_id] == item) items[grid_id] = null;
         }}
 
+        item_removed?.Invoke(item);
         items_list.Remove(item);
     }
 
@@ -41,6 +46,7 @@ public class Grid3D : MonoBehaviour {
             items[get_grid_id_from_grid_coord(grid_coord)] = item;
         }}
 
+        item_added?.Invoke(item);
         items_list.Add(item);
         item.data.grid_coord = place_at;
         item.transform.position = get_position_from_grid_coord(place_at) + item.get_center_position_offset();

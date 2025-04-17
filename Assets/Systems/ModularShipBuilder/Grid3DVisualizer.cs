@@ -1,6 +1,9 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Grid3DVisualizer : MonoBehaviour {
+    [SerializeField] private ContextMenuData context_menu_data;
+
     [HideInInspector] public Grid3D grid_3d;
     [HideInInspector] public MeshRenderer grid_texture_quad;
     [HideInInspector] public NineRect3D grid_border;
@@ -16,6 +19,7 @@ public class Grid3DVisualizer : MonoBehaviour {
     public bool interactive = true;
 
     private MeshRenderer[] inner_border_quads = new MeshRenderer[4];
+    private Dictionary<Grid3DItem, ContextMenu3D> context_menus = new Dictionary<Grid3DItem, ContextMenu3D>();
 
     public void init() {
         grid_3d = GetComponentInChildren<Grid3D>(true);
@@ -37,8 +41,38 @@ public class Grid3DVisualizer : MonoBehaviour {
         refresh();
     }
 
+    private void OnEnable() {
+        grid_3d.item_added += on_item_added;
+        grid_3d.item_removed += on_item_removed;
+    }
+
+    private void OnDisable() {
+        grid_3d.item_added -= on_item_added;
+        grid_3d.item_removed -= on_item_removed;
+    }
+
     private void Update() {
         highlighter.refresh();
+    }
+
+    private void on_item_added(Grid3DItem item) {
+        if(grid_3d.shop) {
+            if(!context_menus.ContainsKey(item)) {
+                ContextMenu3D context_menu = Instantiate(UIManager.instance.context_menu_prefab, transform);
+                context_menu.data = context_menu_data;
+                context_menu.set_text(item.data.component_data.value.to_string());
+                context_menu.init();
+                context_menu.set_target(item);
+                context_menus[item] = context_menu;
+            }
+        }
+    }
+
+    private void on_item_removed(Grid3DItem item) {
+        if(context_menus.ContainsKey(item)) {
+            Destroy(context_menus[item].gameObject);
+            context_menus.Remove(item);
+        }
     }
 
     public void set_highlighter_active(bool active) {

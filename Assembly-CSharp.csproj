@@ -111,6 +111,7 @@
     <Compile Include="Assets\Systems\ModularShipBuilder\Grid3D.cs" />
     <Compile Include="Assets\Systems\ModularShipBuilder\Grid3DShop.cs" />
     <Compile Include="Assets\Systems\Controller\PlayerController.cs" />
+    <Compile Include="Assets\Systems\UI3D\NineRect\NineRect3D.cs" />
     <Compile Include="Assets\Systems\Common\Lifetime.cs" />
     <Compile Include="Assets\Systems\Managers\Atmosphere\WindBlown.cs" />
     <Compile Include="Assets\Systems\Dialogue\DialogueReader3D.cs" />
@@ -124,9 +125,9 @@
     <Compile Include="Assets\Systems\Matter\SingleMatterCollider.cs" />
     <Compile Include="Assets\Systems\Character\Character.cs" />
     <Compile Include="Assets\Systems\Npcs\China\ChineseRocket.cs" />
-    <Compile Include="Assets\Systems\UI3D\ContextMenu3D.cs" />
     <Compile Include="Assets\Systems\ModularShip\ModularShipFuelContainer.cs" />
     <Compile Include="Assets\Systems\Managers\Atmosphere\HeavyWindAudio.cs" />
+    <Compile Include="Assets\Systems\UI3D\ContextMenu\ContextMenu3D.cs" />
     <Compile Include="Assets\UFEShipRotator.cs" />
     <Compile Include="Assets\Systems\Data\DataManager.cs" />
     <Compile Include="Assets\Systems\ModularShip\ModularShipEmitter.cs" />
@@ -142,7 +143,7 @@
     <Compile Include="Assets\Systems\ModularShipBuilder\ModularShipBuilder.cs" />
     <Compile Include="Assets\Systems\Data\ModularShipThrusterData.cs" />
     <Compile Include="Assets\Systems\Character\CharacterCameraGrabMotion.cs" />
-    <Compile Include="Assets\Systems\UI3D\NineRect3D.cs" />
+    <Compile Include="Assets\Systems\UI3D\ResourceDisplay2D.cs" />
     <Compile Include="Assets\Systems\Managers\Sound\SoundManager.cs" />
     <Compile Include="Assets\Systems\Dialogue\DialogueData.cs" />
     <Compile Include="Assets\Systems\ModularShipBuilder\Grid3DVisualizer.cs" />
@@ -153,6 +154,7 @@
     <Compile Include="Assets\Systems\Common\GameEffectData.cs" />
     <Compile Include="Assets\Systems\Npcs\UfeAiType.cs" />
     <Compile Include="Assets\Systems\Npcs\PlasmaBall.cs" />
+    <Compile Include="Assets\Systems\UI3D\ContextMenu\ContextMenuData.cs" />
     <Compile Include="Assets\Systems\Npcs\UFO.cs" />
     <Compile Include="Assets\Systems\Common\Util.cs" />
   </ItemGroup>

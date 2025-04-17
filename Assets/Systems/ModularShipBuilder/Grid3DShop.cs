@@ -3,8 +3,9 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "ShopData", menuName = "Scriptable Objects/ShopData")]
 public class ShopData : SerializedScriptableObject {
-    float buy_multiplier = 1f;
-    float sell_multiplier = 1f;
+    public Texture2D price_tag_9rect_texture;
+    [SerializeField] private float buy_multiplier = 1f;
+    [SerializeField] private float sell_multiplier = 1f;
     // bool round_to_99_cents = false;
 
     public ulong get_buy_price(GameResource resource) { return (ulong)(resource.amount * buy_multiplier); }

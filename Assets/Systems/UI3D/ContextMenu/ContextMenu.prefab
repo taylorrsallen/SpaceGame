@@ -483,12 +483,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8acaf21ee5ce4fb4e824f1271b439e98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  expanded: 0
   target: {fileID: 0}
   nine_rect: {fileID: 6438494278679281990}
   hotkey_text: {fileID: 4161431040840867546}
-  text_to_ui_size_scale: 2
-  text_offset: {x: 0.15, y: 1.29}
+  data: {fileID: 11400000, guid: f08cbf7f20b115e4eaac746e13e46767, type: 2}
+  frame_color_override: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &6981662544278470734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -841,7 +840,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3625774380692436748, guid: b726b9bc237d7e14696dc35d692480e9, type: 2}
+  - {fileID: -5933475050116114564, guid: b726b9bc237d7e14696dc35d692480e9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -886,7 +885,7 @@ MonoBehaviour:
   m_text: SPACE
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b726b9bc237d7e14696dc35d692480e9, type: 2}
-  m_sharedMaterial: {fileID: -3625774380692436748, guid: b726b9bc237d7e14696dc35d692480e9, type: 2}
+  m_sharedMaterial: {fileID: -5933475050116114564, guid: b726b9bc237d7e14696dc35d692480e9, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

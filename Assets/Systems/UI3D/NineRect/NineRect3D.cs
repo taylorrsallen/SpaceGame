@@ -28,6 +28,7 @@ public class NineRect3D : MonoBehaviour {
         }
 
         update_texture();
+        refresh();
         set_interactive(interactive);
     }
 
@@ -56,8 +57,6 @@ public class NineRect3D : MonoBehaviour {
             material.SetTexture("_MainTex", texture);
             quads[j].material = material;
         }
-
-        refresh();
     }
 
     public void set_color(Color color) {
