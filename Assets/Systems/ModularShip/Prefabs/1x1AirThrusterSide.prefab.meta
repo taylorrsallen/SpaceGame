@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Systems/ModularShip/Prefabs/1x1AirThrusterSide.prefab.meta
 guid: 0c286b5d8fe4750489e77f46fa765b28
+=======
+guid: f165ac9337c27034e9e2b2ac7448e918
+>>>>>>> 0a1b53822dc62ef8c3810d6a908a0caffbf62c2e:Assets/Systems/Npcs/Prefabs/BiPlane_AI.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 
