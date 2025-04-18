@@ -2840,6 +2840,11 @@ MonoBehaviour:
   grid: {fileID: 996901723}
   components: {fileID: 70781795}
   player_trigger: {fileID: 1717438016}
+  flame_effect: {fileID: 0}
+  flame_scale_bounds_multiplier: 1
+  flame_height_bounds_multiplier: 1
+  flame_height_offset: 1
+  flame_effect_velocity_intensity: 0.05
   last_valid_camera_anchor_point: {x: 0, y: 0, z: 0}
   last_valid_camera_anchor_rotation: {x: 0, y: 0, z: 0}
   total_available_fuel: 0
@@ -4932,12 +4937,14 @@ MonoBehaviour:
   wind_change_speed: 5
   wind_strength_range: {x: 1, y: 10}
   wind_strength_noise_frequency: 0.2
+  clouds: {fileID: 0}
   troposphere_start: 0
   stratosphere_start: 650
   mesosphere_start: 1800
   thermosphere_start: 2700
   exosphere_start: 7000
   aliens_start: 20000
+  peace_start: 40000
   mars_start: 8000
   mars_full: 8500
   height_to_wind_curve:
