@@ -79,7 +79,6 @@
     <Compile Include="Assets\Systems\Controller\Controller.cs" />
     <Compile Include="Assets\Systems\ModularShip\ModularShipActivator.cs" />
     <Compile Include="Assets\Systems\Common\FaceTarget.cs" />
-    <Compile Include="Assets\Systems\Npcs\ObstacleSpawner.cs" />
     <Compile Include="Assets\Systems\Common\Interfaces.cs" />
     <Compile Include="Assets\Systems\Menus\HUD.cs" />
     <Compile Include="Assets\Systems\ModularShip\ModularShipController.cs" />
@@ -89,6 +88,7 @@
     <Compile Include="Assets\Systems\Data\ShipComponentData.cs" />
     <Compile Include="Assets\Systems\Npcs\China\ChinaIntensity.cs" />
     <Compile Include="Assets\Systems\Npcs\BiPlaneAIType.cs" />
+    <Compile Include="Assets\Systems\UI3D\CameraToggle2D.cs" />
     <Compile Include="Assets\Systems\Npcs\ChinaSpyBalloonAiType.cs" />
     <Compile Include="Assets\Systems\Menus\CameraIntro.cs" />
     <Compile Include="Assets\Systems\Npcs\MeteoriteAiType.cs" />
@@ -150,6 +150,7 @@
     <Compile Include="Assets\Systems\ModularShip\ModularShipEmitterData.cs" />
     <Compile Include="Assets\Systems\ModularShip\ModularShipActivatable.cs" />
     <Compile Include="Assets\Systems\Managers\Sound\Sound3D.cs" />
+    <Compile Include="Assets\Systems\Spawner\ObstacleSpawner.cs" />
     <Compile Include="Assets\Systems\Managers\Atmosphere\WindAudio.cs" />
     <Compile Include="Assets\Systems\Common\GameEffectData.cs" />
     <Compile Include="Assets\Systems\Npcs\UfeAiType.cs" />

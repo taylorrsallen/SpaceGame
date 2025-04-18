@@ -232,4 +232,6 @@ public class AtmosphereManager : MonoBehaviour {
     }
 
     public float get_atmospheric_friction() { return 0.1f; }
+
+    public float get_height_cash(float height) { return height_to_cash_curve.Evaluate(height / mars_full) * height_to_cash_range.y; }
 }

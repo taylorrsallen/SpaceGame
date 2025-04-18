@@ -30,3 +30,5 @@ MonoBehaviour:
   purchase_sounds: {fileID: 0}
   collect_sounds: {fileID: 0}
   collectable_mesh: {fileID: -4815824249480368949, guid: 2f14ab3fae993264f84781bd62a78a5a, type: 3}
+  base_color: {r: 0.31286982, g: 0.8490566, b: 0.3003738, a: 1}
+  add_color: {r: 0.31286982, g: 0.8490566, b: 0.3003738, a: 1}

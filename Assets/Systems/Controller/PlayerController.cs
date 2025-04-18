@@ -34,8 +34,10 @@ public class PlayerController : MonoBehaviour, IController {
                 if (grab_motion != null) grab_motion.apply_camera_grab(look_input, camera_rig.current_zoom);
             }
         }
+
+        if(Input.GetKeyDown(KeyCode.F1)) toggle_camera_rotation();
     }
-    
+
     void FixedUpdate() {
         if (camera_rig != null) {
             Transform camera_yaw = camera_rig.get_yaw();
@@ -74,5 +76,10 @@ public class PlayerController : MonoBehaviour, IController {
     private void OnToggleBuildMode(InputValue input_value) {
         Debug.Log("Toggle");
         GameManager.instance.toggle_ship_builder();
+    }
+
+    public void toggle_camera_rotation() {
+        camera_rig.follow_z_rotation = !camera_rig.follow_z_rotation;
+        camera_rig.zero_z_rotation = !camera_rig.zero_z_rotation;
     }
 }
