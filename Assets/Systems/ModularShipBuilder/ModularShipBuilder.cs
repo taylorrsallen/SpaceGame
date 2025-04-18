@@ -18,7 +18,7 @@ public class ModularShipBuilder : MonoBehaviour {
     [TabGroup("Hotkeys")] public KeyCode[] ignored_hotkeys;
 
     [TabGroup("Shop")] public Transform shop_money_source;
-    [TabGroup("Shop")] public Vector2Int shop_restock_range = new Vector2Int(10, 20);
+    [TabGroup("Shop")] public Vector2Int shop_restock_range = new Vector2Int(15, 35);
     private int last_day_restocked = -1;
 
     [HideInInspector] public Vector2Int hovered_coord;
