@@ -8,10 +8,10 @@ public class ModularShipActivator : MonoBehaviour {
 
     public float fuel_usage_per_second = 0.5f;
 
-    private ModularShipActivatable[] activatables;
+    public ModularShipActivatable[] activatables;
 
-    private void Awake() {
-        activatables = GetComponentsInChildren<ModularShipActivatable>();
+    public void init() {
+        activatables = GetComponentsInChildren<ModularShipActivatable>(true);
     }
 
     public void update_active_state(float total_available_fuel) {

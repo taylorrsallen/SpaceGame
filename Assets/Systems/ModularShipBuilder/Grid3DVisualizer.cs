@@ -75,6 +75,11 @@ public class Grid3DVisualizer : MonoBehaviour {
         }
     }
 
+    public void set_color(Color color) {
+        foreach (MeshRenderer quad in inner_border_quads) quad.material.color = color;
+        grid_border.set_color(color);
+    }
+
     public void set_highlighter_active(bool active) {
         highlighter.gameObject.SetActive(active);
     }

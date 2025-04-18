@@ -13,3 +13,8 @@ MonoBehaviour:
   m_Name: ChinaSpyBalloonSpawnData
   m_EditorClassIdentifier: 
   spawn_prefab: {fileID: 2355573976622678209, guid: c1c38146c9dc3b74a8fe760a2bbdf69c, type: 3}
+  spawn_direction: 1
+  atmosphere_layers: 0300000004000000
+  spawn_weight: 1
+  spawn_rate: 2
+  max_spawned: 2

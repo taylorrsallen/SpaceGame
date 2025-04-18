@@ -29,13 +29,13 @@ MonoBehaviour:
       Data: 0
     - Name: amount
       Entry: 3
-      Data: 21999
+      Data: 11399
     - Name: 
       Entry: 8
       Data: 
   types: 
   id: 4
-  mass: 3
+  mass: 2.5
   max_health: 4
   percent_armor: 0
   flat_armor: 0

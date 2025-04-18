@@ -31,6 +31,10 @@ public class ModularShipThruster : ModularShipActivatable {
         if (audio_source.volume < 0.01f && audio_source.isPlaying) { audio_source.Stop(); }
     }
 
+    public override void set_component_base(ModularShipComponent component) {
+        // component_base = component;
+    }
+
     public override void set_active(bool active) {
         if (active) {
             if (active_effect) active_effect.SetActive(true);

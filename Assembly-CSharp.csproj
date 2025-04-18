@@ -85,6 +85,7 @@
     <Compile Include="Assets\Systems\Managers\Sound\SoundPool.cs" />
     <Compile Include="Assets\Systems\ModularShipBuilder\ModularShipBlueprintData.cs" />
     <Compile Include="Assets\Systems\Data\ShipComponentData.cs" />
+    <Compile Include="Assets\Systems\UI3D\TabToReturn2D.cs" />
     <Compile Include="Assets\Systems\Npcs\China\ChinaIntensity.cs" />
     <Compile Include="Assets\Systems\Npcs\BiPlaneAIType.cs" />
     <Compile Include="Assets\Systems\UI3D\CameraToggle2D.cs" />
@@ -145,6 +146,7 @@
     <Compile Include="Assets\Systems\Character\CharacterCameraGrabMotion.cs" />
     <Compile Include="Assets\Systems\UI3D\ResourceDisplay2D.cs" />
     <Compile Include="Assets\Systems\Managers\Game\GameResourceData.cs" />
+    <Compile Include="Assets\Systems\UI3D\TimeControl2D.cs" />
     <Compile Include="Assets\Systems\Managers\Sound\SoundManager.cs" />
     <Compile Include="Assets\Systems\Dialogue\DialogueData.cs" />
     <Compile Include="Assets\Systems\ModularShipBuilder\Grid3DVisualizer.cs" />
@@ -170,6 +172,7 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
     <None Include="Assets\Resources\Ships\test_ship.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\Resources\Ships\bottle_rocket.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\SDFFunctions.hlsl" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />

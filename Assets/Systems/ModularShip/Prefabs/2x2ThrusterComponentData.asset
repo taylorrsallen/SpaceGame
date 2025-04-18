@@ -29,7 +29,7 @@ MonoBehaviour:
       Data: 0
     - Name: amount
       Entry: 3
-      Data: 19999
+      Data: 14999
     - Name: 
       Entry: 8
       Data: 
@@ -47,7 +47,7 @@ MonoBehaviour:
   death_delay_range: {x: 0.02, y: 0.07}
   audio_data: {fileID: 11400000, guid: 98474ce30f0625c49aca823571ec5016, type: 2}
   activator: 1
-  activator_fuel_usage_per_second: 0.5
+  activator_fuel_usage_per_second: 5
   activator_hotkey: 32
   activator_can_deactivate: 1
   activator_toggle: 0

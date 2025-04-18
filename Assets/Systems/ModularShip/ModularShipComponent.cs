@@ -21,12 +21,17 @@ public class ModularShipComponent : MonoBehaviour, IDamageable, IKnockbackable {
     public ModularShipController modular_ship_controller;
 
     public void init() {
+        audio_source = GetComponent<AudioSource>();
+        health = data.max_health;
+
         ModularShipActivator activator = GetComponent<ModularShipActivator>();
         if (activator) {
             activator.hotkey = runtime_data.activator_hotkey;
             activator.can_deactivate = runtime_data.activator_can_deactivate;
             activator.toggle = runtime_data.activator_toggle;
             activator.fuel_usage_per_second = data.activator_fuel_usage_per_second;
+            activator.init();
+            foreach(ModularShipActivatable activatable in activator.activatables) activatable.set_component_base(this);
         }
 
         ModularShipFuelContainer fuel_container = GetComponent<ModularShipFuelContainer>();
@@ -34,12 +39,6 @@ public class ModularShipComponent : MonoBehaviour, IDamageable, IKnockbackable {
             fuel_container.fuel_capacity = data.fuel_capacity;
             fuel_container.fuel = data.fuel_capacity;
         }
-    }
-
-    private void Awake() {
-        audio_source = GetComponent<AudioSource>();
-
-        health = data.max_health;
     }
 
     private void Update() {

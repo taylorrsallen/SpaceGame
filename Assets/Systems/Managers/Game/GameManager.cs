@@ -103,6 +103,7 @@ public class GameManager : MonoBehaviour {
 
         // Show ship builder
         ship_builder.gameObject.SetActive(true);
+        ship_builder._is_ship_valid = ship_builder.is_ship_valid();
 
         // Swap player controls
         player_controller.character = ship_builder.ship_builder_camera_anchor.GetComponent<Character>();

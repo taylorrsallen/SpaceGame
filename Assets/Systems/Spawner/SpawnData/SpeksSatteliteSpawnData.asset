@@ -13,3 +13,8 @@ MonoBehaviour:
   m_Name: SpeksSatteliteSpawnData
   m_EditorClassIdentifier: 
   spawn_prefab: {fileID: 7688936983262808136, guid: 083e897d2ff3e3a49acd3151c36e3388, type: 3}
+  spawn_direction: 1
+  atmosphere_layers: 0400000005000000
+  spawn_weight: 1
+  spawn_rate: 1
+  max_spawned: 6
