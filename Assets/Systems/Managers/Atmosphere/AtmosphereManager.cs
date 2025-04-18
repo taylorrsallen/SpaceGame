@@ -382,6 +382,10 @@ public class AtmosphereManager : MonoBehaviour {
         }
     }
 
+    public float get_moon_dot() {
+        return -Vector3.Dot(Vector3.down, sun.transform.forward);
+    }
+
     private void new_day() {
         day_number++;
         time_of_day = 0f;

@@ -173,6 +173,12 @@ public class SpawnerGameEffect : GameEffect {
         } else {
             spawn = GameObject.Instantiate(prefab, center_position, rotation, parent == GameEffectTarget.SOURCE ? args.source.transform : args.target.transform).transform;
         }
+
+        IProjectile projectile = spawn.GetComponent<IProjectile>();
+        if(projectile != null) {
+            projectile.SetDamage(1f);
+            projectile.SetRotation(args.source.transform.TransformDirection(local_direction));
+        }
         
         Debug.Log("Spawned " + spawn.name + " at " + center_position);
 

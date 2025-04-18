@@ -76,6 +76,7 @@
     <Compile Include="Assets\Systems\Npcs\LoopDoppleganger.cs" />
     <Compile Include="Assets\Systems\UI3D\TextureButton3D.cs" />
     <Compile Include="Assets\Systems\Controller\Controller.cs" />
+    <Compile Include="Assets\Systems\Common\NightLight.cs" />
     <Compile Include="Assets\Systems\ModularShip\ModularShipActivator.cs" />
     <Compile Include="Assets\Systems\Common\FaceTarget.cs" />
     <Compile Include="Assets\Systems\Common\Interfaces.cs" />

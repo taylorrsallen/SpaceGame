@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 183d59a100f3935409c57830dc2bb1f5, type: 3}
-  m_Name: HotAirBalloonPOP
+  m_Name: 1x2LightCannonEffect
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 11400000, guid: d70967a290ea7cf47b91ce89ef80c7eb, type: 2}
-    - {fileID: 7816296162575101774, guid: 895a7326c81f24144b4f34127487b255, type: 3}
+    - {fileID: 496114274250667815, guid: 5dbd5d31c69abff41988dca26225e9e2, type: 3}
+    - {fileID: 11400000, guid: 210011be1a8d19440bee6fc2f64f09b3, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -31,11 +31,14 @@ MonoBehaviour:
       Data: 4
     - Name: 
       Entry: 7
-      Data: 1|SoundGameEffect, Assembly-CSharp
-    - Name: effect_target
+      Data: 1|KnockbackGameEffect, Assembly-CSharp
+    - Name: knockback_source
       Entry: 3
-      Data: 2
-    - Name: local_offset
+      Data: 0
+    - Name: knockback_target
+      Entry: 3
+      Data: 0
+    - Name: knockback_local_direction
       Entry: 7
       Data: UnityEngine.Vector3, UnityEngine.CoreModule
     - Name: 
@@ -43,43 +46,43 @@ MonoBehaviour:
       Data: 0
     - Name: 
       Entry: 4
-      Data: 0
+      Data: 1
     - Name: 
       Entry: 4
       Data: 0
     - Name: 
       Entry: 8
       Data: 
-    - Name: sound_pool
-      Entry: 10
-      Data: 0
-    - Name: pitch_range
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
+    - Name: use_knockback_local_direction
+      Entry: 5
+      Data: true
+    - Name: knockback_magnitude
       Entry: 4
-      Data: 0.6
-    - Name: 
-      Entry: 4
-      Data: 0.8
-    - Name: 
-      Entry: 8
-      Data: 
+      Data: 100
     - Name: 
       Entry: 8
       Data: 
     - Name: 
       Entry: 7
-      Data: 2|SpawnerGameEffect, Assembly-CSharp
+      Data: 2|ExplosionPostProcessGameEffect, Assembly-CSharp
+    - Name: intensity
+      Entry: 4
+      Data: 0.02
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 3|SpawnerGameEffect, Assembly-CSharp
     - Name: parent
       Entry: 3
-      Data: 2
+      Data: 0
     - Name: spawn_point
       Entry: 3
-      Data: 2
+      Data: 0
     - Name: look_target
       Entry: 3
-      Data: 2
+      Data: 1
     - Name: local_offset
       Entry: 7
       Data: UnityEngine.Vector3, UnityEngine.CoreModule
@@ -103,7 +106,7 @@ MonoBehaviour:
       Data: 0
     - Name: 
       Entry: 4
-      Data: 0
+      Data: 1
     - Name: 
       Entry: 4
       Data: 0
@@ -127,19 +130,19 @@ MonoBehaviour:
       Data: 
     - Name: prefab
       Entry: 10
-      Data: 1
+      Data: 0
     - Name: look_at_target
       Entry: 5
       Data: false
     - Name: face_local_direction
       Entry: 5
-      Data: false
+      Data: true
     - Name: 
       Entry: 8
       Data: 
     - Name: 
       Entry: 7
-      Data: 3|AreaGameEffect, Assembly-CSharp
+      Data: 4|SoundGameEffect, Assembly-CSharp
     - Name: effect_target
       Entry: 3
       Data: 0
@@ -158,102 +161,18 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: area_radius
-      Entry: 4
-      Data: 5
-    - Name: area_layer_mask
-      Entry: 7
-      Data: UnityEngine.LayerMask, UnityEngine.CoreModule
-    - Name: 
-      Entry: 3
-      Data: 64
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: effects
-      Entry: 7
-      Data: 4|GameEffect[], Assembly-CSharp
-    - Name: 
-      Entry: 12
+    - Name: sound_pool
+      Entry: 10
       Data: 1
-    - Name: 
+    - Name: pitch_range
       Entry: 7
-      Data: 5|DamageGameEffect, Assembly-CSharp
-    - Name: damage_args
-      Entry: 7
-      Data: DamageArgs, Assembly-CSharp
-    - Name: damage
-      Entry: 4
-      Data: 2
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: effect_target
-      Entry: 3
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 6|AreaGameEffect, Assembly-CSharp
-    - Name: effect_target
-      Entry: 3
-      Data: 0
-    - Name: local_offset
-      Entry: 7
-      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
     - Name: 
       Entry: 4
-      Data: 0
+      Data: 0.9
     - Name: 
       Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: area_radius
-      Entry: 4
-      Data: 5
-    - Name: area_layer_mask
-      Entry: 7
-      Data: UnityEngine.LayerMask, UnityEngine.CoreModule
-    - Name: 
-      Entry: 3
-      Data: 64
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: effects
-      Entry: 7
-      Data: 7|GameEffect[], Assembly-CSharp
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 7
-      Data: 8|ExplosionPostProcessGameEffect, Assembly-CSharp
-    - Name: intensity
-      Entry: 4
-      Data: 0.1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
+      Data: 1.1
     - Name: 
       Entry: 8
       Data: 

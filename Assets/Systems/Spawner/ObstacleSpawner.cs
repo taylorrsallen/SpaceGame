@@ -4,6 +4,7 @@ using UnityEngine;
 public enum SpawnDirection {
     LEFT_RIGHT,
     ABOVE,
+    ABOVE_LEFT,
     BELOW,
     ANYWHERE,
 }
@@ -166,6 +167,7 @@ public class ObstacleSpawner : MonoBehaviour {
     private Vector3 get_spawn_point(SpawnDirection spawn_direction) {
         switch(spawn_direction) {
             case SpawnDirection.LEFT_RIGHT: { return get_left_right_spawn_point(); }
+            case SpawnDirection.ABOVE_LEFT: { return get_above_left_spawn_point(); }
             case SpawnDirection.ABOVE: { return get_above_spawn_point(); }
             case SpawnDirection.BELOW: { return get_below_spawn_point(); }
             default: { return get_anywhere_spawn_point(); }
@@ -181,6 +183,12 @@ public class ObstacleSpawner : MonoBehaviour {
             // Left
             return GameManager.instance.ship_controller.get_ship_position() + new Vector3(Random.Range(-no_spawn_radius, -max_spawn_radius), 0f, 0f);
         }
+    }
+
+    private Vector3 get_above_left_spawn_point() {
+        Vector3 offset = Vector3.zero;
+        offset = new Vector3(Random.Range(-no_spawn_radius, -max_spawn_radius), 0f, 0f);
+        return GameManager.instance.ship_controller.get_ship_position() + new Vector3(0f, Random.Range(no_spawn_radius, max_spawn_radius), 0f) + offset;
     }
 
     private Vector3 get_above_spawn_point() {
