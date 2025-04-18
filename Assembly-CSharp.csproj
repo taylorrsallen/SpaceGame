@@ -106,6 +106,7 @@
     <Compile Include="Assets\Systems\Character\CharacterSpringMotion.cs" />
     <Compile Include="Assets\Systems\Controller\PlayerControls.cs" />
     <Compile Include="Assets\Systems\Npcs\AirBalloon.cs" />
+    <Compile Include="Assets\Systems\Npcs\EntityUnknown.cs" />
     <Compile Include="Assets\Systems\Menus\IIntroPlayer.cs" />
     <Compile Include="Assets\Systems\Managers\Game\GameManager.cs" />
     <Compile Include="Assets\Systems\Npcs\Meteorite.cs" />

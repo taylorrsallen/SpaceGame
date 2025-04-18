@@ -12628,6 +12628,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9dc9779796392994998d62d06d1efb8c, type: 2}
   - {fileID: 11400000, guid: d2caddc1e4ff9b34498b798c4d072a51, type: 2}
   - {fileID: 11400000, guid: a4c109b302e10e94aa13dd9ec310d6ca, type: 2}
+  - {fileID: 11400000, guid: d4eb6c8337e2f534b82d06cfc95f96f8, type: 2}
   game_resources:
   - {fileID: 11400000, guid: 3a8b8832f4f1f924bbaf34533246e099, type: 2}
   player_resources: 
