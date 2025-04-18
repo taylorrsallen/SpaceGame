@@ -67,6 +67,8 @@ public class ModularShipController : MonoBehaviour {
 
     #region Update
     private void Update() {
+        GameManager.instance.update_height_resource(get_ship_position().y);
+
         foreach (ModularShipActivator activator in activators) {
             if (activator == null) continue;
             activator.update_active_state(total_available_fuel);
@@ -245,6 +247,12 @@ public class ModularShipController : MonoBehaviour {
     }
 
     [Button]
+    public void load_premade(string ship_name) {
+        if(blueprint == null) blueprint = new ModularShipBlueprintData();
+        blueprint.load_premade(ship_name);
+        load_blueprint(blueprint);
+    }
+
     public void load(string ship_name) {
         if(blueprint == null) blueprint = new ModularShipBlueprintData();
         blueprint.load(ship_name);

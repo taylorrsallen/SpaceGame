@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -62,13 +63,7 @@ public class TextureButton3D : MonoBehaviour, IUI3D {
         box_collider = transform.GetChild(1).GetComponent<BoxCollider>();
         mesh_renderer = transform.GetChild(1).GetComponent<MeshRenderer>();
 
-        set_unhovered();
-        set_text(text);
-        set_text_color(text_color);
-        set_text_size(text_size);
-
-        mesh_renderer.material = new Material(material);
-        mesh_renderer.transform.localScale = new Vector3(material.mainTexture.width, material.mainTexture.height, 1f) * 0.1f * sprite_scale;
+        refresh();
     }
 
     private void Update() {
@@ -82,6 +77,17 @@ public class TextureButton3D : MonoBehaviour, IUI3D {
 
         normal_to_pressed = Mathf.Lerp(normal_to_pressed, normal_to_pressed_target, Time.unscaledDeltaTime * animation_lerp_speed);
         transform.localPosition = pressed_animation_curve.Evaluate(normal_to_pressed) * local_position_target;
+    }
+
+    [Button]
+    public void refresh() {
+        set_unhovered();
+        set_text(text);
+        set_text_color(text_color);
+        set_text_size(text_size);
+
+        mesh_renderer.material = new Material(material);
+        mesh_renderer.transform.localScale = new Vector3(material.mainTexture.width, material.mainTexture.height, 1f) * 0.1f * sprite_scale;
     }
 
     public bool is_pressed() { return _is_pressed; }

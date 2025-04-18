@@ -34,6 +34,9 @@ public class GameResourceData : SerializedScriptableObject {
 
     public Mesh collectable_mesh;
 
+    public Color base_color;
+    public Color add_color;
+
     [Button]
     public string get_amount_as_string(ulong amount) {
         string amount_string = amount.ToString();

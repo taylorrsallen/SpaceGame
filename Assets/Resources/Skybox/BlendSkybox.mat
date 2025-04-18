@@ -156,7 +156,7 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _GroundToSky: 0.03022429
+    - _GroundToSky: 0.022159325
     - _ImageType: 0
     - _Intensity: 1.1
     - _Layout: 0

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class ModularShipBlueprintData {
     const string SHIPS_FOLDER = "/Ships";
+
     public List<Grid3DItemData> item_datas = new List<Grid3DItemData>();
 
     public ModularShipBlueprintData() {}
@@ -25,9 +26,15 @@ public class ModularShipBlueprintData {
         file.Close();
     }
 
-    public void load(string ship_name) {
-        string destination = get_ship_file_destination(ship_name);
+    public void load_premade(string ship_name) {
+        load_from_destination(get_premade_ship_file_destination(ship_name));
+    }
 
+    public void load(string ship_name) {
+        load_from_destination(get_ship_file_destination(ship_name));
+    }
+
+    private void load_from_destination(string destination) {
         FileStream file;
         if (File.Exists(destination)) file = File.OpenRead(destination);
         else {
@@ -45,6 +52,7 @@ public class ModularShipBlueprintData {
 
     public string get_ship_folder() { return Application.persistentDataPath + SHIPS_FOLDER; }
     public string get_ship_file_destination(string ship_name) { return Application.persistentDataPath + SHIPS_FOLDER + "/" + ship_name + ".dat"; }
+    public string get_premade_ship_file_destination(string ship_name) { return "Assets/Resources" + SHIPS_FOLDER + "/" + ship_name + ".dat"; }
 
     public Grid3DItemDataSerialized[] get_serialized_datas() {
         Grid3DItemDataSerialized[] serialized_datas = new Grid3DItemDataSerialized[item_datas.Count];

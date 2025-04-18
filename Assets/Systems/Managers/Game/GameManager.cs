@@ -15,6 +15,9 @@ public class GameManager : MonoBehaviour {
     [HideInInspector] public ModularShipBuilder ship_builder;
     [HideInInspector] public ModularShipController ship_controller;
     
+    [Header("Modes")]
+    [ReadOnly] GameMode game_mode = GameMode.NONE;
+
     [Header("Career Mode")]
     public string starting_ship;
     public Vector3 spawn_point = new Vector3(0f, 0f, 0f);
@@ -23,6 +26,8 @@ public class GameManager : MonoBehaviour {
     public ShipComponentData[] ship_components;
     public GameResourceData[] game_resources;
     [HideInInspector] public ulong[] player_resources;
+
+    [HideInInspector] public GameResource resource_for_height;
 
     private void Awake() {
         if(instance != null && instance != this) Destroy(this);
@@ -42,6 +47,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void start_career_mode() {
+        game_mode = GameMode.CAREER;
         player_controller.camera_rig.gameObject.SetActive(true);
         enter_play_mode_with_loaded_ship(starting_ship);
     }
@@ -61,10 +67,15 @@ public class GameManager : MonoBehaviour {
         remove_resource(resource);
     }
 
+    public void update_height_resource(float height) {
+        resource_for_height.amount = (ulong)Mathf.Max(resource_for_height.amount, AtmosphereManager.instance.get_height_cash(height));
+    }
+
     #region ShipBuilder
     public void toggle_ship_builder() {
-        if (ship_builder.gameObject.activeSelf) {
-            if (!ship_builder.set_hotkey_target) enter_play_mode_from_ship_builder();
+        if(game_mode == GameMode.NONE) return;
+        if(ship_builder.gameObject.activeSelf) {
+            if(!ship_builder.set_hotkey_target) enter_play_mode_from_ship_builder();
         } else {
             enter_ship_builder();
         }
@@ -72,6 +83,11 @@ public class GameManager : MonoBehaviour {
 
     public void enter_ship_builder() {
         Debug.Log("Build Mode");
+
+        if(resource_for_height.amount > 0) {
+            add_resource(resource_for_height);
+            resource_for_height.amount = 0;
+        }
 
         // Get blueprint from existing ship
         ModularShipBlueprintData existing_blueprint = ship_controller.blueprint;
@@ -109,7 +125,7 @@ public class GameManager : MonoBehaviour {
         Debug.Log("Play Mode");
         
         reset_ship_position();
-        ship_controller.load(ship_name);
+        ship_controller.load_premade(ship_name);
         enter_play_mode_directly();
     }
 
