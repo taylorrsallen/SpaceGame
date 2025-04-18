@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3a5425279108604e9d56149ef369079, type: 3}
+  m_Name: SpeksSatteliteSpawnData
+  m_EditorClassIdentifier: 
+  spawn_prefab: {fileID: 7688936983262808136, guid: 083e897d2ff3e3a49acd3151c36e3388, type: 3}

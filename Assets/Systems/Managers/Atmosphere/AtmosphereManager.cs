@@ -2,6 +2,18 @@ using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
+public enum AtmosphereLayer {
+    TROPOSPHERE,
+    STRATOSPHERE,
+    MESOSPHERE,
+    THERMOSPHERE,
+    EXOSPHERE,
+    SPACE,
+    ALIENS,
+    PEACEFUL_SPACE,
+    MARS,
+}
+
 public class AtmosphereManager : MonoBehaviour {
     private float wind_strength = 1f;
     private Vector2 wind_direction = new Vector2(1.0f, 0.0f);
@@ -12,12 +24,14 @@ public class AtmosphereManager : MonoBehaviour {
     [TabGroup("Wind")] public Vector2 wind_strength_range = new Vector2(1f, 10f);
     [TabGroup("Wind")] public float wind_strength_noise_frequency = 10f;
 
+    [TabGroup("Atmosphere")] public GameObject clouds;
     [TabGroup("Atmosphere")] public float troposphere_start = 0f;
     [TabGroup("Atmosphere")] public float stratosphere_start = 120f;
     [TabGroup("Atmosphere")] public float mesosphere_start = 500f;
     [TabGroup("Atmosphere")] public float thermosphere_start = 800f;
     [TabGroup("Atmosphere")] public float exosphere_start = 7000f;
     [TabGroup("Atmosphere")] public float aliens_start = 20000f;
+    [TabGroup("Atmosphere")] public float peace_start = 40000f;
     [TabGroup("Atmosphere")] public float mars_start = 50000f;
     [TabGroup("Atmosphere")] public float mars_full = 55000f;
     

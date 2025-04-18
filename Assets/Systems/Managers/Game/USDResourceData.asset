@@ -9,18 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 854e5389b5786834785ed12a84299ece, type: 3}
   m_Name: USDResourceData
-  m_EditorClassIdentifier: Assembly-CSharp::GameResourceData
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
+  m_EditorClassIdentifier: 
   resource_name: usd
   resource_display_name: USD
   resource_display_symbol: $
@@ -30,5 +21,5 @@ MonoBehaviour:
   purchase_sounds: {fileID: 0}
   collect_sounds: {fileID: 0}
   collectable_mesh: {fileID: -4815824249480368949, guid: 2f14ab3fae993264f84781bd62a78a5a, type: 3}
-  base_color: {r: 0.31286982, g: 0.8490566, b: 0.3003738, a: 1}
-  add_color: {r: 0.31286982, g: 0.8490566, b: 0.3003738, a: 1}
+  base_color: {r: 0.5232397, g: 0.9339623, b: 0.074893214, a: 1}
+  add_color: {r: 0.5232397, g: 0.9339623, b: 0.074893214, a: 1}

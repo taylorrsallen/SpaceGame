@@ -27,7 +27,15 @@ public class ModularShipBlueprintData {
     }
 
     public void load_premade(string ship_name) {
-        load_from_destination(get_premade_ship_file_destination(ship_name));
+        TextAsset text_asset = Resources.Load<TextAsset>("Ships" + "/" + ship_name);
+        Debug.Log(text_asset);
+        Stream stream = new MemoryStream(text_asset.bytes);
+
+        BinaryFormatter binary_formatter = new BinaryFormatter();
+		Grid3DItemDataSerialized[] serialized_datas = (Grid3DItemDataSerialized[])binary_formatter.Deserialize(stream);
+
+        item_datas = new List<Grid3DItemData>();
+        foreach(Grid3DItemDataSerialized serialized_data in serialized_datas) item_datas.Add(new Grid3DItemData(serialized_data));
     }
 
     public void load(string ship_name) {
@@ -51,8 +59,7 @@ public class ModularShipBlueprintData {
     }
 
     public string get_ship_folder() { return Application.persistentDataPath + SHIPS_FOLDER; }
-    public string get_ship_file_destination(string ship_name) { return Application.persistentDataPath + SHIPS_FOLDER + "/" + ship_name + ".dat"; }
-    public string get_premade_ship_file_destination(string ship_name) { return "Assets/Resources" + SHIPS_FOLDER + "/" + ship_name + ".dat"; }
+    public string get_ship_file_destination(string ship_name) { return Application.persistentDataPath + SHIPS_FOLDER + "/" + ship_name + ".txt"; }
 
     public Grid3DItemDataSerialized[] get_serialized_datas() {
         Grid3DItemDataSerialized[] serialized_datas = new Grid3DItemDataSerialized[item_datas.Count];

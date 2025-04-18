@@ -71,7 +71,6 @@
     <Compile Include="Assets\Systems\Matter\IMatterCollider.cs" />
     <Compile Include="Assets\Systems\Data\ShipComponentAudioData.cs" />
     <Compile Include="Assets\Systems\Managers\UIManager.cs" />
-    <Compile Include="Assets\Systems\Managers\Game\GameResource.cs" />
     <Compile Include="Assets\Systems\Data\ContentDatabase.cs" />
     <Compile Include="Assets\Systems\Npcs\DistanceDespawn.cs" />
     <Compile Include="Assets\Systems\Npcs\LoopDoppleganger.cs" />
@@ -138,12 +137,14 @@
     <Compile Include="Assets\Systems\Npcs\AirBalloonAiType.cs" />
     <Compile Include="Assets\Systems\Npcs\NPC.cs" />
     <Compile Include="Assets\Systems\Npcs\AiType.cs" />
+    <Compile Include="Assets\Systems\Spawner\SpawnData.cs" />
     <Compile Include="Assets\Systems\Common\GameEffects.cs" />
     <Compile Include="Assets\Systems\Camera\CameraRig.cs" />
     <Compile Include="Assets\Systems\ModularShipBuilder\ModularShipBuilder.cs" />
     <Compile Include="Assets\Systems\Data\ModularShipThrusterData.cs" />
     <Compile Include="Assets\Systems\Character\CharacterCameraGrabMotion.cs" />
     <Compile Include="Assets\Systems\UI3D\ResourceDisplay2D.cs" />
+    <Compile Include="Assets\Systems\Managers\Game\GameResourceData.cs" />
     <Compile Include="Assets\Systems\Managers\Sound\SoundManager.cs" />
     <Compile Include="Assets\Systems\Dialogue\DialogueData.cs" />
     <Compile Include="Assets\Systems\ModularShipBuilder\Grid3DVisualizer.cs" />
@@ -167,6 +168,7 @@
     <None Include="Assets\Resources\Fonts\charybdis\ReadMe.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
+    <None Include="Assets\Resources\Ships\test_ship.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\SDFFunctions.hlsl" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />

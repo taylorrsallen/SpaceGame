@@ -1,8 +1,8 @@
 using UnityEngine;
 
 public enum SpawnDirection {
-    HORIZONTAL,
-    VERTICAL,
+    LEFT_RIGHT,
+    ABOVE,
     CORNER,
     ANYWHERE,
 }
