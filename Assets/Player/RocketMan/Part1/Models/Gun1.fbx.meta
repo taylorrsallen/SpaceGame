@@ -1,13 +1,19 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-guid: 56bae5b33879636458444a45b3c0d6cc
-=======
-guid: efa096036ad333949aa862c5f0c19071
->>>>>>> 363b51fc62698a5b3b79f1adb7d154814f35a0b1
+guid: 4fd60d2fe44598140b73d96c82b42d91
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Thruster
+    second: {fileID: 2100000, guid: 887e0b42745ff824c80e01312cd68287, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WeaponBox_
+    second: {fileID: -4973734387028869240, guid: d1f5108dde276e344ad25273b7d2a310, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
