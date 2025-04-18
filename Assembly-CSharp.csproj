@@ -76,7 +76,6 @@
     <Compile Include="Assets\Systems\Npcs\LoopDoppleganger.cs" />
     <Compile Include="Assets\Systems\UI3D\TextureButton3D.cs" />
     <Compile Include="Assets\Systems\Controller\Controller.cs" />
-    <Compile Include="Assets\Systems\Common\NightLight.cs" />
     <Compile Include="Assets\Systems\ModularShip\ModularShipActivator.cs" />
     <Compile Include="Assets\Systems\Common\FaceTarget.cs" />
     <Compile Include="Assets\Systems\Common\Interfaces.cs" />
@@ -106,7 +105,6 @@
     <Compile Include="Assets\Systems\Character\CharacterSpringMotion.cs" />
     <Compile Include="Assets\Systems\Controller\PlayerControls.cs" />
     <Compile Include="Assets\Systems\Npcs\AirBalloon.cs" />
-    <Compile Include="Assets\Systems\Npcs\EntityUnknown.cs" />
     <Compile Include="Assets\Systems\Menus\IIntroPlayer.cs" />
     <Compile Include="Assets\Systems\Managers\Game\GameManager.cs" />
     <Compile Include="Assets\Systems\Npcs\Meteorite.cs" />
