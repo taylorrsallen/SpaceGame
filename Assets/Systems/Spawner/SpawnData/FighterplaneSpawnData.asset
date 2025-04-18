@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d3a5425279108604e9d56149ef369079, type: 3}
-  m_Name: BiplaneSpawnData
+  m_Name: FighterplaneSpawnData
   m_EditorClassIdentifier: 
-  spawn_prefab: {fileID: 7353057713218363749, guid: 37de6159320accf48abb3df7101098a8, type: 3}
-  spawn_direction: 3
-  atmosphere_layers: 0000000001000000
+  spawn_prefab: {fileID: 7353057713218363749, guid: 05ea7da317815b244a47011aa70f6482, type: 3}
+  spawn_direction: 2
+  atmosphere_layers: 020000000300000001000000
   spawn_weight: 1
-  spawn_rate: 5
-  max_spawned: 5
+  spawn_rate: 1
+  max_spawned: 20
