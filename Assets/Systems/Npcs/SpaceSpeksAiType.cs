@@ -1,5 +1,6 @@
 using UnityEngine;
 using NPCs.AI.Base;
+using JetBrains.Annotations;
 
 public class SpaceSpeksAiType : AiType
 {
@@ -8,6 +9,9 @@ public class SpaceSpeksAiType : AiType
 
     private float _timeLeftTillBlowup = 0;
     private float _PickedSpeed = 0;
+
+    public bool immediateLaunch = false;
+
 
     protected override void OnInit()
     {
@@ -27,7 +31,17 @@ public class SpaceSpeksAiType : AiType
         _rb.mass = 122;
         _rb.linearDamping = 0.5f;
         enabled = false;
-        Invoke("S_FlyWhenRight", Random.Range(3, 12));
+
+        if (immediateLaunch)
+        {
+            S_FlyWhenRight();
+        }
+        else
+        {
+            Invoke("S_FlyWhenRight", Random.Range(12, 120));
+        }
+
+
         _PickedSpeed = Random.Range(85000, 100000);
     }
     public void Update()
