@@ -65,17 +65,12 @@ public class DamageGameEffect : GameEffect {
 public class KnockbackGameEffect : GameEffect {
     public GameEffectTarget knockback_source = GameEffectTarget.SOURCE;
     public GameEffectTarget knockback_target = GameEffectTarget.TARGET;
+    public Vector3 knockback_local_direction = Vector3.zero;
+
+    public bool use_knockback_local_direction = false;
     public float knockback_magnitude = 1f;
 
-    public override bool Execute(GameEffectArgs args) {
-        Vector3 effect_source_position = knockback_source switch {
-            GameEffectTarget.SOURCE => args.source.transform.position,
-            GameEffectTarget.TARGET => args.target.transform.position,
-            _ => args.position,
-        };
-
-        Vector3 effect_target_position;
-        Transform effect_target_transform;
+    private void get_effect_target(GameEffectArgs args, out Vector3 effect_target_position, out Transform effect_target_transform) {
         switch (knockback_target) {
             case GameEffectTarget.SOURCE:
                 effect_target_position = args.source.transform.position;
@@ -86,10 +81,29 @@ public class KnockbackGameEffect : GameEffect {
                 effect_target_transform = args.target.transform;
                 break;
         }
+    }
 
-        Vector3 knockback_direction = effect_target_position - effect_source_position;
+    public override bool Execute(GameEffectArgs args) {
+        Vector3 effect_target_position;
+        Transform effect_target_transform;
+        get_effect_target(args, out effect_target_position, out effect_target_transform);
+
+        Vector3 knockback_direction;
+        if(use_knockback_local_direction) {
+            Transform knockback_transform = knockback_source == GameEffectTarget.TARGET ? args.target.transform : args.source.transform;
+            knockback_direction = knockback_transform.TransformDirection(knockback_local_direction);
+        } else {
+            Vector3 effect_source_position = knockback_source switch {
+                GameEffectTarget.SOURCE => args.source.transform.position,
+                GameEffectTarget.TARGET => args.target.transform.position,
+                _ => args.position,
+            };
+
+            knockback_direction = effect_target_position - effect_source_position;
+        }
+
         IKnockbackable knockbackable = effect_target_transform.GetComponent<IKnockbackable>();
-        if (knockbackable != null) knockbackable.knockback(knockback_direction * knockback_magnitude * args.multiplier);
+        if (knockbackable != null) knockbackable.knockback(knockback_direction.normalized * knockback_magnitude * args.multiplier);
         return true;
     }
 }

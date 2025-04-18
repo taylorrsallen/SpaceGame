@@ -13,3 +13,8 @@ MonoBehaviour:
   m_Name: MeteoriteSpawnData
   m_EditorClassIdentifier: 
   spawn_prefab: {fileID: 3221537014128865778, guid: 6a0573fedf9a5a849a20ad1e29fe219b, type: 3}
+  spawn_direction: 1
+  atmosphere_layers: 040000000500000006000000
+  spawn_weight: 1
+  spawn_rate: 1
+  max_spawned: 20

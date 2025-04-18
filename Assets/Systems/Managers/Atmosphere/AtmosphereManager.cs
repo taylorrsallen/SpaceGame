@@ -37,7 +37,7 @@ public class AtmosphereManager : MonoBehaviour {
     [TabGroup("Atmosphere")] public float peace_size = 600f;
     [TabGroup("Atmosphere")] public float mars_size = 1000f;
     private float[] layer_sizes = new float[(int)AtmosphereLayer.COUNT];
-    private AtmosphereLayer current_layer;
+    public AtmosphereLayer current_layer;
     private float current_layer_percent;
     private float max_height;
     private ulong height_cash;
@@ -134,7 +134,7 @@ public class AtmosphereManager : MonoBehaviour {
 
         float ship_height = GameManager.instance.ship_controller.get_ship_position().y;
         get_current_atmosphere_layer(ship_height, out ground_to_sky, out earth_to_space, out space_to_mars, out space_intensity);
-        Debug.Log("Layer: " + current_layer + " | Percent: " + current_layer_percent);
+        // Debug.Log("Layer: " + current_layer + " | Percent: " + current_layer_percent);
 
         skybox_material.SetFloat("_GroundToSky", ground_to_sky);
         skybox_material.SetFloat("_EarthToSpace", earth_to_space);

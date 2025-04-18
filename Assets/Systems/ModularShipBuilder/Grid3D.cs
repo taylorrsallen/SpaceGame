@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Grid3D : MonoBehaviour {
@@ -22,6 +23,23 @@ public class Grid3D : MonoBehaviour {
 
     public void set_interactive(bool interactive) {
         box_collider.enabled = interactive;
+    }
+
+    public bool try_add_item(Grid3DItem item, Vector2Int place_at) {
+        Vector2Int try_at = place_at;
+        if(try_set_item(item, try_at)) return true;
+        else try_at = Vector2Int.zero;
+        
+        while(true) {
+            if(try_set_item(item, try_at)) return true;
+
+            try_at.x++;
+            if(try_at.x >= dimensions.x) {
+                try_at.x = 0;
+                try_at.y++;
+                if(try_at.y >= dimensions.y) return false;
+            }
+        }
     }
 
     public void remove_item(Grid3DItem item) {
@@ -83,7 +101,10 @@ public class Grid3D : MonoBehaviour {
     }
 
     public void clear() {
-        foreach (Grid3DItem item in items_list) Destroy(item.gameObject);
+        foreach (Grid3DItem item in items_list) {
+            item_removed?.Invoke(item);
+            Destroy(item.gameObject);
+        }
 
         items_list = new List<Grid3DItem>();
         items = new Grid3DItem[dimensions.x * dimensions.y];

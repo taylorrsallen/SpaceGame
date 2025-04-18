@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2671918934241540027}
   - component: {fileID: 571695938680942934}
   - component: {fileID: 7855164425512609054}
+  - component: {fileID: 5096078648496543279}
   m_Layer: 0
   m_Name: UFE_AI
   m_TagString: Untagged
@@ -50,6 +51,7 @@ MonoBehaviour:
   chargedEffect: {fileID: 11400000, guid: 9ff580eebb4d9344ba556ede1eb5db4d, type: 2}
   chargedLaserEffect: {fileID: 9064260562934382819, guid: ae5df44b083c38b46aca5df60a13b515, type: 3}
   PlasmaBallProjectile: {fileID: 7029669892446564207, guid: 4510fdfadd9e1bb4790e2acc4e3b0501, type: 3}
+  LaserProjectile: {fileID: 0}
   SoundPlayer: {fileID: 3591889521437817526}
 --- !u!114 &7855164425512609054
 MonoBehaviour:
@@ -64,6 +66,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: 100
+--- !u!114 &5096078648496543279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495020850000651134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ad7f4303fa59084397b94486998f8ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  max_distance: 500
 --- !u!1 &7552679835009147723
 GameObject:
   m_ObjectHideFlags: 0

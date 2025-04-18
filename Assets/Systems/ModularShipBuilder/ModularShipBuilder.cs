@@ -10,6 +10,7 @@ public class ModularShipBuilder : MonoBehaviour {
     [TabGroup("Setup")] public Grid3DVisualizer shop_grid;
     [TabGroup("Setup")] public Grid3DVisualizer stash_grid;
     [TabGroup("Setup")] public Grid3DItem grid_item_prefab;
+    [TabGroup("Setup")] public Transform invalid_build_text;
     [TabGroup("Setup")] public ContextMenu3D hover_context_menu;
     [TabGroup("Setup")] public ContextMenu3D context_menu_prefab;
 
@@ -17,7 +18,8 @@ public class ModularShipBuilder : MonoBehaviour {
     [TabGroup("Hotkeys")] public KeyCode[] ignored_hotkeys;
 
     [TabGroup("Shop")] public Transform shop_money_source;
-
+    [TabGroup("Shop")] public Vector2Int shop_restock_range = new Vector2Int(10, 20);
+    private int last_day_restocked = -1;
 
     [HideInInspector] public Vector2Int hovered_coord;
     [HideInInspector] public Grid3D hovered_grid;
@@ -31,6 +33,8 @@ public class ModularShipBuilder : MonoBehaviour {
     private Vector3 cursor_previous_position;
     private Vector3 grabbed_item_rotation_target;
     private Vector3 grabbed_item_rotation;
+
+    public bool _is_ship_valid;
 
     public void init() {
         build_grid.init();
@@ -50,6 +54,25 @@ public class ModularShipBuilder : MonoBehaviour {
 
         update_grabbed_item();
         update_hovered_item();
+
+        if(last_day_restocked != AtmosphereManager.instance.day_number) {
+            shop_grid.grid_3d.clear();
+            last_day_restocked = AtmosphereManager.instance.day_number;
+            int amount_to_restock = Random.Range(shop_restock_range.x, shop_restock_range.y);
+            for(int i = 0; i < amount_to_restock; i++) {
+                Grid3DItem item = Instantiate(grid_item_prefab, shop_grid.grid_3d.transform);
+                item.init(new Grid3DItemData(GameManager.instance.ship_components[Random.Range(0, GameManager.instance.ship_components.Length)]));
+                if(!shop_grid.grid_3d.try_add_item(item, new Vector2Int(Random.Range(0, shop_grid.grid_3d.dimensions.x), Random.Range(0, shop_grid.grid_3d.dimensions.y)))) Destroy(item.gameObject);
+            }
+        }
+
+        if(!_is_ship_valid) {
+            build_grid.set_color(Color.red);
+            invalid_build_text.gameObject.SetActive(true);
+        } else {
+            build_grid.set_color(Color.white);
+            invalid_build_text.gameObject.SetActive(false);
+        }
     }
 
     #region  Input
@@ -66,9 +89,9 @@ public class ModularShipBuilder : MonoBehaviour {
         } else if (hovered_item) {
             try_pick_up_hovered_item(hovered_grid);
         } else {
-            Grid3DItem item = Instantiate(grid_item_prefab, build_grid.grid_3d.transform);
-            item.init(new Grid3DItemData(GameManager.instance.ship_components[Random.Range(0, GameManager.instance.ship_components.Length)]));
-            if (!hovered_grid.try_set_item(item, hovered_coord)) { Destroy(item.gameObject); }
+            // Grid3DItem item = Instantiate(grid_item_prefab, build_grid.grid_3d.transform);
+            // item.init(new Grid3DItemData(GameManager.instance.ship_components[Random.Range(0, GameManager.instance.ship_components.Length)]));
+            // if (!hovered_grid.try_set_item(item, hovered_coord)) { Destroy(item.gameObject); }
         }
     }
 
@@ -128,21 +151,20 @@ public class ModularShipBuilder : MonoBehaviour {
     }
 
     public void update_hovered_item() {
-        if (!hovered_item) {
+        if(!hovered_item) {
             if (!grabbed_item && hovered_grid_visualizer) hovered_grid_visualizer.set_highlighter_active(false);
             hover_context_menu.gameObject.SetActive(false);
         } else {
             if (!grabbed_item && hovered_grid_visualizer) hovered_grid_visualizer.set_highlighter(hovered_item.data.grid_coord, hovered_item.get_rotated_dimensions(), Color.white);
         }
 
-
-        if (set_hotkey_target) {
+        if(set_hotkey_target) {
             hover_context_menu.gameObject.SetActive(true);
             hover_context_menu.set_target(set_hotkey_target);
             hover_context_menu.set_text("Press any key...");
             hover_context_menu.frame_color_override = Color.green;
             hover_context_menu.refresh();
-        } else if (!grabbed_item && is_valid_hotkey_target(hovered_item) && !hovered_grid.shop) {
+        } else if(!grabbed_item && is_valid_hotkey_target(hovered_item) && !hovered_grid.shop) {
             hover_context_menu.gameObject.SetActive(true);
             hover_context_menu.set_target(hovered_item);
             hover_context_menu.display_hotkey_text(hovered_item);
@@ -181,9 +203,13 @@ public class ModularShipBuilder : MonoBehaviour {
             if(hit_grid.try_set_item(grabbed_item, placement_grid_coord)) {
                 sell_item(grabbed_item, hit_grid.shop);
                 grabbed_item = null;
+                _is_ship_valid = is_ship_valid();
             }
         } else {
-            if(hit_grid.try_set_item(grabbed_item, placement_grid_coord)) grabbed_item = null;
+            if(hit_grid.try_set_item(grabbed_item, placement_grid_coord)) {
+                grabbed_item = null;
+                _is_ship_valid = is_ship_valid();
+            }
         }
     }
 
@@ -192,9 +218,11 @@ public class ModularShipBuilder : MonoBehaviour {
             if(hovered_item.data.component_data.value.can_player_afford()) {
                 GameManager.instance.spawn_resource_remove_particle(hovered_item.data.component_data.value, shop_money_source);
                 pick_up_hovered_item(hit_grid);
+                _is_ship_valid = is_ship_valid();
             }
         } else {
             pick_up_hovered_item(hit_grid);
+            _is_ship_valid = is_ship_valid();
         }
     }
 

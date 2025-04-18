@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: AirlinerSpawnData
   m_EditorClassIdentifier: 
   spawn_prefab: {fileID: 7353057713218363749, guid: 05ea7da317815b244a47011aa70f6482, type: 3}
-  spawn_direction: 0
-  atmosphere_layers: 
+  spawn_direction: 3
+  atmosphere_layers: 00000000010000000200000003000000
   spawn_weight: 1
-  spawns_per_second: 10
+  spawn_rate: 10
+  max_spawned: 2

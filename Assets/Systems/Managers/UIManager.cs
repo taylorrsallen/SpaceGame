@@ -46,9 +46,10 @@ public class UIManager : MonoBehaviour {
         else instance = this;
         DontDestroyOnLoad(this);
 
-        intros_menu = FindAnyObjectByType<IntrosMenu>();
-        console_menu = FindAnyObjectByType<ConsoleMenu>();
-        hud = FindAnyObjectByType<HUD>();
+        intros_menu = FindAnyObjectByType<IntrosMenu>(FindObjectsInactive.Include);
+        console_menu = FindAnyObjectByType<ConsoleMenu>(FindObjectsInactive.Include);
+        hud = FindAnyObjectByType<HUD>(FindObjectsInactive.Include);
+        hud.init();
 
         intros_menu.init();
     }
@@ -173,6 +174,7 @@ public class UIManager : MonoBehaviour {
     public void enter_hud_mode() {
         state = UIState.HUD;
         scene_camera.gameObject.SetActive(false);
+        show_hud();
         hide_all_menus();
         set_cursor_light_visible(false);
     }

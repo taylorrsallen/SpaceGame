@@ -10,6 +10,7 @@ public class ModularShipController : MonoBehaviour {
     [TabGroup("Setup")] public Transform components;
     [TabGroup("Setup")] public Collider player_trigger;
     [TabGroup("Setup")] public MeshRenderer flame_effect;
+    private ObstacleSpawner obstacle_spawner;
 
     private ModularShipActivator[] activators;
     private ModularShipFuelContainer[] fuel_containers;
@@ -42,6 +43,8 @@ public class ModularShipController : MonoBehaviour {
     public void init() {
         character = GetComponent<Character>();
         rb = GetComponent<Rigidbody>();
+        obstacle_spawner = GetComponent<ObstacleSpawner>();
+        obstacle_spawner.init();
         refresh();
     }
 
@@ -49,7 +52,7 @@ public class ModularShipController : MonoBehaviour {
         activators = GetComponentsInChildren<ModularShipActivator>();
         fuel_containers = GetComponentsInChildren<ModularShipFuelContainer>();
 
-        foreach (ModularShipComponent ship_component in GetComponentsInChildren<ModularShipComponent>()) ship_component.modular_ship_controller = this;
+        foreach(ModularShipComponent ship_component in GetComponentsInChildren<ModularShipComponent>()) ship_component.modular_ship_controller = this;
 
         rb.WakeUp();
         rb.interpolation = RigidbodyInterpolation.None;
@@ -288,7 +291,7 @@ public class ModularShipController : MonoBehaviour {
     }
 
     public void knockback_from_component(ModularShipComponent component, Vector3 force) {
-        rb.AddForceAtPosition(force, component.transform.localPosition);
+        rb.AddForceAtPosition(force, component.transform.position);
     }
     #endregion
 

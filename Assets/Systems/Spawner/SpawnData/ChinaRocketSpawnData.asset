@@ -13,3 +13,8 @@ MonoBehaviour:
   m_Name: ChinaRocketSpawnData
   m_EditorClassIdentifier: 
   spawn_prefab: {fileID: 3561356078414496411, guid: c513a6ccadd151941af532f9ea9e852a, type: 3}
+  spawn_direction: 3
+  atmosphere_layers: 02000000040000000500000006000000
+  spawn_weight: 1
+  spawn_rate: 2
+  max_spawned: 5

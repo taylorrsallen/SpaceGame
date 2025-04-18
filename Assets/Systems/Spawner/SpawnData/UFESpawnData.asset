@@ -13,3 +13,8 @@ MonoBehaviour:
   m_Name: UFESpawnData
   m_EditorClassIdentifier: 
   spawn_prefab: {fileID: 1495020850000651134, guid: 31691da4611b0c94897e842aa1e9c7a9, type: 3}
+  spawn_direction: 3
+  atmosphere_layers: 06000000
+  spawn_weight: 1
+  spawn_rate: 10
+  max_spawned: 5

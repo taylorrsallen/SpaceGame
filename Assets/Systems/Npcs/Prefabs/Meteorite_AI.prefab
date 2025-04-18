@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 887201251252313886}
   - component: {fileID: 8525968258785896727}
   - component: {fileID: 2090283248684877339}
+  - component: {fileID: 5457999376234894397}
   m_Layer: 0
   m_Name: Meteorite_AI
   m_TagString: Untagged
@@ -146,6 +147,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe387dd9753d5a84eb8da6a89f3f6711, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5457999376234894397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3221537014128865778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ad7f4303fa59084397b94486998f8ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  max_distance: 300
 --- !u!1 &5724522997251153593
 GameObject:
   m_ObjectHideFlags: 0

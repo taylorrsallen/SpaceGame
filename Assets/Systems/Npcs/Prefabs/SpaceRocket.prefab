@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4461164536734051123}
   - component: {fileID: 3042998651559611340}
   - component: {fileID: 6540694116145892669}
+  - component: {fileID: -9170326133088759713}
   m_Layer: 0
   m_Name: SpaceRocket
   m_TagString: Untagged
@@ -60,6 +61,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2eff087e4a62e44a95a7e41b53ee37d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-9170326133088759713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8375242961638654814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ad7f4303fa59084397b94486998f8ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  max_distance: 1000
 --- !u!1001 &8099496962905977165
 PrefabInstance:
   m_ObjectHideFlags: 0

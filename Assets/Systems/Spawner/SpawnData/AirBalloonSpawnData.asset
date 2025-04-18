@@ -13,3 +13,8 @@ MonoBehaviour:
   m_Name: AirBalloonSpawnData
   m_EditorClassIdentifier: 
   spawn_prefab: {fileID: 6944670780827554972, guid: a665fb09aa009004881e89a16f80170a, type: 3}
+  spawn_direction: 3
+  atmosphere_layers: 000000000100000002000000
+  spawn_weight: 1
+  spawn_rate: 5
+  max_spawned: 5
