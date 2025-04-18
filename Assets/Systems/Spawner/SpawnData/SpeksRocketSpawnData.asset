@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3a5425279108604e9d56149ef369079, type: 3}
   m_Name: SpeksRocketSpawnData
   m_EditorClassIdentifier: 
-  spawn_prefab: {fileID: 8375242961638654814, guid: 27b91664621c7364a9c3219af77ede41, type: 3}
+  spawn_prefab: {fileID: 8375242961638654814, guid: d757821d5df06fc4ea6623bce5430354, type: 3}
   spawn_direction: 3
   atmosphere_layers: 00000000010000000200000003000000040000000500000006000000
   spawn_weight: 1

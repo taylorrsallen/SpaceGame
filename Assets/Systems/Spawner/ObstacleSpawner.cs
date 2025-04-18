@@ -184,7 +184,17 @@ public class ObstacleSpawner : MonoBehaviour {
     }
 
     private Vector3 get_above_spawn_point() {
-        return GameManager.instance.ship_controller.get_ship_position() + new Vector3(0f, Random.Range(no_spawn_radius, max_spawn_radius), 0f);
+        float value = (Random.value - 0.5f) * 2f;
+        Vector3 offset = Vector3.zero;
+        if(value > 0f) {
+            // Right
+            offset = new Vector3(Mathf.Max(Random.Range(no_spawn_radius, max_spawn_radius)), 0f, 0f);
+        } else {
+            // Left
+            offset = new Vector3(Random.Range(-no_spawn_radius, -max_spawn_radius), 0f, 0f);
+        }
+
+        return GameManager.instance.ship_controller.get_ship_position() + new Vector3(0f, Random.Range(no_spawn_radius, max_spawn_radius), 0f) + offset;
     }
 
     private Vector3 get_below_spawn_point() {

@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6195c88f64962224f8bc56a75e8c0a4a, type: 3}
+  m_Name: 2x2ArmoredThrusterComponentData
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: value
+      Entry: 7
+      Data: GameResource, Assembly-CSharp
+    - Name: id
+      Entry: 3
+      Data: 0
+    - Name: amount
+      Entry: 3
+      Data: 119999
+    - Name: 
+      Entry: 8
+      Data: 
+  types: 
+  id: 8
+  mass: 5
+  max_health: 25
+  percent_armor: 0
+  flat_armor: 0
+  grid_dimensions: {x: 2, y: 2}
+  mesh_prefab: {fileID: 8713969531136534805, guid: f5f3cda3002d3b64ea6e6a75bcf77a69, type: 3}
+  component_prefab: {fileID: 500394674562888929, guid: 1d70a2bd04c6d604f936b0abb2bbd479, type: 3}
+  collision_velocity_damper: 0.02
+  death_effects: {fileID: 0}
+  death_delay_range: {x: 0.02, y: 0.07}
+  audio_data: {fileID: 11400000, guid: 98474ce30f0625c49aca823571ec5016, type: 2}
+  activator: 1
+  activator_fuel_usage_per_second: 4
+  activator_hotkey: 32
+  activator_can_deactivate: 1
+  activator_toggle: 0
+  fuel_container: 0
+  fuel_capacity: 100

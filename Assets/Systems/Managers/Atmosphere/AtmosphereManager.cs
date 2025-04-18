@@ -27,6 +27,10 @@ public class AtmosphereManager : MonoBehaviour {
 
     [TabGroup("Atmosphere")] public GameObject clouds;
     [TabGroup("Atmosphere")] public GameObject mars;
+    [TabGroup("Atmosphere")] public GameObject mars_facade;
+    [TabGroup("Atmosphere")] public float mars_facade_scale = 1f;
+    [TabGroup("Atmosphere")] public float mars_facade_up_offset = 10f;
+    [TabGroup("Atmosphere")] public float mars_facade_forward_offset = 10f;
     [TabGroup("Atmosphere")] public float troposphere_size = 700f;
     [TabGroup("Atmosphere")] public float stratosphere_size = 100f;
     [TabGroup("Atmosphere")] public float mesosphere_size = 600f;
@@ -41,6 +45,7 @@ public class AtmosphereManager : MonoBehaviour {
     private float current_layer_percent;
     private float max_height;
     private ulong height_cash;
+    private float percent_to_mars;
 
     [HideInInspector] public float drag;
     [HideInInspector] public float visual_drag;
@@ -127,6 +132,9 @@ public class AtmosphereManager : MonoBehaviour {
         wind_target.y = Mathf.Clamp(wind_target.y + UnityEngine.Random.Range(-0.1f, 0.1f), wind_direction_vertical_range.x, wind_direction_vertical_range.y);
         wind_direction = Vector2.Lerp(wind_direction, wind_target, Time.deltaTime * wind_change_speed);
 
+        mars_facade.transform.position = GameManager.instance.ship_controller.get_ship_position() + Vector3.up * mars_facade_up_offset + Vector3.forward * mars_facade_forward_offset;
+        mars_facade.transform.localScale = new Vector3(mars_facade_scale * percent_to_mars, mars_facade_scale * percent_to_mars, 0.01f);
+
         float ground_to_sky;
         float earth_to_space;
         float space_to_mars;
@@ -183,6 +191,7 @@ public class AtmosphereManager : MonoBehaviour {
                         space_music_lerp_target = 0f;
                         alien_music_lerp_target = 0f;
                         success_music_lerp_target = 0f;
+                        percent_to_mars = 0f;
                         return;
                     case 1:
                         current_layer = AtmosphereLayer.STRATOSPHERE;
@@ -197,6 +206,7 @@ public class AtmosphereManager : MonoBehaviour {
                         space_music_lerp_target = 0f;
                         alien_music_lerp_target = 0f;
                         success_music_lerp_target = 0f;
+                        percent_to_mars = 0f;
                         return;
                     case 2:
                         current_layer = AtmosphereLayer.MESOSPHERE;
@@ -211,6 +221,7 @@ public class AtmosphereManager : MonoBehaviour {
                         space_music_lerp_target = 0f;
                         alien_music_lerp_target = 0f;
                         success_music_lerp_target = 0f;
+                        percent_to_mars = 0f;
                         return;
                     case 3:
                         current_layer = AtmosphereLayer.THERMOSPHERE;
@@ -225,6 +236,7 @@ public class AtmosphereManager : MonoBehaviour {
                         space_music_lerp_target = 0f;
                         alien_music_lerp_target = 0f;
                         success_music_lerp_target = 0f;
+                        percent_to_mars = Mathf.Lerp(0f, 0.15f, current_layer_percent);
                         return;
                     case 4:
                         current_layer = AtmosphereLayer.EXOSPHERE;
@@ -239,6 +251,7 @@ public class AtmosphereManager : MonoBehaviour {
                         space_music_lerp_target = 1f;
                         alien_music_lerp_target = 0f;
                         success_music_lerp_target = 0f;
+                        percent_to_mars = Mathf.Lerp(0.15f, 0.3f, current_layer_percent);
                         return;
                     case 5:
                         current_layer = AtmosphereLayer.SPACE;
@@ -253,6 +266,7 @@ public class AtmosphereManager : MonoBehaviour {
                         space_music_lerp_target = 1f;
                         alien_music_lerp_target = 0f;
                         success_music_lerp_target = 0f;
+                        percent_to_mars = Mathf.Lerp(0.3f, 0.45f, current_layer_percent);
                         return;
                     case 6:
                         current_layer = AtmosphereLayer.ALIENS;
@@ -267,6 +281,7 @@ public class AtmosphereManager : MonoBehaviour {
                         space_music_lerp_target = 0f;
                         alien_music_lerp_target = 1f;
                         success_music_lerp_target = 0f;
+                        percent_to_mars = Mathf.Lerp(0.45f, 0.6f, current_layer_percent);
                         return;
                     case 7:
                         current_layer = AtmosphereLayer.PEACEFUL_SPACE;
@@ -276,11 +291,12 @@ public class AtmosphereManager : MonoBehaviour {
                         space_intensity = space_intensity_max * space_intensity_curve.Evaluate(1f - current_layer_percent);
                         drag = Mathf.Lerp(0.3f, 0.5f, current_layer_percent);
                         visual_drag = Mathf.Lerp(0f, 1f, current_layer_percent);
-                        gravity = 0f;
+                        gravity = Mathf.Lerp(0f, 9.8f, current_layer_percent);
                         height_cash = (ulong)Mathf.Lerp(320000f, 640000f, current_layer_percent);
                         space_music_lerp_target = 0f;
                         alien_music_lerp_target = 0f;
                         success_music_lerp_target = 0f;
+                        percent_to_mars = Mathf.Lerp(0.6f, 0.75f, current_layer_percent);
                         return;
                     default:
                         current_layer = AtmosphereLayer.MARS;
@@ -290,11 +306,12 @@ public class AtmosphereManager : MonoBehaviour {
                         space_intensity = 0f;
                         drag = 0.5f;
                         visual_drag = Mathf.Lerp(1f, 0f, current_layer_percent);
-                        gravity = -9.8f;
+                        gravity = 9.8f;
                         height_cash = (ulong)Mathf.Lerp(640000f, 1280000f, current_layer_percent);
                         space_music_lerp_target = 0f;
                         alien_music_lerp_target = 0f;
                         success_music_lerp_target = 1f;
+                        percent_to_mars = Mathf.Lerp(0.75f, 1f, current_layer_percent);
                         return;
                 }
             }

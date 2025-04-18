@@ -88,6 +88,7 @@
     <Compile Include="Assets\Systems\UI3D\TabToReturn2D.cs" />
     <Compile Include="Assets\Systems\Npcs\China\ChinaIntensity.cs" />
     <Compile Include="Assets\Systems\Npcs\BiPlaneAIType.cs" />
+    <Compile Include="Assets\Systems\Npcs\FighterPlaneAIType.cs" />
     <Compile Include="Assets\Systems\UI3D\CameraToggle2D.cs" />
     <Compile Include="Assets\Systems\Npcs\ChinaSpyBalloonAiType.cs" />
     <Compile Include="Assets\Systems\Menus\CameraIntro.cs" />
@@ -109,10 +110,12 @@
     <Compile Include="Assets\Systems\Npcs\Meteorite.cs" />
     <Compile Include="Assets\Systems\Water\WaterVolume.cs" />
     <Compile Include="Assets\Systems\ModularShipBuilder\Grid3D.cs" />
+    <Compile Include="Assets\Systems\Projectiles\ProjectileBase.cs" />
     <Compile Include="Assets\Systems\ModularShipBuilder\Grid3DShop.cs" />
     <Compile Include="Assets\Systems\Controller\PlayerController.cs" />
     <Compile Include="Assets\Systems\UI3D\NineRect\NineRect3D.cs" />
     <Compile Include="Assets\Systems\Common\Lifetime.cs" />
+    <Compile Include="Assets\Systems\Projectiles\IProjectile.cs" />
     <Compile Include="Assets\Systems\Managers\Atmosphere\WindBlown.cs" />
     <Compile Include="Assets\Systems\Dialogue\DialogueReader3D.cs" />
     <Compile Include="Assets\Systems\Npcs\SpaceSpeks.cs" />
@@ -128,6 +131,7 @@
     <Compile Include="Assets\Systems\ModularShip\ModularShipFuelContainer.cs" />
     <Compile Include="Assets\Systems\Managers\Atmosphere\HeavyWindAudio.cs" />
     <Compile Include="Assets\Systems\UI3D\ContextMenu\ContextMenu3D.cs" />
+    <Compile Include="Assets\Systems\Projectiles\Prefabs\Bullet.cs" />
     <Compile Include="Assets\UFEShipRotator.cs" />
     <Compile Include="Assets\Systems\Data\DataManager.cs" />
     <Compile Include="Assets\Systems\ModularShip\ModularShipEmitter.cs" />
