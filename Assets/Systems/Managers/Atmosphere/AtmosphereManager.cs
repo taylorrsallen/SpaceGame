@@ -12,6 +12,7 @@ public enum AtmosphereLayer {
     ALIENS,
     PEACEFUL_SPACE,
     MARS,
+    COUNT,
 }
 
 public class AtmosphereManager : MonoBehaviour {
@@ -25,27 +26,32 @@ public class AtmosphereManager : MonoBehaviour {
     [TabGroup("Wind")] public float wind_strength_noise_frequency = 10f;
 
     [TabGroup("Atmosphere")] public GameObject clouds;
-    [TabGroup("Atmosphere")] public float troposphere_start = 0f;
-    [TabGroup("Atmosphere")] public float stratosphere_start = 120f;
-    [TabGroup("Atmosphere")] public float mesosphere_start = 500f;
-    [TabGroup("Atmosphere")] public float thermosphere_start = 800f;
-    [TabGroup("Atmosphere")] public float exosphere_start = 7000f;
-    [TabGroup("Atmosphere")] public float aliens_start = 20000f;
-    [TabGroup("Atmosphere")] public float peace_start = 40000f;
-    [TabGroup("Atmosphere")] public float mars_start = 50000f;
-    [TabGroup("Atmosphere")] public float mars_full = 55000f;
+    [TabGroup("Atmosphere")] public GameObject mars;
+    [TabGroup("Atmosphere")] public float troposphere_size = 700f;
+    [TabGroup("Atmosphere")] public float stratosphere_size = 100f;
+    [TabGroup("Atmosphere")] public float mesosphere_size = 600f;
+    [TabGroup("Atmosphere")] public float thermosphere_size = 600f;
+    [TabGroup("Atmosphere")] public float exosphere_size = 600f;
+    [TabGroup("Atmosphere")] public float space_size = 600f;
+    [TabGroup("Atmosphere")] public float aliens_size = 600f;
+    [TabGroup("Atmosphere")] public float peace_size = 600f;
+    [TabGroup("Atmosphere")] public float mars_size = 1000f;
+    private float[] layer_sizes = new float[(int)AtmosphereLayer.COUNT];
+    private AtmosphereLayer current_layer;
+    private float current_layer_percent;
+    private float max_height;
+    private ulong height_cash;
+
+    [HideInInspector] public float drag;
+    [HideInInspector] public float visual_drag;
+    [HideInInspector] public float gravity;
     
     [TabGroup("Height")] public AnimationCurve height_to_wind_curve;
     [TabGroup("Height")] public Vector2 wind_multiplier_range = new Vector2(1f, 2.5f);
     [TabGroup("Height")] public Vector2 height_to_wind_range = new Vector2(0f, 1200f);
     [TabGroup("Height")] public float max_wind_height = 1500f;
-    [TabGroup("Height")] public AnimationCurve height_to_gravity_curve;
-    [TabGroup("Height")] public Vector2 height_to_gravity_range = new Vector2(0f, 2000f);
-    [TabGroup("Height")] public AnimationCurve height_to_cash_curve;
-    [TabGroup("Height")] public Vector2 height_to_cash_range = new Vector2(0f, 60000f);
     [TabGroup("Height")] public AnimationCurve space_intensity_curve;
-    [TabGroup("Height")] public Vector2 space_intensity_range = new Vector2(500f, 20000f);
-    [TabGroup("Height")] public float space_intensity_max = 4f;
+    [TabGroup("Height")] public float space_intensity_max = 26f;
     [TabGroup("Height")] public Material skybox_material;
 
     [TabGroup("Audio")] public AudioSource birds;
@@ -97,6 +103,20 @@ public class AtmosphereManager : MonoBehaviour {
         else instance = this;
         DontDestroyOnLoad(this);
 
+        layer_sizes[0] = troposphere_size;
+        layer_sizes[1] = stratosphere_size;
+        layer_sizes[2] = mesosphere_size;
+        layer_sizes[3] = thermosphere_size;
+        layer_sizes[4] = exosphere_size;
+        layer_sizes[5] = space_size;
+        layer_sizes[6] = aliens_size;
+        layer_sizes[7] = peace_size;
+        layer_sizes[8] = mars_size;
+
+        for(uint i = 0; i < layer_sizes.Length; i++) { max_height += layer_sizes[i]; }
+
+        clouds.transform.position = new Vector3(clouds.transform.position.x, troposphere_size - 300f, clouds.transform.position.z);
+        mars.transform.position = new Vector3(mars.transform.position.x, max_height, mars.transform.position.z);
         wind_target = wind_direction;
         update_time_scale();
     }
@@ -107,32 +127,14 @@ public class AtmosphereManager : MonoBehaviour {
         wind_target.y = Mathf.Clamp(wind_target.y + UnityEngine.Random.Range(-0.1f, 0.1f), wind_direction_vertical_range.x, wind_direction_vertical_range.y);
         wind_direction = Vector2.Lerp(wind_direction, wind_target, Time.deltaTime * wind_change_speed);
 
-        space_music_lerp_target = 0f;
-        float ground_to_sky = 1f;
-        float earth_to_space = 0f;
-        float space_to_mars = 0f;
-        ModularShipController ship_controller = GameManager.instance.ship_controller;
-        if (ship_controller.transform.position.y < stratosphere_start) {
-            ground_to_sky = GameManager.instance.ship_controller.transform.position.y / stratosphere_start;
-        } else if (ship_controller.transform.position.y < mesosphere_start) {
-            earth_to_space = ((GameManager.instance.ship_controller.transform.position.y - stratosphere_start) / (mesosphere_start - stratosphere_start)) * 0.2f;
-        } else if (ship_controller.transform.position.y < thermosphere_start) {
-            earth_to_space = Mathf.Max(((GameManager.instance.ship_controller.transform.position.y - mesosphere_start) / (thermosphere_start - mesosphere_start)) * 0.4f, 0.2f);
-        } else if (ship_controller.transform.position.y < exosphere_start) {
-            earth_to_space = Mathf.Max(((GameManager.instance.ship_controller.transform.position.y - thermosphere_start) / (exosphere_start - thermosphere_start)), 0.4f);
-        } else {
-            earth_to_space = 1f;
-            space_music_lerp_target = 1f;
-        }
+        float ground_to_sky;
+        float earth_to_space;
+        float space_to_mars;
+        float space_intensity;
 
-        if (ship_controller.transform.position.y > mars_start) {
-            space_to_mars = Mathf.Min(ship_controller.transform.position.y, mars_full) / mars_full;
-        }
-
-        float space_intensity = 1f;
-        if (ship_controller.transform.position.y > space_intensity_range.x) {
-            space_intensity = space_intensity_curve.Evaluate(((Mathf.Min(ship_controller.transform.position.y, space_intensity_range.y) - space_intensity_range.x) / (space_intensity_range.y - space_intensity_range.x))) * space_intensity_max;
-        }
+        float ship_height = GameManager.instance.ship_controller.get_ship_position().y;
+        get_current_atmosphere_layer(ship_height, out ground_to_sky, out earth_to_space, out space_to_mars, out space_intensity);
+        Debug.Log("Layer: " + current_layer + " | Percent: " + current_layer_percent);
 
         skybox_material.SetFloat("_GroundToSky", ground_to_sky);
         skybox_material.SetFloat("_EarthToSpace", earth_to_space);
@@ -147,10 +149,7 @@ public class AtmosphereManager : MonoBehaviour {
             chinese_music_lerp_target = 0f;
         }
 
-        if (alien_music_lerp_target > 0f) {
-            space_music_lerp_target = 0f;
-            chinese_music_lerp_target = Mathf.Max(chinese_music_lerp_target * 0.5f, 0.1f);
-        }
+        if (alien_music_lerp_target > 0f) chinese_music_lerp_target = Mathf.Max(chinese_music_lerp_target * 0.5f, 0.1f);
 
         update_music_player(space_music, space_music_lerp_target);
         update_music_player(alien_music, alien_music_lerp_target);
@@ -158,6 +157,156 @@ public class AtmosphereManager : MonoBehaviour {
         update_music_player(chinese_music, chinese_music_lerp_target);
 
         update_time();
+    }
+
+    private void get_current_atmosphere_layer(float height, out float ground_to_sky, out float earth_to_space, out float space_to_mars, out float space_intensity) {
+        for(int i = layer_sizes.Length - 1; i > -1; i--) {
+            int layer_below_index = i - 1;
+            float layer_start_height = 0f;
+            if(layer_below_index >= 0) for(uint j = 0; j < i; j++) { layer_start_height += layer_sizes[j]; }
+
+            if(height > layer_start_height) {
+                // Debug.Log("StartHeight: " + layer_start_height + " | LayerBelowIndex: " + layer_below_index + " | CurrentLayer: " + i);
+                current_layer_percent = (height - layer_start_height) / layer_sizes[i];
+
+                switch(i) {
+                    case 0:
+                        current_layer = AtmosphereLayer.TROPOSPHERE;
+                        ground_to_sky = 0f;
+                        earth_to_space = 0f;
+                        space_to_mars = 0f;
+                        space_intensity = 0f;
+                        drag = 0.01f;
+                        visual_drag = 0f;
+                        gravity = -9.8f;
+                        height_cash = (ulong)Mathf.Lerp(0f, 5000f, current_layer_percent);
+                        space_music_lerp_target = 0f;
+                        alien_music_lerp_target = 0f;
+                        success_music_lerp_target = 0f;
+                        return;
+                    case 1:
+                        current_layer = AtmosphereLayer.STRATOSPHERE;
+                        ground_to_sky = current_layer_percent;
+                        earth_to_space = current_layer_percent * 0.1f;
+                        space_to_mars = 0f;
+                        space_intensity = 1f;
+                        drag = Mathf.Lerp(0.01f, 0.3f, current_layer_percent);
+                        visual_drag = Mathf.Lerp(0f, 0.5f, current_layer_percent);
+                        gravity = -9.8f;
+                        height_cash = (ulong)Mathf.Lerp(5000f, 10000f, current_layer_percent);
+                        space_music_lerp_target = 0f;
+                        alien_music_lerp_target = 0f;
+                        success_music_lerp_target = 0f;
+                        return;
+                    case 2:
+                        current_layer = AtmosphereLayer.MESOSPHERE;
+                        ground_to_sky = 1f;
+                        earth_to_space = Mathf.Max(0.1f, current_layer_percent * 0.3f);
+                        space_to_mars = 0f;
+                        space_intensity = 1f;
+                        drag = Mathf.Lerp(0.3f, 0.4f, current_layer_percent);
+                        visual_drag = Mathf.Lerp(0.5f, 1f, current_layer_percent);
+                        gravity = Mathf.Lerp(-9.8f, -6.8f, current_layer_percent);
+                        height_cash = (ulong)Mathf.Lerp(10000f, 20000f, current_layer_percent);
+                        space_music_lerp_target = 0f;
+                        alien_music_lerp_target = 0f;
+                        success_music_lerp_target = 0f;
+                        return;
+                    case 3:
+                        current_layer = AtmosphereLayer.THERMOSPHERE;
+                        ground_to_sky = 1f;
+                        earth_to_space = Mathf.Max(0.3f, current_layer_percent * 0.5f);
+                        space_to_mars = 0f;
+                        space_intensity = 1f;
+                        drag = Mathf.Lerp(0.4f, 0.7f, current_layer_percent);
+                        visual_drag = Mathf.Lerp(1f, 10f, current_layer_percent);
+                        gravity = Mathf.Lerp(-6.8f, -3.8f, current_layer_percent);
+                        height_cash = (ulong)Mathf.Lerp(20000f, 40000f, current_layer_percent);
+                        space_music_lerp_target = 0f;
+                        alien_music_lerp_target = 0f;
+                        success_music_lerp_target = 0f;
+                        return;
+                    case 4:
+                        current_layer = AtmosphereLayer.EXOSPHERE;
+                        ground_to_sky = 1f;
+                        earth_to_space = Mathf.Max(0.5f, current_layer_percent);
+                        space_to_mars = 0f;
+                        space_intensity = 1f;
+                        drag = Mathf.Lerp(0.7f, 0.3f, current_layer_percent);
+                        visual_drag = Mathf.Lerp(10f, 0f, current_layer_percent);
+                        gravity = Mathf.Lerp(-3.8f, -0.8f, current_layer_percent);
+                        height_cash = (ulong)Mathf.Lerp(40000f, 80000f, current_layer_percent);
+                        space_music_lerp_target = 1f;
+                        alien_music_lerp_target = 0f;
+                        success_music_lerp_target = 0f;
+                        return;
+                    case 5:
+                        current_layer = AtmosphereLayer.SPACE;
+                        ground_to_sky = 1f;
+                        earth_to_space = 1f;
+                        space_to_mars = 0f;
+                        space_intensity = Mathf.Max(1f, space_intensity_max * space_intensity_curve.Evaluate(current_layer_percent));
+                        drag = 0.3f;
+                        visual_drag = 0f;
+                        gravity = 0f;
+                        height_cash = (ulong)Mathf.Lerp(80000f, 160000f, current_layer_percent);
+                        space_music_lerp_target = 1f;
+                        alien_music_lerp_target = 0f;
+                        success_music_lerp_target = 0f;
+                        return;
+                    case 6:
+                        current_layer = AtmosphereLayer.ALIENS;
+                        ground_to_sky = 1f;
+                        earth_to_space = 1f;
+                        space_to_mars = 0f;
+                        space_intensity = space_intensity_max;
+                        drag = 0.3f;
+                        visual_drag = 0f;
+                        gravity = 0f;
+                        height_cash = (ulong)Mathf.Lerp(160000f, 320000f, current_layer_percent);
+                        space_music_lerp_target = 0f;
+                        alien_music_lerp_target = 1f;
+                        success_music_lerp_target = 0f;
+                        return;
+                    case 7:
+                        current_layer = AtmosphereLayer.PEACEFUL_SPACE;
+                        ground_to_sky = 1f;
+                        earth_to_space = 1f;
+                        space_to_mars = current_layer_percent;
+                        space_intensity = space_intensity_max * space_intensity_curve.Evaluate(1f - current_layer_percent);
+                        drag = Mathf.Lerp(0.3f, 0.5f, current_layer_percent);
+                        visual_drag = Mathf.Lerp(0f, 1f, current_layer_percent);
+                        gravity = 0f;
+                        height_cash = (ulong)Mathf.Lerp(320000f, 640000f, current_layer_percent);
+                        space_music_lerp_target = 0f;
+                        alien_music_lerp_target = 0f;
+                        success_music_lerp_target = 0f;
+                        return;
+                    default:
+                        current_layer = AtmosphereLayer.MARS;
+                        ground_to_sky = 1f;
+                        earth_to_space = 1f;
+                        space_to_mars = 1f;
+                        space_intensity = 0f;
+                        drag = 0.5f;
+                        visual_drag = Mathf.Lerp(1f, 0f, current_layer_percent);
+                        gravity = -9.8f;
+                        height_cash = (ulong)Mathf.Lerp(640000f, 1280000f, current_layer_percent);
+                        space_music_lerp_target = 0f;
+                        alien_music_lerp_target = 0f;
+                        success_music_lerp_target = 1f;
+                        return;
+                }
+            }
+        }
+
+
+        current_layer = AtmosphereLayer.TROPOSPHERE;
+        ground_to_sky = 0f;
+        earth_to_space = 0f;
+        space_to_mars = 0f;
+        space_intensity = 0f;
+        drag = 0.2f;
     }
 
     private void update_music_player(AudioSource player, float lerp_target) {
@@ -239,13 +388,11 @@ public class AtmosphereManager : MonoBehaviour {
 
     public Vector3 get_gravity() {
         if (GameManager.instance.ship_controller.is_in_water) {
-            return new Vector3(0f, -9.8f, 0f) * underwater_gravity_multiplier;
+            return new Vector3(0f, gravity, 0f) * underwater_gravity_multiplier;
         } else {
-            return new Vector3(0f, -9.8f, 0f) * height_to_gravity_curve.Evaluate(Mathf.Min(GameManager.instance.ship_controller.transform.position.y, height_to_gravity_range.y) / height_to_gravity_range.y);
+            return new Vector3(0f, gravity, 0f);
         }
     }
 
-    public float get_atmospheric_friction() { return 0.1f; }
-
-    public float get_height_cash(float height) { return height_to_cash_curve.Evaluate(height / mars_full) * height_to_cash_range.y; }
+    public float get_height_cash(float height) { return height_cash; }
 }

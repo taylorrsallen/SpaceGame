@@ -78,7 +78,10 @@ public class ModularShipController : MonoBehaviour {
             last_valid_camera_anchor_point = transform.position + transform.TransformDirection(rb.centerOfMass);
             last_valid_camera_anchor_rotation = new Vector3(0f, 0f, transform.rotation.eulerAngles.z);
 
-            float flame_intensity = rb.linearVelocity.magnitude * flame_effect_velocity_intensity * AtmosphereManager.instance.get_atmospheric_friction();
+            rb.linearDamping = AtmosphereManager.instance.drag;
+            rb.angularDamping = AtmosphereManager.instance.drag;
+
+            float flame_intensity = rb.linearVelocity.magnitude * flame_effect_velocity_intensity * AtmosphereManager.instance.visual_drag;
             if(flame_intensity < 0.2f) {
                 flame_effect.gameObject.SetActive(false);
             } else {
