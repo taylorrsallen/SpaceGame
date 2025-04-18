@@ -35,7 +35,7 @@ MonoBehaviour:
       Data: 
   types: 
   id: 6
-  mass: 1
+  mass: 0.5
   max_health: 3
   percent_armor: 0
   flat_armor: 0

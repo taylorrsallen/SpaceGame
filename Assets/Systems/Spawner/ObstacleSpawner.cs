@@ -157,7 +157,7 @@ public class ObstacleSpawner : MonoBehaviour {
                 if(available_spawn_indexes.Count > 0) {
                     int spawn_index = available_spawn_indexes.Dequeue();
                     Vector3 spawn_point = get_spawn_point(spawn_list[i].data.spawn_direction);
-                    spawn_point.y = Mathf.Max(spawn_point.y, minimum_height);
+                    spawn_point.y = Mathf.Max(spawn_point.y, Random.Range(minimum_height, minimum_height + 100f));
                     spawn_list[i].spawned[spawn_index] = Instantiate(spawn_list[i].data.spawn_prefab, spawn_point, spawn_list[i].data.spawn_prefab.transform.rotation);
                 }
             }
@@ -178,10 +178,10 @@ public class ObstacleSpawner : MonoBehaviour {
         float value = (Random.value - 0.5f) * 2f;
         if(value > 0f) {
             // Right
-            return GameManager.instance.ship_controller.get_ship_position() + new Vector3(Mathf.Max(Random.Range(no_spawn_radius, max_spawn_radius)), 0f, 0f);
+            return GameManager.instance.ship_controller.get_ship_position() + new Vector3(Random.Range(no_spawn_radius, max_spawn_radius), Random.Range(no_spawn_radius, max_spawn_radius), 0f);
         } else {
             // Left
-            return GameManager.instance.ship_controller.get_ship_position() + new Vector3(Random.Range(-no_spawn_radius, -max_spawn_radius), 0f, 0f);
+            return GameManager.instance.ship_controller.get_ship_position() + new Vector3(Random.Range(-no_spawn_radius, -max_spawn_radius), Random.Range(no_spawn_radius, max_spawn_radius), 0f);
         }
     }
 
@@ -193,20 +193,31 @@ public class ObstacleSpawner : MonoBehaviour {
 
     private Vector3 get_above_spawn_point() {
         float value = (Random.value - 0.5f) * 2f;
-        Vector3 offset = Vector3.zero;
+        Vector3 offset;
         if(value > 0f) {
             // Right
-            offset = new Vector3(Mathf.Max(Random.Range(no_spawn_radius, max_spawn_radius)), 0f, 0f);
+            offset = new Vector3(Random.Range(no_spawn_radius, max_spawn_radius), 0f, 0f);
         } else {
             // Left
             offset = new Vector3(Random.Range(-no_spawn_radius, -max_spawn_radius), 0f, 0f);
         }
 
+        Debug.Log(offset);
         return GameManager.instance.ship_controller.get_ship_position() + new Vector3(0f, Random.Range(no_spawn_radius, max_spawn_radius), 0f) + offset;
     }
 
     private Vector3 get_below_spawn_point() {
-        return GameManager.instance.ship_controller.get_ship_position() + new Vector3(0f, Random.Range(-no_spawn_radius, -max_spawn_radius), 0f);
+        float value = (Random.value - 0.5f) * 2f;
+        Vector3 offset;
+        if(value > 0f) {
+            // Right
+            offset = new Vector3(Random.Range(no_spawn_radius, max_spawn_radius), 0f, 0f);
+        } else {
+            // Left
+            offset = new Vector3(Random.Range(-no_spawn_radius, -max_spawn_radius), 0f, 0f);
+        }
+
+        return GameManager.instance.ship_controller.get_ship_position() + new Vector3(0f, Random.Range(-no_spawn_radius, -max_spawn_radius), 0f) + offset;
     }
 
     private Vector3 get_anywhere_spawn_point() {

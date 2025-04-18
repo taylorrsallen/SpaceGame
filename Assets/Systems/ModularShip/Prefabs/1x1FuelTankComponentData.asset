@@ -35,7 +35,7 @@ MonoBehaviour:
       Data: 
   types: 
   id: 2
-  mass: 1
+  mass: 0.8
   max_health: 2
   percent_armor: 0
   flat_armor: 0
@@ -52,4 +52,4 @@ MonoBehaviour:
   activator_can_deactivate: 1
   activator_toggle: 0
   fuel_container: 1
-  fuel_capacity: 50
+  fuel_capacity: 65

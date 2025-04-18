@@ -35,10 +35,10 @@ MonoBehaviour:
       Data: 
   types: 
   id: 0
-  mass: 5
+  mass: 2.5
   max_health: 10
   percent_armor: 0
-  flat_armor: 0
+  flat_armor: 2
   grid_dimensions: {x: 2, y: 3}
   mesh_prefab: {fileID: 3627574228105931574, guid: ecf7c61325f70bb498b0bb11308c04af, type: 3}
   component_prefab: {fileID: 7397452665123200901, guid: b0c046dbd8e4da7458619d4243b85341, type: 3}

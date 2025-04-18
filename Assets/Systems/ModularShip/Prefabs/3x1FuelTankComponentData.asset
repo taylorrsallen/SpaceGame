@@ -52,4 +52,4 @@ MonoBehaviour:
   activator_can_deactivate: 1
   activator_toggle: 0
   fuel_container: 1
-  fuel_capacity: 200
+  fuel_capacity: 235

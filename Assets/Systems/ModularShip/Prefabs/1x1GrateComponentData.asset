@@ -34,8 +34,8 @@ MonoBehaviour:
       Entry: 8
       Data: 
   types: 
-  id: 3
-  mass: 0.25
+  id: 9
+  mass: 0.1
   max_health: 1
   percent_armor: 0
   flat_armor: 0

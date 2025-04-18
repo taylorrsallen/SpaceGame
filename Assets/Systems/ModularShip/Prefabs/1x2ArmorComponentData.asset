@@ -34,11 +34,11 @@ MonoBehaviour:
       Entry: 8
       Data: 
   types: 
-  id: 3
-  mass: 3
+  id: 7
+  mass: 1.25
   max_health: 40
   percent_armor: 0
-  flat_armor: 0
+  flat_armor: 5
   grid_dimensions: {x: 1, y: 2}
   mesh_prefab: {fileID: 8534020876809586284, guid: e279f32a31400764cb2e90ff9b5cb2a9, type: 3}
   component_prefab: {fileID: -2988155600422997063, guid: 78f0380f0db3bd842aaf29fd31b25c7c, type: 3}

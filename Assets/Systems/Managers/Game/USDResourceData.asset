@@ -18,8 +18,8 @@ MonoBehaviour:
   resource_display_style: 1
   symbol_before_amount: 1
   universal_value_exchange_rate: 1
-  purchase_sounds: {fileID: 0}
-  collect_sounds: {fileID: 0}
+  purchase_sounds: {fileID: 11400000, guid: bf374a06940397040adb5812f955c0f5, type: 2}
+  collect_sounds: {fileID: 11400000, guid: c8393ad41b722064a9718aa094528a78, type: 2}
   collectable_mesh: {fileID: -4815824249480368949, guid: 2f14ab3fae993264f84781bd62a78a5a, type: 3}
   base_color: {r: 0.5232397, g: 0.9339623, b: 0.074893214, a: 1}
   add_color: {r: 0.5232397, g: 0.9339623, b: 0.074893214, a: 1}

@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95b3d828e8280be4b89f06d7829ada49, type: 3}
+  m_Name: SellSoundPool
+  m_EditorClassIdentifier: 
+  sounds:
+  - {fileID: 8300000, guid: 95ffb1d3d39e90f4296fe09a85fa6b31, type: 3}
+  - {fileID: 8300000, guid: d5c12571a2357cf4d9ceada960f32746, type: 3}
+  - {fileID: 8300000, guid: 405bb06450437784cb0fef3a91d359aa, type: 3}

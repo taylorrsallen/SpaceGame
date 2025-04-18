@@ -36,7 +36,7 @@ MonoBehaviour:
   types: 
   id: 3
   mass: 0.5
-  max_health: 2
+  max_health: 4
   percent_armor: 0
   flat_armor: 0
   grid_dimensions: {x: 2, y: 2}

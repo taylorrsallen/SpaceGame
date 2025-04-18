@@ -46,7 +46,7 @@ MonoBehaviour:
       Data: 0
     - Name: 
       Entry: 4
-      Data: 1
+      Data: -1
     - Name: 
       Entry: 4
       Data: 0
@@ -58,7 +58,7 @@ MonoBehaviour:
       Data: true
     - Name: knockback_magnitude
       Entry: 4
-      Data: 100
+      Data: 300
     - Name: 
       Entry: 8
       Data: 
@@ -67,7 +67,7 @@ MonoBehaviour:
       Data: 2|ExplosionPostProcessGameEffect, Assembly-CSharp
     - Name: intensity
       Entry: 4
-      Data: 0.02
+      Data: 0.025
     - Name: 
       Entry: 8
       Data: 
@@ -76,7 +76,7 @@ MonoBehaviour:
       Data: 3|SpawnerGameEffect, Assembly-CSharp
     - Name: parent
       Entry: 3
-      Data: 0
+      Data: 2
     - Name: spawn_point
       Entry: 3
       Data: 0
@@ -118,16 +118,19 @@ MonoBehaviour:
       Data: UnityEngine.Vector3, UnityEngine.CoreModule
     - Name: 
       Entry: 4
-      Data: 1
+      Data: 0.3
     - Name: 
       Entry: 4
-      Data: 1
+      Data: 0.3
     - Name: 
       Entry: 4
-      Data: 1
+      Data: 0.3
     - Name: 
       Entry: 8
       Data: 
+    - Name: speed
+      Entry: 4
+      Data: 12
     - Name: prefab
       Entry: 10
       Data: 0

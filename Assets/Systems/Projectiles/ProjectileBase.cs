@@ -20,6 +20,7 @@ public abstract class ProjectileBase : MonoBehaviour , IProjectile
     public void SetRotation(Vector3 euler)
     {
         transform.eulerAngles = euler;
+        Debug.Log(transform.eulerAngles);
     }
 
     public void SetForce(float force)

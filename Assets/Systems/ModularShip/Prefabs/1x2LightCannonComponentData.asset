@@ -29,12 +29,12 @@ MonoBehaviour:
       Data: 0
     - Name: amount
       Entry: 3
-      Data: 99
+      Data: 24999
     - Name: 
       Entry: 8
       Data: 
   types: 
-  id: 6
+  id: 11
   mass: 2
   max_health: 6
   percent_armor: 0
@@ -47,7 +47,7 @@ MonoBehaviour:
   death_delay_range: {x: 0.02, y: 0.07}
   audio_data: {fileID: 11400000, guid: 98474ce30f0625c49aca823571ec5016, type: 2}
   activator: 1
-  activator_fuel_usage_per_second: 0.2
+  activator_fuel_usage_per_second: 0
   activator_hotkey: 32
   activator_can_deactivate: 1
   activator_toggle: 0

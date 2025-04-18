@@ -143,6 +143,7 @@ public class SpawnerGameEffect : GameEffect {
     public Vector3 local_offset = Vector3.zero;
     public Vector3 local_direction = Vector3.zero;
     public Vector3 scale = Vector3.one;
+    public float speed = 12f;
     public GameObject prefab;
 
     public bool look_at_target;
@@ -177,7 +178,10 @@ public class SpawnerGameEffect : GameEffect {
         IProjectile projectile = spawn.GetComponent<IProjectile>();
         if(projectile != null) {
             projectile.SetDamage(1f);
-            projectile.SetRotation(args.source.transform.TransformDirection(local_direction));
+            projectile.SetForce(speed);
+            projectile.SetRotation(Quaternion.LookRotation(args.source.transform.TransformDirection(local_direction)).eulerAngles);
+
+            Debug.Log("ProjectileLocalDirection: " + local_direction + " | ProjectileTransformedDirection: " + args.source.transform.TransformDirection(local_direction));
         }
         
         Debug.Log("Spawned " + spawn.name + " at " + center_position);

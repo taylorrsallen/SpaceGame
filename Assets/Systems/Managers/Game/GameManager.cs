@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public enum GameMode {
     NONE,
@@ -29,6 +30,14 @@ public class GameManager : MonoBehaviour {
 
     [HideInInspector] public GameResource resource_for_height;
 
+    bool press_space_hint = false;
+    bool fly_high_hint = false;
+    bool fly_high_started = false;
+    float fly_high_timer = 0f;
+    [SerializeField] GameObject press_space;
+    [SerializeField] GameObject press_tab;
+    [SerializeField] GameObject fly_high;
+
     private void Awake() {
         if(instance != null && instance != this) Destroy(this);
         else instance = this;
@@ -46,6 +55,29 @@ public class GameManager : MonoBehaviour {
         for(uint i = 0; i < game_resources.Length; i++) { player_resources[i] = 0; }
     }
 
+    private void Update() {
+        if(!press_space_hint) {
+            if(Input.GetKeyDown(KeyCode.Space)) {
+                press_space_hint = true;
+                press_space.SetActive(false);
+                press_tab.SetActive(true);
+            }
+        }
+
+        if(!fly_high_started) {
+            if(ship_controller.get_ship_position().y > 50f) {
+                fly_high.gameObject.SetActive(true);
+                fly_high_started = true;
+            }
+        } else if(!fly_high_hint) {
+            fly_high_timer += Time.unscaledDeltaTime;
+            if(fly_high_timer > 7f) {
+                fly_high.gameObject.SetActive(false);
+                fly_high_hint = true;
+            }
+        }
+    }
+
     public void start_career_mode() {
         game_mode = GameMode.CAREER;
         player_controller.camera_rig.gameObject.SetActive(true);
@@ -54,8 +86,19 @@ public class GameManager : MonoBehaviour {
 
     public string get_player_resource_as_string(int resource_id) { return game_resources[resource_id].get_amount_as_string(player_resources[resource_id]); }
 
-    public void add_resource(GameResource resource) { player_resources[resource.id] += resource.amount; }
-    public void remove_resource(GameResource resource) { player_resources[resource.id] -= resource.amount; }
+    public void add_resource(GameResource resource) {
+        player_resources[resource.id] += resource.amount;
+        if(game_resources[resource.id].collect_sounds) {
+            SoundManager.instance.play_sound_3d_pitched(game_resources[resource.id].collect_sounds.get_sound(), player_controller.camera_rig.transform.position);
+        }
+    }
+
+    public void remove_resource(GameResource resource) {
+        player_resources[resource.id] -= resource.amount;
+        if(game_resources[resource.id].purchase_sounds) {
+            SoundManager.instance.play_sound_3d_pitched(game_resources[resource.id].purchase_sounds.get_sound(), player_controller.camera_rig.transform.position);
+        }
+    }
 
     public void spawn_resource_add_particle(GameResource resource, Transform spawn_transform) {
         // TEMP

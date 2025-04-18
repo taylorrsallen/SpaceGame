@@ -140,24 +140,41 @@ public class AtmosphereManager : MonoBehaviour {
         float space_to_mars;
         float space_intensity;
 
-        float ship_height = GameManager.instance.ship_controller.get_ship_position().y;
-        get_current_atmosphere_layer(ship_height, out ground_to_sky, out earth_to_space, out space_to_mars, out space_intensity);
-        // Debug.Log("Layer: " + current_layer + " | Percent: " + current_layer_percent);
+        if(!GameManager.instance.ship_builder.gameObject.activeSelf) {
+            float ship_height = GameManager.instance.ship_controller.get_ship_position().y;
+            get_current_atmosphere_layer(ship_height, out ground_to_sky, out earth_to_space, out space_to_mars, out space_intensity);
+            // Debug.Log("Layer: " + current_layer + " | Percent: " + current_layer_percent);
+
+            float china_intensity = GameManager.instance.ship_controller.china_intensity;
+            if (china_intensity > 0f) {
+                chinese_music_lerp_target = china_intensity;
+                space_music_lerp_target = Mathf.Clamp01(space_music_lerp_target - chinese_music_lerp_target);
+            } else {
+                chinese_music_lerp_target = 0f;
+            }
+
+            if (alien_music_lerp_target > 0f) chinese_music_lerp_target = Mathf.Max(chinese_music_lerp_target * 0.5f, 0.1f);
+        } else {
+            space_music_lerp_target = 0f;
+            alien_music_lerp_target = 0f;
+            success_music_lerp_target = 0f;
+            chinese_music_lerp_target = 0f;
+
+            ground_to_sky = 0f;
+            earth_to_space = 0f;
+            space_to_mars = 0f;
+            space_intensity = 0f;
+            drag = 0.01f;
+            visual_drag = 0f;
+            gravity = -9.8f;
+            height_cash = 0;
+            percent_to_mars = 0f;
+        }
 
         skybox_material.SetFloat("_GroundToSky", ground_to_sky);
         skybox_material.SetFloat("_EarthToSpace", earth_to_space);
         skybox_material.SetFloat("_SpaceToMars", space_to_mars);
         skybox_material.SetFloat("_SpaceIntensity", space_intensity);
-
-        float china_intensity = GameManager.instance.ship_controller.china_intensity;
-        if (china_intensity > 0f) {
-            chinese_music_lerp_target = china_intensity;
-            space_music_lerp_target = Mathf.Clamp01(space_music_lerp_target - chinese_music_lerp_target);
-        } else {
-            chinese_music_lerp_target = 0f;
-        }
-
-        if (alien_music_lerp_target > 0f) chinese_music_lerp_target = Mathf.Max(chinese_music_lerp_target * 0.5f, 0.1f);
 
         update_music_player(space_music, space_music_lerp_target);
         update_music_player(alien_music, alien_music_lerp_target);
