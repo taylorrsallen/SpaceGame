@@ -13,7 +13,7 @@ public class UIManager : MonoBehaviour {
 
     private IntrosMenu intros_menu;
     [TabGroup("Setup"), SerializeField] private Menu3D main_menu;
-    [TabGroup("Setup"), SerializeField] private Menu3D pause_menu;
+    private PauseMenu pause_menu;
     private ConsoleMenu console_menu;
     private HUD hud;
 
@@ -48,6 +48,7 @@ public class UIManager : MonoBehaviour {
 
         intros_menu = FindAnyObjectByType<IntrosMenu>(FindObjectsInactive.Include);
         console_menu = FindAnyObjectByType<ConsoleMenu>(FindObjectsInactive.Include);
+        pause_menu = FindAnyObjectByType<PauseMenu>(FindObjectsInactive.Include);
         hud = FindAnyObjectByType<HUD>(FindObjectsInactive.Include);
         hud.init();
 
@@ -87,6 +88,12 @@ public class UIManager : MonoBehaviour {
                 pressed_ui_3d = null;
             }
         }
+
+        if(Input.GetKeyDown(KeyCode.Escape)) escape_menu();
+    }
+
+    public void quit() {
+        Application.Quit();
     }
 
     #region Input

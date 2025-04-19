@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3a5425279108604e9d56149ef369079, type: 3}
   m_Name: BiplaneSpawnData
   m_EditorClassIdentifier: 
-  spawn_prefab: {fileID: 7353057713218363749, guid: 37de6159320accf48abb3df7101098a8, type: 3}
+  spawn_prefab: {fileID: 7353057713218363749, guid: f165ac9337c27034e9e2b2ac7448e918, type: 3}
   spawn_direction: 3
   atmosphere_layers: 0000000001000000
   spawn_weight: 1

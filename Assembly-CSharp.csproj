@@ -76,6 +76,7 @@
     <Compile Include="Assets\Systems\Npcs\LoopDoppleganger.cs" />
     <Compile Include="Assets\Systems\UI3D\TextureButton3D.cs" />
     <Compile Include="Assets\Systems\Controller\Controller.cs" />
+    <Compile Include="Assets\Systems\Common\NightLight.cs" />
     <Compile Include="Assets\Systems\ModularShip\ModularShipActivator.cs" />
     <Compile Include="Assets\Systems\Common\FaceTarget.cs" />
     <Compile Include="Assets\Systems\Common\Interfaces.cs" />
@@ -105,8 +106,10 @@
     <Compile Include="Assets\Systems\Character\CharacterSpringMotion.cs" />
     <Compile Include="Assets\Systems\Controller\PlayerControls.cs" />
     <Compile Include="Assets\Systems\Npcs\AirBalloon.cs" />
+    <Compile Include="Assets\Systems\Npcs\EntityUnknown.cs" />
     <Compile Include="Assets\Systems\Menus\IIntroPlayer.cs" />
     <Compile Include="Assets\Systems\Managers\Game\GameManager.cs" />
+    <Compile Include="Assets\Systems\Npcs\Citizen_Set.cs" />
     <Compile Include="Assets\Systems\Npcs\Meteorite.cs" />
     <Compile Include="Assets\Systems\Water\WaterVolume.cs" />
     <Compile Include="Assets\Systems\ModularShipBuilder\Grid3D.cs" />
@@ -162,6 +165,7 @@
     <Compile Include="Assets\Systems\Common\GameEffectData.cs" />
     <Compile Include="Assets\Systems\Npcs\UfeAiType.cs" />
     <Compile Include="Assets\Systems\Npcs\PlasmaBall.cs" />
+    <Compile Include="Assets\Systems\Managers\Atmosphere\WindRotate.cs" />
     <Compile Include="Assets\Systems\UI3D\ContextMenu\ContextMenuData.cs" />
     <Compile Include="Assets\Systems\Npcs\UFO.cs" />
     <Compile Include="Assets\Systems\Common\Util.cs" />
