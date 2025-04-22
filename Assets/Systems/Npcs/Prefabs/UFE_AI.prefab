@@ -51,7 +51,7 @@ MonoBehaviour:
   chargedEffect: {fileID: 11400000, guid: 9ff580eebb4d9344ba556ede1eb5db4d, type: 2}
   chargedLaserEffect: {fileID: 9064260562934382819, guid: ae5df44b083c38b46aca5df60a13b515, type: 3}
   PlasmaBallProjectile: {fileID: 7029669892446564207, guid: 4510fdfadd9e1bb4790e2acc4e3b0501, type: 3}
-  LaserProjectile: {fileID: 0}
+  LaserProjectile: {fileID: 7029669892446564207, guid: 4330f435bd67e9a4282a59fdf75cc6aa, type: 3}
   SoundPlayer: {fileID: 3591889521437817526}
 --- !u!114 &7855164425512609054
 MonoBehaviour:

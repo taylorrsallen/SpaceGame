@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7909996216404898591}
   - component: {fileID: 5755465611020806585}
-  - component: {fileID: 9170918081651066395}
+  - component: {fileID: 808331752385463760}
   m_Layer: 0
   m_Name: PlasmaBall
   m_TagString: Untagged
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 1000
   PlasmaImpact: {fileID: 11400000, guid: 7b756c245d7d42f4ebae3224d832183f, type: 2}
---- !u!114 &9170918081651066395
+--- !u!114 &808331752385463760
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -57,9 +57,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7029669892446564207}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d3bbaab71399de40a50dc9bd5ab0865, type: 3}
+  m_Script: {fileID: 11500000, guid: b33093700b255ff45a164a1bb437a693, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 35
 --- !u!1001 &2721694809338264725
 PrefabInstance:
   m_ObjectHideFlags: 0
